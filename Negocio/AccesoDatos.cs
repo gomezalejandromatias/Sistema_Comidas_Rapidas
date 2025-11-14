@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Negocio
+{
+    public  class AccesoDatos
+    {
+
+        private SqlConnection conexion;
+        private SqlCommand comando;
+        private SqlDataReader lector;
+
+        public SqlDataReader Lector
+        {
+
+            get { return lector; }
+        }
+
+        public AccesoDatos()
+        {
+
+
+           // conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = APPDOCENTE_DB; integrated security =true ;");
+
+            comando = new SqlCommand();
+
+
+
+        }
+
+        public void SetearConsulta(string consulta)
+        {
+
+            comando.CommandType = System.Data.CommandType.Text;
+
+            comando.CommandText = consulta;
+        }
+
+        public void EjecutarLectura()
+        {
+
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+
+                lector = comando.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void EjecutarAccion()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+        public object EjecutarEscalar()
+        {
+            comando.Connection = conexion;
+            conexion.Open();
+            return comando.ExecuteScalar();
+        }
+
+        public void SetearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
+
+
+
+
+        public void CerrarConexion()
+        {
+            if (lector != null)
+                lector.Close();
+            conexion.Close();
+
+        }
+
+        public void SetearProcedimiento(string nombreSP)
+        {
+            comando = new SqlCommand(nombreSP, conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+        }
+
+
+
+
+
+    }
+
+
+
+}
+
