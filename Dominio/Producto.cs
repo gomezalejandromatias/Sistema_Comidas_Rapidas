@@ -16,7 +16,7 @@ namespace Dominio
         public DateTime FechaIngreso { get; set; }
         public int Stock {  get; set; }
         public decimal Precio { get; set; } 
-        public bool     activo { get; set; }
+        public bool     Activo { get; set; }
         public string Categoria { get; set; }
 
 
