@@ -53,7 +53,20 @@ namespace Negocio
                 Precio = 150,
                 Activo = true,
                 Categoria = "Panchos"
+            }); 
+            lista.Add(new Producto
+            {
+                IDProducto = 3,
+                CodigoProducto = "P003",
+                Nombre = "Milanesa Completa",
+                FechaIngreso = DateTime.Now,
+                Stock = 50,
+                Precio = 250,
+                Activo = true,
+                Categoria = "Milanesa"
             });
+
+
 
             return lista;
 

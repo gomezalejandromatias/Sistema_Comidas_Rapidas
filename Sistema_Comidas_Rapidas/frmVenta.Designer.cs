@@ -32,9 +32,9 @@
             this.cargaDeProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrosDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movimientosDeStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.combosdeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
             this.dgvVenta = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVender = new System.Windows.Forms.Button();
@@ -42,6 +42,10 @@
             this.listViewCarrito = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSeleccionarProducto = new System.Windows.Forms.Button();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblVentaExitosa = new System.Windows.Forms.Label();
+            this.lblTotalCobro = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +59,7 @@
             this.combosdeVentasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1368, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1380, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -64,6 +68,7 @@
             this.cargaDeProductosToolStripMenuItem.Name = "cargaDeProductosToolStripMenuItem";
             this.cargaDeProductosToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
             this.cargaDeProductosToolStripMenuItem.Text = "Carga de Productos";
+            this.cargaDeProductosToolStripMenuItem.Click += new System.EventHandler(this.cargaDeProductosToolStripMenuItem_Click);
             // 
             // registrosDeVentasToolStripMenuItem
             // 
@@ -77,6 +82,12 @@
             this.movimientosDeStockToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
             this.movimientosDeStockToolStripMenuItem.Text = "Movimientos de Stock";
             // 
+            // combosdeVentasToolStripMenuItem
+            // 
+            this.combosdeVentasToolStripMenuItem.Name = "combosdeVentasToolStripMenuItem";
+            this.combosdeVentasToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.combosdeVentasToolStripMenuItem.Text = "Combos de ventas";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -87,19 +98,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Exitos con las Ventas";
             // 
-            // combosdeVentasToolStripMenuItem
+            // txtFiltro
             // 
-            this.combosdeVentasToolStripMenuItem.Name = "combosdeVentasToolStripMenuItem";
-            this.combosdeVentasToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
-            this.combosdeVentasToolStripMenuItem.Text = "Combos de ventas";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(206, 115);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 21);
-            this.textBox1.TabIndex = 2;
+            this.txtFiltro.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Location = new System.Drawing.Point(206, 115);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(278, 21);
+            this.txtFiltro.TabIndex = 2;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
             // dgvVenta
             // 
@@ -125,28 +131,30 @@
             // 
             // btnVender
             // 
-            this.btnVender.Location = new System.Drawing.Point(994, 492);
+            this.btnVender.Location = new System.Drawing.Point(88, 533);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(140, 23);
             this.btnVender.TabIndex = 5;
             this.btnVender.Text = "Realizar Venta";
             this.btnVender.UseVisualStyleBackColor = true;
+            this.btnVender.Click += new System.EventHandler(this.btnVender_Click);
             // 
             // btnCancelarVenta
             // 
-            this.btnCancelarVenta.Location = new System.Drawing.Point(1200, 492);
+            this.btnCancelarVenta.Location = new System.Drawing.Point(307, 533);
             this.btnCancelarVenta.Name = "btnCancelarVenta";
             this.btnCancelarVenta.Size = new System.Drawing.Size(125, 23);
             this.btnCancelarVenta.TabIndex = 6;
             this.btnCancelarVenta.Text = "Cancelar Venta";
             this.btnCancelarVenta.UseVisualStyleBackColor = true;
+            this.btnCancelarVenta.Click += new System.EventHandler(this.btnCancelarVenta_Click);
             // 
             // listViewCarrito
             // 
             this.listViewCarrito.HideSelection = false;
-            this.listViewCarrito.Location = new System.Drawing.Point(994, 142);
+            this.listViewCarrito.Location = new System.Drawing.Point(924, 142);
             this.listViewCarrito.Name = "listViewCarrito";
-            this.listViewCarrito.Size = new System.Drawing.Size(331, 279);
+            this.listViewCarrito.Size = new System.Drawing.Size(432, 279);
             this.listViewCarrito.TabIndex = 7;
             this.listViewCarrito.UseCompatibleStateImageBehavior = false;
             this.listViewCarrito.SelectedIndexChanged += new System.EventHandler(this.listViewCarrito_SelectedIndexChanged);
@@ -164,7 +172,7 @@
             // btnSeleccionarProducto
             // 
             this.btnSeleccionarProducto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeleccionarProducto.Location = new System.Drawing.Point(692, 158);
+            this.btnSeleccionarProducto.Location = new System.Drawing.Point(679, 156);
             this.btnSeleccionarProducto.Name = "btnSeleccionarProducto";
             this.btnSeleccionarProducto.Size = new System.Drawing.Size(180, 29);
             this.btnSeleccionarProducto.TabIndex = 9;
@@ -172,11 +180,53 @@
             this.btnSeleccionarProducto.UseVisualStyleBackColor = true;
             this.btnSeleccionarProducto.Click += new System.EventHandler(this.btnSeleccionarProducto_Click);
             // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(1182, 488);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(0, 13);
+            this.lblTotal.TabIndex = 10;
+            // 
+            // lblVentaExitosa
+            // 
+            this.lblVentaExitosa.AutoSize = true;
+            this.lblVentaExitosa.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVentaExitosa.Location = new System.Drawing.Point(1076, 46);
+            this.lblVentaExitosa.Name = "lblVentaExitosa";
+            this.lblVentaExitosa.Size = new System.Drawing.Size(50, 19);
+            this.lblVentaExitosa.TabIndex = 11;
+            this.lblVentaExitosa.Text = "label4";
+            // 
+            // lblTotalCobro
+            // 
+            this.lblTotalCobro.AutoSize = true;
+            this.lblTotalCobro.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalCobro.Location = new System.Drawing.Point(1234, 484);
+            this.lblTotalCobro.Name = "lblTotalCobro";
+            this.lblTotalCobro.Size = new System.Drawing.Size(50, 19);
+            this.lblTotalCobro.TabIndex = 12;
+            this.lblTotalCobro.Text = "label4";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(498, 533);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(150, 23);
+            this.btnLimpiar.TabIndex = 13;
+            this.btnLimpiar.Text = "Limpiar Pantalla ";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1368, 578);
+            this.ClientSize = new System.Drawing.Size(1380, 578);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.lblTotalCobro);
+            this.Controls.Add(this.lblVentaExitosa);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnSeleccionarProducto);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listViewCarrito);
@@ -184,7 +234,7 @@
             this.Controls.Add(this.btnVender);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvVenta);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -207,7 +257,7 @@
         private System.Windows.Forms.ToolStripMenuItem movimientosDeStockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem combosdeVentasToolStripMenuItem;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.DataGridView dgvVenta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnVender;
@@ -215,5 +265,9 @@
         private System.Windows.Forms.ListView listViewCarrito;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSeleccionarProducto;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblVentaExitosa;
+        private System.Windows.Forms.Label lblTotalCobro;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

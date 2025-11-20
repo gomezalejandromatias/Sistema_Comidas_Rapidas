@@ -71,7 +71,7 @@ namespace Sistema_Comidas_Rapidas
 
             txtNombreProducto.Text = "";
             txtCodigoProducto.Text = "";
-            txtFechaIngreso.Text = "";
+          
             txtStock.Text = "";
             txtPrecio.Text = "";
             txtCategoria.Text = "";
@@ -86,9 +86,38 @@ namespace Sistema_Comidas_Rapidas
         {
             txtNombreProducto.Text = "";
             txtCodigoProducto.Text = "";
-            txtFechaIngreso.Text = "";
+            
             txtPrecio.Text = "";
             txtCategoria.Text = "";
+        }
+
+        private void txtBucarProducto_TextChanged(object sender, EventArgs e)
+        {
+            List<Producto> listafiltrada;
+            string filtro = txtBucarProducto.Text;
+
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+
+
+            if(filtro!= "") 
+            { 
+               listafiltrada = productoNegocio.listaproducto().FindAll(x => x.Nombre.ToLower().Contains(filtro));
+
+
+            }
+
+            else
+            {
+                listafiltrada = productoNegocio.listaproducto();
+            }
+
+            dvbListaProducto.DataSource = null;
+            dvbListaProducto.DataSource = listafiltrada;
+
+           
+
+
+
         }
     }
 }
