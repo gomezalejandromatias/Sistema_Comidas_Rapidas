@@ -190,8 +190,9 @@ namespace Sistema_Comidas_Rapidas
         private void cargaDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
-
-            form1.ShowDialog();
+            form1.Owner = this;  
+            form1.Show();
+            this.Hide();
         }
     }
 }

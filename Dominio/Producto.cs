@@ -8,21 +8,35 @@ namespace Dominio
 {
     public class Producto
     {
-    
-       public int IDProducto { get; set; }  
+
+        public int IDProducto { get; set; }
         public string CodigoProducto { get; set; }
+        public string NombreProcducto { get; set; }
+        public string proveedores { get; set; }
+        public int UnidadPaquete { get; set; }
+        public int CantidadUnidad { get; set; }
+        public List<Proveedores> Proveedores { get; set; } = new List<Proveedores>();
 
-        public string Nombre {  get; set; }
+        public decimal PrecioUnidad { get; set; }
+
         public DateTime FechaIngreso { get; set; }
-        public int Stock {  get; set; }
-        public decimal Precio { get; set; } 
-        public bool     Activo { get; set; }
         public string Categoria { get; set; }
+        public int Stock { get; set; }
+        public decimal PrecioFinal { get; set; }
+        public bool Activo { get; set; }
 
 
+
     
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
     }
 }

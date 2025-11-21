@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,8 @@ namespace Sistema_Comidas_Rapidas
     public partial class Form1 : Form
     {
           List<Producto> lista = new List<Producto>();
-          
+        int unidades, paquetes;
+
         public Form1()
         {
             InitializeComponent();
@@ -50,35 +52,77 @@ namespace Sistema_Comidas_Rapidas
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Producto aux = new Producto();
-
-            aux.Nombre = txtNombreProducto.Text;
-            aux.CodigoProducto = txtCodigoProducto.Text;
-            
-            aux.FechaIngreso = DateTime.Now;
-            decimal precio;
-            if (!decimal.TryParse(txtPrecio.Text, out precio))
+            try
             {
-                MessageBox.Show("El precio debe ser un número válido.", "Error");
-                return;
+                aux.NombreProcducto = txtNombreProducto.Text;
+
+                Proveedores prov = new Proveedores();
+                prov.Nombre = txtProveedor.Text;
+
+
+                aux.Proveedores.Add(prov);
+                aux.proveedores = txtProveedor.Text;
+
+                aux.CodigoProducto = txtCodigoProducto.Text;
+
+                aux.FechaIngreso = DateTime.Now;
+
+
+
+                aux.CantidadUnidad = unidades;      
+                aux.UnidadPaquete = paquetes;       
+                aux.Stock = int.Parse(txtStock.Text);
+
+
+
+                aux.Stock =int.Parse( txtStock.Text);
+
+                aux.Categoria = txtCategoria.Text;
+
+                decimal precio;
+
+                if (!decimal.TryParse(txtPrecioUnidad.Text, out precio))
+                {
+                    MessageBox.Show("El precio debe ser un número válido.", "Error");
+                    return;
+                }
+                aux.PrecioUnidad = precio;
+
+                aux.PrecioFinal = unidades * paquetes* precio;
+
+
+
+
+                decimal contadorTotal = +aux.PrecioUnidad;
+
+                lblTotalPrecioProducto.Text = contadorTotal.ToString();
+
+                lista.Add(aux);
+
             }
-            aux.Stock = int.Parse(txtStock.Text);
+            catch (Exception ex)
+            {
 
-            aux.Precio = precio;
+                throw ex;
+            }
 
-            aux.Categoria = txtCategoria.Text;  
+      
 
-            lista.Add(aux);
+
+            
 
             txtNombreProducto.Text = "";
             txtCodigoProducto.Text = "";
           
             txtStock.Text = "";
-            txtPrecio.Text = "";
+            txtPrecioUnidad.Text = "";
             txtCategoria.Text = "";
 
             CargarGrilla();
 
             txtCodigoProducto.Focus();
+
+   
            
         }
 
@@ -86,9 +130,15 @@ namespace Sistema_Comidas_Rapidas
         {
             txtNombreProducto.Text = "";
             txtCodigoProducto.Text = "";
-            
-            txtPrecio.Text = "";
+            txtUnidadPaquete.Text = "";
+            txtCantidadPaquete.Text = "";
+            txtStock.Text = "";
+            txtPrecioUnidad.Text = "";
             txtCategoria.Text = "";
+            txtProveedor.Text = "";
+            txtBucarProducto.Text = "";
+
+            txtCodigoProducto.Focus();
         }
 
         private void txtBucarProducto_TextChanged(object sender, EventArgs e)
@@ -101,7 +151,7 @@ namespace Sistema_Comidas_Rapidas
 
             if(filtro!= "") 
             { 
-               listafiltrada = productoNegocio.listaproducto().FindAll(x => x.Nombre.ToLower().Contains(filtro));
+               listafiltrada = productoNegocio.listaproducto().FindAll(x => x.NombreProcducto.ToLower().Contains(filtro));
 
 
             }
@@ -118,6 +168,62 @@ namespace Sistema_Comidas_Rapidas
 
 
 
+        }
+
+
+        public void CalcularStock()
+        {
+           
+
+            if (int.TryParse(txtUnidadPaquete.Text, out unidades) &&
+                int.TryParse(txtCantidadPaquete.Text, out paquetes))
+            {
+                Producto aux = new Producto();
+                 
+                int total = unidades * paquetes;
+                txtStock.Text = total.ToString();
+
+
+
+
+
+             
+            }
+            else
+            {
+                txtStock.Text = "";
+            }
+        }
+
+        private void txtUnidadPaquete_TextChanged(object sender, EventArgs e)
+        {
+            CalcularStock();
+        }
+
+        private void txtCancelar_Click(object sender, EventArgs e)
+        {
+            txtNombreProducto.Text = "";
+            txtCodigoProducto.Text = "";
+            txtUnidadPaquete.Text = "";
+            txtCantidadPaquete.Text = "";
+            txtStock.Text = "";
+            txtPrecioUnidad.Text = "";
+            txtCategoria.Text = "";
+            txtProveedor.Text = "";
+            txtBucarProducto.Text = "";
+
+            
+
+
+            frmVenta venta = new frmVenta();
+            venta.Show();
+
+            this.Close();
+        }
+
+        private void txtCantidadPaquete_TextChanged(object sender, EventArgs e)
+        {
+            CalcularStock();
         }
     }
 }

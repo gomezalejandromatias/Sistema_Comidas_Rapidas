@@ -12,7 +12,9 @@ namespace Negocio
 
           public List<Combo> listacombo()
           {
+            
             List<Combo> combo = new List<Combo>();
+            /*
             combo.Add(new Combo
             {
                 IdCombo = 1,
@@ -38,7 +40,7 @@ namespace Negocio
                 NombreCombo = "Pancho Simple + Coca Lata",
                 Precio = 180,
                 Activo = true
-            });
+            });*/
 
             return combo;
 

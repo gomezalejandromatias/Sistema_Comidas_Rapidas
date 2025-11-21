@@ -12,8 +12,14 @@ namespace Dominio
         public int IdCombo {  get; set; }
 
         public string CodigoCombo { get; set; }
+        public string NombrePromocion { get; set; }
+
         public string NombreCombo { get; set; }
-         public decimal Precio { get; set; }
+         public decimal PrecioCombo { get; set; }
+
+        public decimal PrecioPromo {  get; set; }
+
+        public List<string> Ingredientes { get; set; } = new List<string>();
 
         public bool Activo {  get; set; }
 

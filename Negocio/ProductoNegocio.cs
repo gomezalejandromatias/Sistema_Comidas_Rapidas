@@ -14,31 +14,34 @@ namespace Negocio
         public List<Producto>listaproducto()
         {  
              List<Producto> lista = new List<Producto>();
-         /* AccesoDatos AccesoDatos = new AccesoDatos();
+            /* AccesoDatos AccesoDatos = new AccesoDatos();
 
 
-            //   AccesoDatos.SetearConsulta()
-            // AccesoDatos.EjecutarAccion();
+               //   AccesoDatos.SetearConsulta()
+               // AccesoDatos.EjecutarAccion();
 
-            while (AccesoDatos.Lector.Read())
-            {
-                Producto aux = new Producto();
+               while (AccesoDatos.Lector.Read())
+               {
+                   Producto aux = new Producto();
 
-                aux.CodigoProducto = (string)AccesoDatos.Lector["CodigoProducto"];
+                   aux.CodigoProducto = (string)AccesoDatos.Lector["CodigoProducto"];
 
 
 
-            }
-            return lista;*/
-
+               }
+               return lista;*/
             lista.Add(new Producto
             {
                 IDProducto = 1,
                 CodigoProducto = "P001",
-                Nombre = "Pancho Simple",
+                CantidadUnidad = 1,                 // Cantidad por transacción o unidad
+                UnidadPaquete = 1,            // Si viene por unidad
+                Proveedores = new List<Proveedores>(), // Lista vacía (podés agregar después)
+                PrecioUnidad = 100,           // Precio por unidad
+                NombreProcducto = "Pancho Simple",
                 FechaIngreso = DateTime.Now,
                 Stock = 50,
-                Precio = 100,
+                PrecioFinal = 100,            // Precio final (Unidad * Cantidad o precio al público)
                 Activo = true,
                 Categoria = "Panchos"
             });
@@ -47,25 +50,33 @@ namespace Negocio
             {
                 IDProducto = 2,
                 CodigoProducto = "P002",
-                Nombre = "Pancho Completo",
+                CantidadUnidad = 1,
+                UnidadPaquete = 1,
+                Proveedores = new List<Proveedores>(),
+                PrecioUnidad = 150,
+                NombreProcducto = "Pancho Completo",
                 FechaIngreso = DateTime.Now,
                 Stock = 40,
-                Precio = 150,
+                PrecioFinal = 150,
                 Activo = true,
                 Categoria = "Panchos"
-            }); 
+            });
+
             lista.Add(new Producto
             {
                 IDProducto = 3,
                 CodigoProducto = "P003",
-                Nombre = "Milanesa Completa",
+                CantidadUnidad = 1,
+                UnidadPaquete = 1,
+                Proveedores = new List<Proveedores>(),
+                PrecioUnidad = 250,
+                NombreProcducto = "Milanesa Completa",
                 FechaIngreso = DateTime.Now,
                 Stock = 50,
-                Precio = 250,
+                PrecioFinal = 250,
                 Activo = true,
                 Categoria = "Milanesa"
             });
-
 
 
             return lista;
