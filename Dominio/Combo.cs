@@ -20,6 +20,7 @@ namespace Dominio
         public decimal PrecioPromo {  get; set; }
 
         public List<string> Ingredientes { get; set; } = new List<string>();
+        public string Ingrediente { get; set; }
 
         public bool Activo {  get; set; }
 
