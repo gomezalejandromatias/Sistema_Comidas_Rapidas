@@ -1,0 +1,168 @@
+﻿CREATE DATABASE ComidasRapidasDB;
+GO
+
+USE ComidasRapidasDB;
+GO
+
+/* =========================================================
+   TABLA: Empleados
+   Basada en tu clase Empleado
+   ========================================================= */
+CREATE TABLE Empleados (
+    IDEmpleado      INT IDENTITY(1,1) PRIMARY KEY,      -- PK
+    Nombre          VARCHAR(100) NOT NULL,
+    Apellido        VARCHAR(100) NOT NULL,
+    DNI             VARCHAR(20)  NOT NULL,
+    FechaNacimiento DATE         NOT NULL,
+    Telefono        VARCHAR(30)  NULL,
+    Email           VARCHAR(100) NULL,
+    Direccion       VARCHAR(200) NULL,
+
+    FechaIngreso    DATE NOT NULL 
+        CONSTRAINT DF_Empleados_FechaIngreso DEFAULT (GETDATE()),
+    Puesto          VARCHAR(50) NOT NULL,
+    Sueldo          DECIMAL(18,2) NOT NULL
+        CONSTRAINT CK_Empleados_Sueldo_Positive CHECK (Sueldo > 0),
+    Activo          BIT NOT NULL 
+        CONSTRAINT DF_Empleados_Activo DEFAULT (1),
+
+    CONSTRAINT UQ_Empleados_DNI UNIQUE (DNI)
+);
+GO
+
+/* =========================================================
+   TABLA: Producto
+   Basada en tu clase Producto
+   (sin la lista de Proveedores ni string proveedores)
+   ========================================================= */
+CREATE TABLE Producto (
+    IdProducto      INT IDENTITY(1,1) PRIMARY KEY,
+    CodigoProducto  VARCHAR(20)  NOT NULL,
+    NombreProducto  VARCHAR(100) NOT NULL,
+    UnidadPaquete   INT NOT NULL
+        CONSTRAINT CK_Producto_UnidadPaquete_Positive CHECK (UnidadPaquete > 0),
+    CantidadUnidad  INT NOT NULL
+        CONSTRAINT CK_Producto_CantidadUnidad_NoNegativa CHECK (CantidadUnidad >= 0),
+    PrecioUnidad    DECIMAL(18,2) NOT NULL
+        CONSTRAINT CK_Producto_PrecioUnidad_Positive CHECK (PrecioUnidad > 0),
+    FechaIngreso    DATETIME NOT NULL 
+        CONSTRAINT DF_Producto_FechaIngreso DEFAULT (GETDATE()),
+    Categoria       VARCHAR(50) NULL,
+    Stock           INT NOT NULL 
+        CONSTRAINT CK_Producto_Stock_NoNegativo CHECK (Stock >= 0),
+    PrecioFinal     DECIMAL(18,2) NOT NULL
+        CONSTRAINT CK_Producto_PrecioFinal_NoNegativo CHECK (PrecioFinal >= 0),
+    Activo          BIT NOT NULL 
+        CONSTRAINT DF_Producto_Activo DEFAULT (1),
+
+    CONSTRAINT UQ_Producto_Codigo UNIQUE (CodigoProducto),
+    CONSTRAINT UQ_Producto_Nombre UNIQUE (NombreProducto)
+);
+GO
+
+INSERT INTO Producto 
+(CodigoProducto, NombreProducto, UnidadPaquete, CantidadUnidad, PrecioUnidad, FechaIngreso, Categoria, Stock, PrecioFinal, Activo)
+VALUES 
+('P001', 'Pancho Simple', 1, 1, 100.00, GETDATE(), 'Panchos', 50, 100.00, 1);
+
+INSERT INTO Producto 
+(CodigoProducto, NombreProducto, UnidadPaquete, CantidadUnidad, PrecioUnidad, FechaIngreso, Categoria, Stock, PrecioFinal, Activo)
+VALUES 
+('P002', 'Pancho Completo', 1, 1, 150.00, GETDATE(), 'Panchos', 40, 150.00, 1);
+
+INSERT INTO Producto 
+(CodigoProducto, NombreProducto, UnidadPaquete, CantidadUnidad, PrecioUnidad, FechaIngreso, Categoria, Stock, PrecioFinal, Activo)
+VALUES 
+('B001', 'Gaseosa 500ml', 1, 1, 300.00, GETDATE(), 'Bebidas', 30, 300.00, 1);
+
+
+/* =========================================================
+   TABLA: Combo
+   Basada en tu clase Combo
+   (Ingredientes se manejan en la tabla puente ComboProducto)
+   ========================================================= */
+CREATE TABLE Combo (
+    IdCombo         INT IDENTITY(1,1) PRIMARY KEY,
+    CodigoCombo     VARCHAR(20)  NOT NULL,
+    Nombre          VARCHAR(100) NOT NULL,
+    Precio          DECIMAL(18,2) NOT NULL
+        CONSTRAINT CK_Combo_Precio_Positive CHECK (Precio > 0),
+    Activo          BIT NOT NULL
+        CONSTRAINT DF_Combo_Activo DEFAULT (1),
+    FechaAlta       DATETIME NOT NULL
+        CONSTRAINT DF_Combo_FechaAlta DEFAULT (GETDATE()),
+
+    CONSTRAINT UQ_Combo_Codigo UNIQUE (CodigoCombo),
+    CONSTRAINT UQ_Combo_Nombre UNIQUE (Nombre)
+);
+GO
+
+/* =========================================================
+   TABLA: Ventas
+   Basada en tu clase de Venta (IDVenta, FechaVenta, TotalPrecio,
+   FormaPago, NumeroVenta, Empleado)
+   ========================================================= */
+CREATE TABLE Ventas (
+    IDVenta         INT IDENTITY(1,1) PRIMARY KEY,
+    NumeroVenta     INT NOT NULL,
+    FechaVenta      DATETIME NOT NULL 
+        CONSTRAINT DF_Ventas_FechaVenta DEFAULT (GETDATE()),
+    TotalPrecio     DECIMAL(18,2) NOT NULL
+        CONSTRAINT CK_Ventas_TotalPrecio_NoNegativo CHECK (TotalPrecio >= 0),
+    FormaPago       VARCHAR(30) NOT NULL,
+    IDEmpleado      INT NULL,
+
+    CONSTRAINT UQ_Ventas_NumeroVenta UNIQUE (NumeroVenta),
+
+    CONSTRAINT FK_Ventas_Empleados
+        FOREIGN KEY (IDEmpleado) REFERENCES Empleados(IDEmpleado)
+);
+GO
+
+/* =========================================================
+   TABLA PUENTE: ComboProducto
+   Relación N a N entre Combo y Producto
+   (qué productos y cuántas unidades lleva cada combo)
+   ========================================================= */
+CREATE TABLE ComboProducto (
+    IdComboProducto     INT IDENTITY(1,1) PRIMARY KEY,
+    IdCombo             INT NOT NULL,
+    IdProducto          INT NOT NULL,
+    CantidadProducto    DECIMAL(18,2) NOT NULL
+        CONSTRAINT CK_ComboProducto_Cantidad_Positive CHECK (CantidadProducto > 0),
+
+    CONSTRAINT FK_ComboProducto_Combo
+        FOREIGN KEY (IdCombo) REFERENCES Combo(IdCombo),
+
+    CONSTRAINT FK_ComboProducto_Producto
+        FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
+
+    -- El mismo producto no puede repetirse dos veces dentro del mismo combo
+    CONSTRAINT UQ_ComboProducto UNIQUE (IdCombo, IdProducto)
+);
+GO
+
+/* =========================================================
+   TABLA PUENTE: VentaCombo
+   Relación N a N entre Ventas y Combo
+   (qué combos y cuántos se vendieron en cada venta)
+   ========================================================= */
+CREATE TABLE VentaCombo (
+    IdVentaCombo    INT IDENTITY(1,1) PRIMARY KEY,
+    IDVenta         INT NOT NULL,
+    IdCombo         INT NOT NULL,
+    Cantidad        INT NOT NULL
+        CONSTRAINT CK_VentaCombo_Cantidad_Positive CHECK (Cantidad > 0),
+    PrecioUnitario  DECIMAL(18,2) NOT NULL
+        CONSTRAINT CK_VentaCombo_Precio_Positive CHECK (PrecioUnitario > 0),
+
+    -- Subtotal calculado automáticamente
+    Subtotal        AS (Cantidad * PrecioUnitario) PERSISTED,
+
+    CONSTRAINT FK_VentaCombo_Ventas
+        FOREIGN KEY (IDVenta) REFERENCES Ventas(IDVenta),
+
+    CONSTRAINT FK_VentaCombo_Combo
+        FOREIGN KEY (IdCombo) REFERENCES Combo(IdCombo)
+);
+GO

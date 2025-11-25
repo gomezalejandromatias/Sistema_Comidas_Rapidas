@@ -25,7 +25,7 @@ namespace Negocio
         {
 
 
-           // conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = APPDOCENTE_DB; integrated security =true ;");
+           conexion = new SqlConnection("server = .\\SQLEXPRESS02; database = ComidasRapidasDB; integrated security =true ;");
 
             comando = new SqlCommand();
 

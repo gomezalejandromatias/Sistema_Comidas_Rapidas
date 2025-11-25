@@ -56,7 +56,7 @@ namespace Sistema_Comidas_Rapidas
             dgvVenta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // ⭐ Hace que la columna nombre ocupe todo el ancho disponible
-            dgvVenta.Columns["NombreCombo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvVenta.Columns["Nombre"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
 
         }
@@ -160,7 +160,7 @@ namespace Sistema_Comidas_Rapidas
             if (filtro != "")
             {
 
-              listrafiltrada = comboNegocio.listacombo().FindAll(x => x.NombreCombo.ToLower().Contains(filtro.ToLower()));
+              listrafiltrada = comboNegocio.listacombo().FindAll(x => x.Nombre.ToLower().Contains(filtro.ToLower()));
 
 
             }

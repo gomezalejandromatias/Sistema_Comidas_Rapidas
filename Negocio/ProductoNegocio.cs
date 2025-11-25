@@ -11,80 +11,54 @@ namespace Negocio
     public class ProductoNegocio
     {
 
-        public List<Producto>listaproducto()
-        {  
-             List<Producto> lista = new List<Producto>();
-            /* AccesoDatos AccesoDatos = new AccesoDatos();
+        public List<Producto> listaproducto()
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
 
 
-               //   AccesoDatos.SetearConsulta()
-               // AccesoDatos.EjecutarAccion();
+            datos.SetearConsulta("select p.CodigoProducto,p.NombreProducto,p.UnidadPaquete,p.CantidadUnidad,p.PrecioUnidad,p.FechaIngreso,p.Categoria,p.Stock,p.PrecioFinal from Producto p");
+            datos.EjecutarLectura();
 
-               while (AccesoDatos.Lector.Read())
-               {
-                   Producto aux = new Producto();
-
-                   aux.CodigoProducto = (string)AccesoDatos.Lector["CodigoProducto"];
-
-
-
-               }
-               return lista;*/
-            lista.Add(new Producto
+            while (datos.Lector.Read())
             {
-                IDProducto = 1,
-                CodigoProducto = "P001",
-                CantidadUnidad = 1,                 // Cantidad por transacción o unidad
-                UnidadPaquete = 1,            // Si viene por unidad
-                Proveedores = new List<Proveedores>(), // Lista vacía (podés agregar después)
-                PrecioUnidad = 100,           // Precio por unidad
-                NombreProcducto = "Pancho Simple",
-                FechaIngreso = DateTime.Now,
-                Stock = 50,
-                PrecioFinal = 100,            // Precio final (Unidad * Cantidad o precio al público)
-                Activo = true,
-                Categoria = "Panchos"
-            });
 
-            lista.Add(new Producto
-            {
-                IDProducto = 2,
-                CodigoProducto = "P002",
-                CantidadUnidad = 1,
-                UnidadPaquete = 1,
-                Proveedores = new List<Proveedores>(),
-                PrecioUnidad = 150,
-                NombreProcducto = "Pancho Completo",
-                FechaIngreso = DateTime.Now,
-                Stock = 40,
-                PrecioFinal = 150,
-                Activo = true,
-                Categoria = "Panchos"
-            });
+                try
+                {
+                    Producto aux = new Producto();
 
-            lista.Add(new Producto
-            {
-                IDProducto = 3,
-                CodigoProducto = "P003",
-                CantidadUnidad = 1,
-                UnidadPaquete = 1,
-                Proveedores = new List<Proveedores>(),
-                PrecioUnidad = 250,
-                NombreProcducto = "Milanesa Completa",
-                FechaIngreso = DateTime.Now,
-                Stock = 50,
-                PrecioFinal = 250,
-                Activo = true,
-                Categoria = "Milanesa"
-            });
+                  
+                    aux.CodigoProducto = (string)datos.Lector["CodigoProducto"];
+                    aux.NombreProcducto = (string)datos.Lector["NombreProducto"];
+                    aux.UnidadPaquete = (int)datos.Lector["UnidadPaquete"];
+                    aux.CantidadUnidad = (int)datos.Lector["CantidadUnidad"];
+                    aux.PrecioUnidad = (decimal)datos.Lector["PrecioUnidad"];
+                    aux.FechaIngreso = (DateTime)datos.Lector["FechaIngreso"];
+                    aux.Categoria = datos.Lector["Categoria"] is DBNull ? "" : (string)datos.Lector["Categoria"];
+                    aux.Stock = (int)datos.Lector["Stock"];
+                    aux.PrecioFinal = (decimal)datos.Lector["PrecioFinal"];
+                  //  aux.Activo = (bool)datos.Lector["Activo"];
 
 
-            return lista;
+                    lista.Add(aux);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
 
 
 
 
-        } 
+            }
+                     return lista;
+
+
+
+
+
+        }
 
 
 

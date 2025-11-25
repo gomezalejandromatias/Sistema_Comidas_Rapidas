@@ -30,7 +30,7 @@ namespace Sistema_Comidas_Rapidas
 
 
 
-            Producto producto = new Producto();
+           
             
 
 
@@ -42,8 +42,10 @@ namespace Sistema_Comidas_Rapidas
 
         private void CargarGrilla()
         {
-            dvbListaProducto.DataSource = null;          
-            dvbListaProducto.DataSource = lista;
+             ProductoNegocio productoNegocio = new ProductoNegocio();
+
+            dvbListaProducto.DataSource = null;
+            dvbListaProducto.DataSource = productoNegocio.listaproducto();
             
             dvbListaProducto.Columns["IDProducto"].Visible = false;
              dvbListaProducto.Columns["Activo"].Visible = false;
@@ -219,6 +221,11 @@ namespace Sistema_Comidas_Rapidas
             venta.Show();
 
             this.Close();
+        }
+
+        private void dvbListaProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private void txtCantidadPaquete_TextChanged(object sender, EventArgs e)

@@ -152,7 +152,7 @@
             // listViewCarrito
             // 
             this.listViewCarrito.HideSelection = false;
-            this.listViewCarrito.Location = new System.Drawing.Point(924, 142);
+            this.listViewCarrito.Location = new System.Drawing.Point(924, 144);
             this.listViewCarrito.Name = "listViewCarrito";
             this.listViewCarrito.Size = new System.Drawing.Size(432, 279);
             this.listViewCarrito.TabIndex = 7;

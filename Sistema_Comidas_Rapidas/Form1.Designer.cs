@@ -131,6 +131,7 @@
             this.dvbListaProducto.Name = "dvbListaProducto";
             this.dvbListaProducto.Size = new System.Drawing.Size(1025, 472);
             this.dvbListaProducto.TabIndex = 6;
+            this.dvbListaProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvbListaProducto_CellContentClick);
             // 
             // btnLimpiar
             // 

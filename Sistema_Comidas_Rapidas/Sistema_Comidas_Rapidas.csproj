@@ -107,5 +107,8 @@
       <Name>Negocio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScrtipsBaseDatos\CreationBaseDatos.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
