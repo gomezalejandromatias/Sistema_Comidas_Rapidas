@@ -16,7 +16,7 @@ namespace Negocio
                  AccesoDatos accesoDatos = new AccesoDatos();
 
 
-            accesoDatos.SetearConsulta("select p.Nombre   from Proveedores p where p.Activo= 1");
+            accesoDatos.SetearConsulta("select p.IDProveedor,p.Nombre   from Proveedores p where p.Activo= 1");
             accesoDatos.EjecutarLectura();
 
             try
@@ -24,6 +24,7 @@ namespace Negocio
                 while (accesoDatos.Lector.Read())
                 {
                     Proveedores aux = new Proveedores();
+                    aux.idproveedor = (int)accesoDatos.Lector["IDProveedor"];
 
                     aux.Nombre = (string)accesoDatos.Lector["Nombre"];
 

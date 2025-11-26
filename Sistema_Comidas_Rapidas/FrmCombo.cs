@@ -64,16 +64,21 @@ namespace Sistema_Comidas_Rapidas
 
         public void cargargrillacombo()
         {
-
+            ComboNegocio comboNegocio = new ComboNegocio();
 
             dgvComboPromociones.DataSource = null;
-            dgvComboPromociones.DataSource = listacombo;
+            dgvComboPromociones.DataSource = comboNegocio.listacombo();
 
             dgvComboPromociones.Columns["IdCombo"].Visible = false;
             dgvComboPromociones.Columns["Activo"].Visible = false;
             dgvComboPromociones.Columns["CodigoCombo"].Visible = false;
 
+            dgvComboPromociones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            // Ajustar peso de cada columna
+            dgvComboPromociones.Columns["Nombre"].FillWeight = 70;             // más chica
+            dgvComboPromociones.Columns["Precio"].FillWeight = 40;             // más chica
+            dgvComboPromociones.Columns["Ingrediente"].FillWeight = 200; // MUCHO más grande
         }
 
         private void label7_Click(object sender, EventArgs e)

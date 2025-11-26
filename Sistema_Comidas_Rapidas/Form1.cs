@@ -160,6 +160,7 @@ namespace Sistema_Comidas_Rapidas
             if(filtro!= "") 
             { 
                listafiltrada = productoNegocio.listaproducto().FindAll(x => x.NombreProducto.ToLower().Contains(filtro));
+          
 
 
             }
@@ -167,6 +168,7 @@ namespace Sistema_Comidas_Rapidas
             else
             {
                 listafiltrada = productoNegocio.listaproducto();
+
             }
 
             dvbListaProducto.DataSource = null;

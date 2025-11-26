@@ -18,6 +18,7 @@ namespace Dominio
         
 
         public decimal Precio {  get; set; }
+        public DateTime FechaAlta {  get; set; }
 
         public List<string> Ingredientes { get; set; } = new List<string>();
         public string Ingrediente
