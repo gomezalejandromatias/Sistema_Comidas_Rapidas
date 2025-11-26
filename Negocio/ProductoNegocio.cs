@@ -17,7 +17,14 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
 
 
-            datos.SetearConsulta("select p.CodigoProducto,p.NombreProducto,p.UnidadPaquete,p.CantidadUnidad,p.PrecioUnidad,p.FechaIngreso,p.Categoria,p.Stock,p.PrecioFinal from Producto p");
+            datos.SetearConsulta(
+            "SELECT p.CodigoProducto, p.NombreProducto, p.UnidadPaquete, p.CantidadUnidad, " +
+            "p.PrecioUnidad, p.FechaIngreso, p.Categoria, p.Stock, p.PrecioFinal, " +
+            "p.IDProveedor, " +
+            "pr.Nombre AS Proveedor " +
+            "FROM Producto p " +
+            "INNER JOIN Proveedores pr ON p.IDProveedor = pr.IDProveedor"
+        );
             datos.EjecutarLectura();
 
             while (datos.Lector.Read())
@@ -29,7 +36,7 @@ namespace Negocio
 
                   
                     aux.CodigoProducto = (string)datos.Lector["CodigoProducto"];
-                    aux.NombreProcducto = (string)datos.Lector["NombreProducto"];
+                    aux.NombreProducto = (string)datos.Lector["NombreProducto"];
                     aux.UnidadPaquete = (int)datos.Lector["UnidadPaquete"];
                     aux.CantidadUnidad = (int)datos.Lector["CantidadUnidad"];
                     aux.PrecioUnidad = (decimal)datos.Lector["PrecioUnidad"];
@@ -37,7 +44,11 @@ namespace Negocio
                     aux.Categoria = datos.Lector["Categoria"] is DBNull ? "" : (string)datos.Lector["Categoria"];
                     aux.Stock = (int)datos.Lector["Stock"];
                     aux.PrecioFinal = (decimal)datos.Lector["PrecioFinal"];
-                  //  aux.Activo = (bool)datos.Lector["Activo"];
+
+                    aux.IDProveedor = (int)datos.Lector["IDProveedor"];
+                    aux.Proveedor = (string)datos.Lector["Proveedor"];
+
+
 
 
                     lista.Add(aux);
@@ -53,6 +64,46 @@ namespace Negocio
 
             }
                      return lista;
+
+
+
+
+
+        }
+
+        public void AgregarProducto(Producto producto) 
+        {
+        
+               AccesoDatos accesoDatos = new AccesoDatos();
+
+            try
+            {
+                accesoDatos.SetearConsulta(
+              "INSERT INTO Producto (CodigoProducto, NombreProducto, UnidadPaquete, CantidadUnidad, PrecioUnidad, FechaIngreso, Categoria, Stock, PrecioFinal,IDProveedor) " +
+              "VALUES (@CodigoProducto, @NombreProducto, @UnidadPaquete, @CantidadUnidad, @PrecioUnidad, @FechaIngreso, @Categoria, @Stock, @PrecioFinal,@IDProveedor)"
+                 );
+
+                accesoDatos.SetearParametro("@CodigoProducto", producto.CodigoProducto);
+                accesoDatos.SetearParametro("@NombreProducto", producto.NombreProducto);
+                accesoDatos.SetearParametro("@UnidadPaquete", producto.UnidadPaquete);
+                accesoDatos.SetearParametro("@CantidadUnidad", producto.CantidadUnidad);
+                accesoDatos.SetearParametro("@PrecioUnidad", producto.PrecioUnidad);
+                accesoDatos.SetearParametro("@FechaIngreso", producto.FechaIngreso);
+                accesoDatos.SetearParametro("@Categoria", producto.Categoria);
+                accesoDatos.SetearParametro("@Stock", producto.Stock);
+                accesoDatos.SetearParametro("@PrecioFinal", producto.PrecioFinal);
+                accesoDatos.SetearParametro("@IDProveedor", producto.IDProveedor);
+
+                accesoDatos.EjecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            finally { accesoDatos.CerrarConexion(); }
 
 
 

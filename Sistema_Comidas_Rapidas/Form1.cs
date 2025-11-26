@@ -49,21 +49,23 @@ namespace Sistema_Comidas_Rapidas
             
             dvbListaProducto.Columns["IDProducto"].Visible = false;
              dvbListaProducto.Columns["Activo"].Visible = false;
+            dvbListaProducto.Columns["IDProveedor"].Visible = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            ProductoNegocio productoNegocio = new ProductoNegocio();
             Producto aux = new Producto();
             try
             {
-                aux.NombreProcducto = txtNombreProducto.Text;
+                aux.NombreProducto = txtNombreProducto.Text;
 
-                Proveedores prov = new Proveedores();
-                prov.Nombre = txtProveedor.Text;
+                Proveedores prov = (Proveedores)comboBoxaProveedor.SelectedItem;
+
+                aux.IDProveedor = prov.idproveedor;
 
 
-                aux.Proveedores.Add(prov);
-                aux.proveedores = txtProveedor.Text;
+               
 
                 aux.CodigoProducto = txtCodigoProducto.Text;
 
@@ -101,6 +103,8 @@ namespace Sistema_Comidas_Rapidas
 
                 lista.Add(aux);
 
+               productoNegocio.AgregarProducto(aux);
+
             }
             catch (Exception ex)
             {
@@ -115,6 +119,8 @@ namespace Sistema_Comidas_Rapidas
 
             txtNombreProducto.Text = "";
             txtCodigoProducto.Text = "";
+            txtUnidadPaquete.Text = "";
+            txtUnidadPaquete.Text = "";
           
             txtStock.Text = "";
             txtPrecioUnidad.Text = "";
@@ -153,7 +159,7 @@ namespace Sistema_Comidas_Rapidas
 
             if(filtro!= "") 
             { 
-               listafiltrada = productoNegocio.listaproducto().FindAll(x => x.NombreProcducto.ToLower().Contains(filtro));
+               listafiltrada = productoNegocio.listaproducto().FindAll(x => x.NombreProducto.ToLower().Contains(filtro));
 
 
             }
@@ -226,6 +232,24 @@ namespace Sistema_Comidas_Rapidas
         private void dvbListaProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
+
+
+            try
+            {
+                comboBoxaProveedor.DataSource = proveedorNegocio.ListaProveedores();
+                  
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void txtCantidadPaquete_TextChanged(object sender, EventArgs e)

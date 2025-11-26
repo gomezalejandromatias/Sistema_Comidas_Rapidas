@@ -58,6 +58,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txtProveedor = new System.Windows.Forms.TextBox();
+            this.comboBoxaProveedor = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dvbListaProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -343,16 +344,27 @@
             // txtProveedor
             // 
             this.txtProveedor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProveedor.Location = new System.Drawing.Point(319, 142);
+            this.txtProveedor.Location = new System.Drawing.Point(535, 33);
             this.txtProveedor.Name = "txtProveedor";
             this.txtProveedor.Size = new System.Drawing.Size(178, 27);
             this.txtProveedor.TabIndex = 30;
+            // 
+            // comboBoxaProveedor
+            // 
+            this.comboBoxaProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxaProveedor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxaProveedor.FormattingEnabled = true;
+            this.comboBoxaProveedor.Location = new System.Drawing.Point(319, 142);
+            this.comboBoxaProveedor.Name = "comboBoxaProveedor";
+            this.comboBoxaProveedor.Size = new System.Drawing.Size(178, 27);
+            this.comboBoxaProveedor.TabIndex = 31;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 34F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.Controls.Add(this.comboBoxaProveedor);
             this.Controls.Add(this.txtProveedor);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -387,6 +399,7 @@
             this.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.Name = "Form1";
             this.Text = "Agregar Productos";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvbListaProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -425,6 +438,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtProveedor;
+        private System.Windows.Forms.ComboBox comboBoxaProveedor;
     }
 }
 

@@ -16,7 +16,10 @@ namespace Dominio
         public string Email { get; set; }
         public string Descripcion { get; set; }
         public bool Activo {  get; set; }
-
+        public override string ToString()
+        {
+            return Nombre; // esto es lo que verá el ComboBox
+        }
 
 
 

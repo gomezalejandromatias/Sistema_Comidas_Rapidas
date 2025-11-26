@@ -11,11 +11,12 @@ namespace Dominio
 
         public int IDProducto { get; set; }
         public string CodigoProducto { get; set; }
-        public string NombreProcducto { get; set; }
-        public string proveedores { get; set; }
+        public string NombreProducto { get; set; }
+        public int IDProveedor { get; set; }
+        public string Proveedor { get; set; }
         public int UnidadPaquete { get; set; }
         public int CantidadUnidad { get; set; }
-        public List<Proveedores> Proveedores { get; set; } = new List<Proveedores>();
+      
 
         public decimal PrecioUnidad { get; set; }
 
