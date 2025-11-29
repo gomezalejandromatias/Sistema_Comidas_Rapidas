@@ -69,7 +69,7 @@ namespace Sistema_Comidas_Rapidas
              fila = e.RowIndex;
 
             // Esto obtiene el nombre del producto seleccionado
-            string nombre = dgvVenta.Rows[fila].Cells["NombreCombo"].Value.ToString();
+            string nombre = dgvVenta.Rows[fila].Cells["Nombre"].Value.ToString();
 
             // Esto obtiene el precio del producto seleccionado
             decimal precio = Convert.ToDecimal(dgvVenta.Rows[fila].Cells["Precio"].Value);
@@ -87,7 +87,7 @@ namespace Sistema_Comidas_Rapidas
             }
 
             // 2️⃣ Obtengo los valores del producto en la fila seleccionada
-            string nombre = dgvVenta.Rows[fila].Cells["NombreCombo"].Value.ToString();
+            string nombre = dgvVenta.Rows[fila].Cells["Nombre"].Value.ToString();
             decimal precio = Convert.ToDecimal(dgvVenta.Rows[fila].Cells["Precio"].Value);
 
             // 3️⃣ Creo el item para el ListView (carrito)

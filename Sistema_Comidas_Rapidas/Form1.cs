@@ -65,9 +65,8 @@ namespace Sistema_Comidas_Rapidas
                 aux.IDProveedor = prov.idproveedor;
 
 
-               
-
-                aux.CodigoProducto = txtCodigoProducto.Text;
+                
+                aux.CodigoProducto = "C" + new Random().Next(1000, 9999);
 
                 aux.FechaIngreso = DateTime.Now;
 
@@ -118,7 +117,7 @@ namespace Sistema_Comidas_Rapidas
             
 
             txtNombreProducto.Text = "";
-            txtCodigoProducto.Text = "";
+            
             txtUnidadPaquete.Text = "";
             txtUnidadPaquete.Text = "";
           
@@ -128,7 +127,7 @@ namespace Sistema_Comidas_Rapidas
 
             CargarGrilla();
 
-            txtCodigoProducto.Focus();
+            comboBoxaProveedor.Focus();
 
    
            
@@ -137,16 +136,16 @@ namespace Sistema_Comidas_Rapidas
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtNombreProducto.Text = "";
-            txtCodigoProducto.Text = "";
+          
             txtUnidadPaquete.Text = "";
             txtCantidadPaquete.Text = "";
             txtStock.Text = "";
             txtPrecioUnidad.Text = "";
             txtCategoria.Text = "";
-            txtProveedor.Text = "";
+        
             txtBucarProducto.Text = "";
 
-            txtCodigoProducto.Focus();
+            comboBoxaProveedor.Focus();
         }
 
         private void txtBucarProducto_TextChanged(object sender, EventArgs e)
@@ -213,13 +212,13 @@ namespace Sistema_Comidas_Rapidas
         private void txtCancelar_Click(object sender, EventArgs e)
         {
             txtNombreProducto.Text = "";
-            txtCodigoProducto.Text = "";
+          
             txtUnidadPaquete.Text = "";
             txtCantidadPaquete.Text = "";
             txtStock.Text = "";
             txtPrecioUnidad.Text = "";
             txtCategoria.Text = "";
-            txtProveedor.Text = "";
+           
             txtBucarProducto.Text = "";
 
             

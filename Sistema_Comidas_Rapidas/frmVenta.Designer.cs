@@ -240,7 +240,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmVenta";
             this.Text = "Ventas";
-            this.TopMost = true;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();

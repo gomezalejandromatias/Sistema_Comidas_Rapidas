@@ -16,7 +16,7 @@ namespace Sistema_Comidas_Rapidas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmCombo());
+            Application.Run(new frmVenta());
         }
     }
 }

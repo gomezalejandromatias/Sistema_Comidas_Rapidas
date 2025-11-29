@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -39,7 +38,6 @@
             this.txtCancelar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCodigoProducto = new System.Windows.Forms.TextBox();
             this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.txtFechaIngreso = new System.Windows.Forms.TextBox();
             this.txtStock = new System.Windows.Forms.TextBox();
@@ -57,7 +55,6 @@
             this.lblTotalPrecioProducto = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtProveedor = new System.Windows.Forms.TextBox();
             this.comboBoxaProveedor = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dvbListaProducto)).BeginInit();
             this.SuspendLayout();
@@ -73,22 +70,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Sistema Negocio";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(44, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Codigo Del Producto";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 191);
+            this.label3.Location = new System.Drawing.Point(41, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(172, 19);
             this.label3.TabIndex = 2;
@@ -175,14 +161,6 @@
             this.label6.Size = new System.Drawing.Size(148, 19);
             this.label6.TabIndex = 11;
             this.label6.Text = "Precio Por Unidad";
-            // 
-            // txtCodigoProducto
-            // 
-            this.txtCodigoProducto.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoProducto.Location = new System.Drawing.Point(319, 93);
-            this.txtCodigoProducto.Name = "txtCodigoProducto";
-            this.txtCodigoProducto.Size = new System.Drawing.Size(178, 26);
-            this.txtCodigoProducto.TabIndex = 12;
             // 
             // txtNombreProducto
             // 
@@ -335,26 +313,18 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(44, 142);
+            this.label13.Location = new System.Drawing.Point(49, 105);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(81, 19);
             this.label13.TabIndex = 29;
             this.label13.Text = "Proveedor";
-            // 
-            // txtProveedor
-            // 
-            this.txtProveedor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProveedor.Location = new System.Drawing.Point(535, 33);
-            this.txtProveedor.Name = "txtProveedor";
-            this.txtProveedor.Size = new System.Drawing.Size(178, 27);
-            this.txtProveedor.TabIndex = 30;
             // 
             // comboBoxaProveedor
             // 
             this.comboBoxaProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxaProveedor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxaProveedor.FormattingEnabled = true;
-            this.comboBoxaProveedor.Location = new System.Drawing.Point(319, 142);
+            this.comboBoxaProveedor.Location = new System.Drawing.Point(319, 97);
             this.comboBoxaProveedor.Name = "comboBoxaProveedor";
             this.comboBoxaProveedor.Size = new System.Drawing.Size(178, 27);
             this.comboBoxaProveedor.TabIndex = 31;
@@ -365,7 +335,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
             this.Controls.Add(this.comboBoxaProveedor);
-            this.Controls.Add(this.txtProveedor);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lblTotalPrecioProducto);
@@ -383,7 +352,6 @@
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.txtFechaIngreso);
             this.Controls.Add(this.txtNombreProducto);
-            this.Controls.Add(this.txtCodigoProducto);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.txtCancelar);
@@ -393,7 +361,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
@@ -409,7 +376,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -419,7 +385,6 @@
         private System.Windows.Forms.Button txtCancelar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCodigoProducto;
         private System.Windows.Forms.TextBox txtNombreProducto;
         private System.Windows.Forms.TextBox txtFechaIngreso;
         private System.Windows.Forms.TextBox txtStock;
@@ -437,7 +402,6 @@
         private System.Windows.Forms.Label lblTotalPrecioProducto;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtProveedor;
         private System.Windows.Forms.ComboBox comboBoxaProveedor;
     }
 }

@@ -1,4 +1,4 @@
-ÔªøCREATE DATABASE ComidasRapidasDB;
+CREATE DATABASE ComidasRapidasDB;
 GO
 
 USE ComidasRapidasDB;
@@ -60,7 +60,7 @@ CREATE TABLE Producto (
 );
 GO
 ALTER TABLE Producto
-ADD IDProveedor INT NOT NULL DEFAULT 1;  -- O alg√∫n proveedor que ya exista
+ADD IDProveedor INT NOT NULL DEFAULT 1;  -- O alg˙n proveedor que ya exista
 
 ALTER TABLE Producto
 ADD CONSTRAINT FK_Producto_Proveedor
@@ -146,8 +146,8 @@ GO
 
 /* =========================================================
    TABLA PUENTE: ComboProducto
-   Relaci√≥n N a N entre Combo y Producto
-   (qu√© productos y cu√°ntas unidades lleva cada combo)
+   RelaciÛn N a N entre Combo y Producto
+   (quÈ productos y cu·ntas unidades lleva cada combo)
    ========================================================= */
 CREATE TABLE ComboProducto (
     IdComboProducto     INT IDENTITY(1,1) PRIMARY KEY,
@@ -169,8 +169,8 @@ GO
 
 /* =========================================================
    TABLA PUENTE: VentaCombo
-   Relaci√≥n N a N entre Ventas y Combo
-   (qu√© combos y cu√°ntos se vendieron en cada venta)
+   RelaciÛn N a N entre Ventas y Combo
+   (quÈ combos y cu·ntos se vendieron en cada venta)
    ========================================================= */
 CREATE TABLE VentaCombo (
     IdVentaCombo    INT IDENTITY(1,1) PRIMARY KEY,
@@ -181,7 +181,7 @@ CREATE TABLE VentaCombo (
     PrecioUnitario  DECIMAL(18,2) NOT NULL
         CONSTRAINT CK_VentaCombo_Precio_Positive CHECK (PrecioUnitario > 0),
 
-    -- Subtotal calculado autom√°ticamente
+    -- Subtotal calculado autom·ticamente
     Subtotal        AS (Cantidad * PrecioUnitario) PERSISTED,
 
     CONSTRAINT FK_VentaCombo_Ventas
@@ -210,11 +210,11 @@ VALUES
 
 INSERT INTO Proveedores (Nombre, Telefono, Direccion, Email, Descripcion, Activo)
 VALUES
-('Molinos R√≠o de la Plata', '0800-555-4321', 'Av. Eduardo Madero 1020, CABA', 'contacto@molinos.com.ar', 'Proveedor de alimentos y harinas', 1);
+('Molinos RÌo de la Plata', '0800-555-4321', 'Av. Eduardo Madero 1020, CABA', 'contacto@molinos.com.ar', 'Proveedor de alimentos y harinas', 1);
 
 INSERT INTO Proveedores (Nombre, Telefono, Direccion, Email, Descripcion, Activo)
 VALUES
-('La Seren√≠sima (Mastellone)', '0800-666-6005', 'Ruta 205 Km 52.5, Ca√±uelas', 'atencionalcliente@laserenisima.com', 'Proveedor de l√°cteos', 1)
+('La SerenÌsima (Mastellone)', '0800-666-6005', 'Ruta 205 Km 52.5, CaÒuelas', 'atencionalcliente@laserenisima.com', 'Proveedor de l·cteos', 1)
 
 select  c.CodigoCombo,c.Nombre,co.Descripcion,c.Precio,c.FechaAlta   from Combo c 
 
