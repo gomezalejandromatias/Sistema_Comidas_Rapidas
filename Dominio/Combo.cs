@@ -28,6 +28,9 @@ namespace Dominio
         public bool Activo {  get; set; }
 
 
+      
+
+
 
 
 

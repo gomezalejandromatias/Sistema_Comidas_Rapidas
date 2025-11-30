@@ -14,12 +14,15 @@ namespace Dominio
         public decimal TotalPrecio { get; set; }
         public string FormaPago { get; set; }
         public int NumeroVenta { get; set; }
-        public List<Producto> Productos { get; set; }
 
 
-         // public Combo list<Combo> ListaCombo = new Combo
 
-              public Empleados empleado { get; set; }
+
+        public List<VentaCombo> Detalles { get; set; } = new List<VentaCombo>();
+
+        // public Combo list<Combo> ListaCombo = new Combo
+
+        public Empleados empleado { get; set; }
 
 
 

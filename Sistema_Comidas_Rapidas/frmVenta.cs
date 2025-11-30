@@ -16,11 +16,14 @@ namespace Sistema_Comidas_Rapidas
     {
         public int fila = -1;
         public decimal cantidad = 0;
-        public List<Venta> ventasRealizadas = new List<Venta>();
+        int contador = 0;
+        private List<VentaCombo> detallesActuales = new List<VentaCombo>();
+
 
 
         public frmVenta()
         {
+            
             InitializeComponent();
             ConfigurarListView();
             CargarProductos();
@@ -87,6 +90,7 @@ namespace Sistema_Comidas_Rapidas
             }
 
             // 2️⃣ Obtengo los valores del producto en la fila seleccionada
+            int idCombo = Convert.ToInt32(dgvVenta.Rows[fila].Cells["IdCombo"].Value);
             string nombre = dgvVenta.Rows[fila].Cells["Nombre"].Value.ToString();
             decimal precio = Convert.ToDecimal(dgvVenta.Rows[fila].Cells["Precio"].Value);
 
@@ -101,6 +105,13 @@ namespace Sistema_Comidas_Rapidas
             // 4️⃣ Lo agrego al carrito
             listViewCarrito.Items.Add(item);
             lblTotal.Text = cantidad.ToString("0.00");
+
+            VentaCombo det = new VentaCombo();
+            det.IdCombo = idCombo;
+            det.Cantidad = 1;         // por ahora 1 siempre
+            det.PrecioUnitario = precio;
+
+            detallesActuales.Add(det);
         }
 
         public void ConfigurarListView()
@@ -116,19 +127,46 @@ namespace Sistema_Comidas_Rapidas
 
         private void btnVender_Click(object sender, EventArgs e)
         {
+
+            VentaNegocio ventaNegocio = new VentaNegocio(); 
             if (listViewCarrito.Items.Count == 0)
             {
                 MessageBox.Show("No hay productos en el carrito.");
                 return;
             }
 
+
+            try
+            {
+               
+                 Venta v = new Venta();
+
+                v.NumeroVenta = ObtenerUltimoNumeroVenta();
+                v.FechaVenta = DateTime.Now;     // Fecha y hora actual
+                 v.TotalPrecio = cantidad;    // 👉 USAMOS EL totalGeneral QUE YA TENÉS
+                if (comboBoxFormaPago.SelectedItem == null)
+                {
+                    MessageBox.Show("Seleccioná una forma de pago.");
+                    return;
+                }
+
+                v.FormaPago = comboBoxFormaPago.SelectedItem.ToString();
+
+                v.Detalles = detallesActuales;
+
+
+                ventaNegocio.guardarventa(v);
+            }
+            catch (Exception ex)
+            {
+                 
+
+                throw ex;
+            }
             // 2️⃣ Creo una nueva venta
-            Venta v = new Venta();
-            v.FechaVenta = DateTime.Now;     // Fecha y hora actual
-            v.TotalPrecio = cantidad;    // 👉 USAMOS EL totalGeneral QUE YA TENÉS
 
             // 3️⃣ Guardo la venta en la lista
-            ventasRealizadas.Add(v);
+          
 
             // 4️⃣ Muestro un mensaje al usuario
             lblVentaExitosa.Text = "Venta Exitosa";
@@ -193,6 +231,57 @@ namespace Sistema_Comidas_Rapidas
             form1.Owner = this;  
             form1.Show();
             this.Hide();
+        }
+    
+
+        private void comboBoxFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+
+
+
+        }
+
+        public int ObtenerUltimoNumeroVenta()
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                // Busco el último Número de Venta y le sumo 1
+                datos.SetearConsulta(
+                    "SELECT CAST(ISNULL(MAX(NumeroVenta), 0) + 1 AS INT) AS ProximoNumero FROM Ventas"
+                );
+
+                object resultado = datos.EjecutarEscalar();
+
+                // Si viene null o DBNull → arranco en 1
+                if (resultado == null || resultado == DBNull.Value)
+                    return 1;
+
+                int numero;
+                if (!int.TryParse(resultado.ToString(), out numero))
+                    numero = 1;
+
+                return numero;
+            }
+            catch (Exception)
+            {
+                // Si algo raro pasa en SQL, por lo menos no revienta todo
+                return 1;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        private void frmVenta_Load(object sender, EventArgs e)
+        {
+            comboBoxFormaPago.Items.Add("Efectivo");
+            comboBoxFormaPago.Items.Add("Transferencia");
+            comboBoxFormaPago.Items.Add("QR");
         }
     }
 }

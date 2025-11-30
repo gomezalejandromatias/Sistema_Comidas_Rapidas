@@ -46,6 +46,8 @@
             this.lblVentaExitosa = new System.Windows.Forms.Label();
             this.lblTotalCobro = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.comboBoxFormaPago = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
             this.SuspendLayout();
@@ -218,11 +220,33 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // comboBoxFormaPago
+            // 
+            this.comboBoxFormaPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFormaPago.FormattingEnabled = true;
+            this.comboBoxFormaPago.Location = new System.Drawing.Point(679, 333);
+            this.comboBoxFormaPago.Name = "comboBoxFormaPago";
+            this.comboBoxFormaPago.Size = new System.Drawing.Size(190, 24);
+            this.comboBoxFormaPago.TabIndex = 14;
+            this.comboBoxFormaPago.SelectedIndexChanged += new System.EventHandler(this.comboBoxFormaPago_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(708, 294);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 16);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Forma De Pago";
+            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1380, 578);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBoxFormaPago);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblTotalCobro);
             this.Controls.Add(this.lblVentaExitosa);
@@ -240,6 +264,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmVenta";
             this.Text = "Ventas";
+            this.Load += new System.EventHandler(this.frmVenta_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
@@ -268,5 +293,7 @@
         private System.Windows.Forms.Label lblVentaExitosa;
         private System.Windows.Forms.Label lblTotalCobro;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.ComboBox comboBoxFormaPago;
+        private System.Windows.Forms.Label label4;
     }
 }
