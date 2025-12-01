@@ -253,6 +253,39 @@ namespace Sistema_Comidas_Rapidas
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+             ProductoNegocio productoNegocio = new ProductoNegocio();
+            Producto selecionado;
+
+             
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Desea eliminar el Producto?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+               if( respuesta == DialogResult.Yes)
+               {
+                  selecionado = (Producto)dvbListaProducto.CurrentRow.DataBoundItem;
+                      
+                  productoNegocio.EliminarProducto(selecionado.IDProducto);
+                    CargarGrilla();
+
+                   lblTotalPrecioProducto.Text= "Eliminado Correctamente";
+                   
+               }
+                
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            
+        }
+
         private void txtCantidadPaquete_TextChanged(object sender, EventArgs e)
         {
             CalcularStock();

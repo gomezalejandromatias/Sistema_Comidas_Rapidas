@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,47 @@ namespace Sistema_Comidas_Rapidas
             dataGridViewDetallaVenta.Columns["FechaVenta"].FillWeight = 70;             // más chica
             dataGridViewDetallaVenta.Columns["TotalPrecio"].FillWeight = 40;             // más chica
            
+
+
+
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+              
+
+              List<Venta> listafiltrada = new List<Venta>();
+            VentaNegocio ventaNegocio = new VentaNegocio(); 
+            string filtro = txtFiltroVenta.Text;
+            List<Venta> listaCompleta = ventaNegocio.listaventa();
+
+
+
+            DateTime fechaFiltro;
+
+            // Si el usuario escribió una fecha válida
+            if (DateTime.TryParse(filtro, out fechaFiltro))
+            {
+                // Me quedo solo con las ventas de ese día
+                foreach (Venta v in listaCompleta)
+                {
+                    if (v.FechaVenta.Date == fechaFiltro.Date)
+                    {
+                        listafiltrada.Add(v);
+                    }
+                }
+            }
+            else
+            {
+                // Si el filtro está vacío o no es fecha, muestro todo
+                listafiltrada = listaCompleta;
+            }
+
+            dataGridViewDetallaVenta.DataSource = null;
+            dataGridViewDetallaVenta.DataSource = listafiltrada;
+
+
 
 
 

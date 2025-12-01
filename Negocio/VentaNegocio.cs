@@ -22,7 +22,7 @@ namespace Negocio
                 accesoDatos.SetearConsulta(
                "SELECT NumeroVenta, FechaVenta, FormaPago, TotalPrecio " +
                "FROM Ventas " +
-               "ORDER BY NumeroVenta DESC"
+               "ORDER BY NumeroVenta desc"
            );
 
                 accesoDatos.EjecutarLectura();

@@ -18,7 +18,7 @@ namespace Negocio
 
 
             datos.SetearConsulta(
-            "SELECT p.CodigoProducto, p.NombreProducto, p.UnidadPaquete, p.CantidadUnidad, " +
+            "SELECT p.IdProducto,p.CodigoProducto, p.NombreProducto, p.UnidadPaquete, p.CantidadUnidad, " +
             "p.PrecioUnidad, p.FechaIngreso, p.Categoria, p.Stock, p.PrecioFinal, " +
             "p.IDProveedor, " +
             "pr.Nombre AS Proveedor " +
@@ -34,7 +34,7 @@ namespace Negocio
                 {
                     Producto aux = new Producto();
 
-                  
+                    aux.IDProducto = (int)datos.Lector["IdProducto"];
                     aux.CodigoProducto = (string)datos.Lector["CodigoProducto"];
                     aux.NombreProducto = (string)datos.Lector["NombreProducto"];
                     aux.UnidadPaquete = (int)datos.Lector["UnidadPaquete"];
@@ -109,6 +109,28 @@ namespace Negocio
 
 
 
+        }
+
+        public void EliminarProducto(int id) 
+        {
+        
+
+            try
+            {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+                accesoDatos.SetearConsulta("delete from Producto where   IdProducto=@id");
+                accesoDatos.SetearParametro("@id",id);
+                accesoDatos.EjecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
+        
         }
 
 
