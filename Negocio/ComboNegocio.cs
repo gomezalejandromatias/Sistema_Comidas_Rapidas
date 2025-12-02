@@ -90,6 +90,61 @@ namespace Negocio
 
         }
 
+        public void EliminarCombo(int id) 
+        {
+
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            try
+            {
+
+                accesoDatos.SetearConsulta("update  Combo set Activo=0 where  IdCombo=@id");
+
+                accesoDatos.SetearParametro("@id",id);
+
+
+                accesoDatos.EjecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { accesoDatos.CerrarConexion(); }
+           
+        
+        }
+
+        public void ModificarCombo(Combo combo)
+        {
+
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            try
+            {
+            accesoDatos.SetearConsulta("update Combo set Nombre=@Nombre,Precio=@Precio,Ingredientes=@Ingredientes where IdCombo=@IdCombo");
+                accesoDatos.SetearParametro("@Nombre", combo.Nombre);
+                accesoDatos.SetearParametro("@Precio", combo.Precio);
+                accesoDatos.SetearParametro("@Ingredientes", combo.Ingredientes);
+                accesoDatos.SetearParametro("@IdCombo", combo.IdCombo);
+
+                accesoDatos.EjecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { accesoDatos.CerrarConexion(); }
+
+             
+
+
+
+        }
+
 
 
     }

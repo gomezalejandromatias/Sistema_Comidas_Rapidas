@@ -67,6 +67,8 @@ ADD CONSTRAINT FK_Producto_Proveedor
 FOREIGN KEY (IDProveedor) REFERENCES Proveedores(IDProveedor);
 
 
+
+
 INSERT INTO Producto 
 (CodigoProducto, NombreProducto, UnidadPaquete, CantidadUnidad, PrecioUnidad, FechaIngreso, Categoria, Stock, PrecioFinal, Activo)
 VALUES 

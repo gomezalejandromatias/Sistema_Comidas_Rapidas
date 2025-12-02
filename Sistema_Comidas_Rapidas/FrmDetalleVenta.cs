@@ -87,5 +87,17 @@ namespace Sistema_Comidas_Rapidas
 
 
         }
+
+        private void btnVolverVenta_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("Desea Cancelar La Operacion?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+                frmVenta frmVenta = new frmVenta();
+                frmVenta.Owner = this;
+                frmVenta.Show();
+                this.Hide();
+            }
+        }
     }
 }

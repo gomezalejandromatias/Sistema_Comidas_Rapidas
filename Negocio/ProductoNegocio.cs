@@ -18,12 +18,13 @@ namespace Negocio
 
 
             datos.SetearConsulta(
-            "SELECT p.IdProducto,p.CodigoProducto, p.NombreProducto, p.UnidadPaquete, p.CantidadUnidad, " +
-            "p.PrecioUnidad, p.FechaIngreso, p.Categoria, p.Stock, p.PrecioFinal, " +
-            "p.IDProveedor, " +
-            "pr.Nombre AS Proveedor " +
-            "FROM Producto p " +
-            "INNER JOIN Proveedores pr ON p.IDProveedor = pr.IDProveedor"
+        "SELECT p.IdProducto, p.CodigoProducto, p.NombreProducto, p.UnidadPaquete, p.CantidadUnidad, " +
+    "p.PrecioUnidad, p.FechaIngreso, p.Categoria, p.Stock, p.PrecioFinal, " +
+    "p.IDProveedor, " +
+    "pr.Nombre AS Proveedor " +
+    "FROM Producto p " +
+    "INNER JOIN Proveedores pr ON p.IDProveedor = pr.IDProveedor " +
+    "WHERE p.Activo = 1"
         );
             datos.EjecutarLectura();
 
@@ -63,7 +64,7 @@ namespace Negocio
 
 
             }
-                     return lista;
+            return lista;
 
 
 
@@ -71,10 +72,10 @@ namespace Negocio
 
         }
 
-        public void AgregarProducto(Producto producto) 
+        public void AgregarProducto(Producto producto)
         {
-        
-               AccesoDatos accesoDatos = new AccesoDatos();
+
+            AccesoDatos accesoDatos = new AccesoDatos();
 
             try
             {
@@ -111,16 +112,17 @@ namespace Negocio
 
         }
 
-        public void EliminarProducto(int id) 
+        public void EliminarProducto(int id)
         {
-        
+
 
             try
             {
-            AccesoDatos accesoDatos = new AccesoDatos();
+                AccesoDatos accesoDatos = new AccesoDatos();
 
-                accesoDatos.SetearConsulta("delete from Producto where   IdProducto=@id");
-                accesoDatos.SetearParametro("@id",id);
+
+                accesoDatos.SetearConsulta("update  Producto set  Activo=0 where   IdProducto=@id");
+                accesoDatos.SetearParametro("@id", id);
                 accesoDatos.EjecutarAccion();
 
             }
@@ -129,7 +131,48 @@ namespace Negocio
 
                 throw ex;
             }
-           
+
+
+        }
+
+        public void ModificarProducto(Producto producto) 
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            try
+            {
+               
+
+                accesoDatos.SetearConsulta("update Producto set CodigoProducto=@CodigoProducto,NombreProducto=@NombreProducto,UnidadPaquete=@UnidadPaquete,CantidadUnidad=@CantidadUnidad, "+
+                    "PrecioUnidad=@PrecioUnidad,FechaIngreso=@FechaIngreso,Categoria=@Categoria,Stock=@Stock,PrecioFinal=@PrecioFinal,IDProveedor=@IDProveedor WHERE IdProducto = @IdProducto");
+                accesoDatos.SetearParametro("@CodigoProducto", producto.CodigoProducto);
+                accesoDatos.SetearParametro("@NombreProducto", producto.NombreProducto);
+                accesoDatos.SetearParametro("@UnidadPaquete", producto.UnidadPaquete);
+                accesoDatos.SetearParametro("@CantidadUnidad", producto.CantidadUnidad);
+                accesoDatos.SetearParametro("@PrecioUnidad", producto.PrecioUnidad);
+                accesoDatos.SetearParametro("@FechaIngreso", producto.FechaIngreso);
+                accesoDatos.SetearParametro("@Categoria", producto.Categoria);
+                accesoDatos.SetearParametro("@Stock", producto.Stock);
+                accesoDatos.SetearParametro("@PrecioFinal", producto.PrecioFinal);
+                accesoDatos.SetearParametro("@IDProveedor", producto.IDProveedor);
+                accesoDatos.SetearParametro("@IdProducto", producto.IDProducto);
+
+                accesoDatos.EjecutarAccion();
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { accesoDatos.CerrarConexion(); }
+        
+        
+        
+        
         
         }
 

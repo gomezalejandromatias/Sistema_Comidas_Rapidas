@@ -283,5 +283,25 @@ namespace Sistema_Comidas_Rapidas
             comboBoxFormaPago.Items.Add("Transferencia");
             comboBoxFormaPago.Items.Add("QR");
         }
+
+        private void combosdeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCombo frmCombo = new FrmCombo();
+
+            frmCombo.Owner = this;
+            frmCombo.Show();
+            this.Hide();
+
+
+           
+        }
+
+        private void registrosDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmDetalleVenta frmDetalleVenta = new FrmDetalleVenta();
+            frmDetalleVenta.Owner = this;
+            frmDetalleVenta.Show();
+            this.Hide();
+        }
     }
 }

@@ -32,6 +32,7 @@
             this.dataGridViewDetallaVenta = new System.Windows.Forms.DataGridView();
             this.txtFiltroVenta = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnVolverVenta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallaVenta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,11 +72,23 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Filtro de Venta por Fecha";
             // 
+            // btnVolverVenta
+            // 
+            this.btnVolverVenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolverVenta.Location = new System.Drawing.Point(38, 415);
+            this.btnVolverVenta.Name = "btnVolverVenta";
+            this.btnVolverVenta.Size = new System.Drawing.Size(168, 23);
+            this.btnVolverVenta.TabIndex = 4;
+            this.btnVolverVenta.Text = "Volver  pantalla De Venta";
+            this.btnVolverVenta.UseVisualStyleBackColor = true;
+            this.btnVolverVenta.Click += new System.EventHandler(this.btnVolverVenta_Click);
+            // 
             // FrmDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnVolverVenta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFiltroVenta);
             this.Controls.Add(this.dataGridViewDetallaVenta);
@@ -95,5 +108,6 @@
         private System.Windows.Forms.DataGridView dataGridViewDetallaVenta;
         private System.Windows.Forms.TextBox txtFiltroVenta;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnVolverVenta;
     }
 }

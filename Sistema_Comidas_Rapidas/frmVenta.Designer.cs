@@ -77,6 +77,7 @@
             this.registrosDeVentasToolStripMenuItem.Name = "registrosDeVentasToolStripMenuItem";
             this.registrosDeVentasToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
             this.registrosDeVentasToolStripMenuItem.Text = "Registros de ventas ";
+            this.registrosDeVentasToolStripMenuItem.Click += new System.EventHandler(this.registrosDeVentasToolStripMenuItem_Click);
             // 
             // movimientosDeStockToolStripMenuItem
             // 
@@ -89,6 +90,7 @@
             this.combosdeVentasToolStripMenuItem.Name = "combosdeVentasToolStripMenuItem";
             this.combosdeVentasToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
             this.combosdeVentasToolStripMenuItem.Text = "Combos de ventas";
+            this.combosdeVentasToolStripMenuItem.Click += new System.EventHandler(this.combosdeVentasToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -264,6 +266,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmVenta";
             this.Text = "Ventas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmVenta_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

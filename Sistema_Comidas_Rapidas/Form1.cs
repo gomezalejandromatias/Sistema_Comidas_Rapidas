@@ -17,6 +17,7 @@ namespace Sistema_Comidas_Rapidas
     {
           List<Producto> lista = new List<Producto>();
         int unidades, paquetes;
+        Producto aux;
 
         public Form1()
         {
@@ -221,13 +222,21 @@ namespace Sistema_Comidas_Rapidas
            
             txtBucarProducto.Text = "";
 
-            
+            DialogResult respuesta = MessageBox.Show("Desea Cancelar La Operacion?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
+            {
+                frmVenta frmVenta = new frmVenta();
+
+                frmVenta.Owner = this;
+                frmVenta.Show();
+                this.Hide();
 
 
-            frmVenta venta = new frmVenta();
-            venta.Show();
+                frmVenta venta = new frmVenta();
+                venta.Show();
 
-            this.Close();
+                this.Close();
+            }  
         }
 
         private void dvbListaProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -237,14 +246,16 @@ namespace Sistema_Comidas_Rapidas
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            btnModicarDefinitivo.Visible=false;
             ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
 
 
             try
             {
                 comboBoxaProveedor.DataSource = proveedorNegocio.ListaProveedores();
-                  
 
+                comboBoxaProveedor.DisplayMember = "Nombre";     
+                comboBoxaProveedor.ValueMember = "idproveedor";
             }
             catch (Exception ex)
             {
@@ -283,7 +294,140 @@ namespace Sistema_Comidas_Rapidas
                 throw ex;
             }
 
-            
+            lblTotalPrecioProducto.Visible= false;
+            txtNombreProducto.Text = "";
+
+            txtUnidadPaquete.Text = "";
+            txtCantidadPaquete.Text = "";
+            txtStock.Text = "";
+            txtPrecioUnidad.Text = "";
+            txtCategoria.Text = "";
+
+            txtBucarProducto.Text = "";
+
+            comboBoxaProveedor.Focus();
+
+        }
+
+        private void btnModificarProducto_Click(object sender, EventArgs e)
+        {
+            btnAgregar.Visible=false;
+            btnEliminar.Visible=false;
+            btnModicarDefinitivo.Visible = true;
+           
+
+            aux = (Producto)dvbListaProducto.CurrentRow.DataBoundItem;
+
+            txtNombreProducto.Text = aux.NombreProducto;
+            txtUnidadPaquete.Text = aux.UnidadPaquete.ToString();
+            txtCantidadPaquete.Text = aux.CantidadUnidad.ToString();
+            txtStock.Text = aux.Stock.ToString();
+            txtCategoria.Text = aux.Categoria;
+            txtPrecioUnidad.Text = aux.PrecioUnidad.ToString();
+
+
+            comboBoxaProveedor.SelectedValue = aux.IDProveedor;
+        }
+
+        private void btnModicarDefinitivo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validaciones básicas
+                if (string.IsNullOrWhiteSpace(txtNombreProducto.Text))
+                {
+                    MessageBox.Show("Ingrese el nombre del producto.");
+                    txtNombreProducto.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtUnidadPaquete.Text) || !int.TryParse(txtUnidadPaquete.Text, out _))
+                {
+                    MessageBox.Show("Ingrese una unidad de paquete válida.");
+                    txtUnidadPaquete.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtCantidadPaquete.Text) || !int.TryParse(txtCantidadPaquete.Text, out _))
+                {
+                    MessageBox.Show("Ingrese una cantidad válida.");
+                    txtCantidadPaquete.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtStock.Text) || !int.TryParse(txtStock.Text, out _))
+                {
+                    MessageBox.Show("Ingrese un stock válido.");
+                    txtStock.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtPrecioUnidad.Text) || !decimal.TryParse(txtPrecioUnidad.Text, out _))
+                {
+                    MessageBox.Show("Ingrese un precio válido.");
+                    txtPrecioUnidad.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtCategoria.Text))
+                {
+                    MessageBox.Show("Ingrese la categoría.");
+                    txtCategoria.Focus();
+                    return;
+                }
+
+                if (comboBoxaProveedor.SelectedValue == null)
+                {
+                    MessageBox.Show("Seleccione un proveedor.");
+                    comboBoxaProveedor.Focus();
+                    return;
+                }
+
+                // Confirmar
+                DialogResult respuesta = MessageBox.Show("Desea Modificar el Producto?", "Modificado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    aux.NombreProducto = txtNombreProducto.Text;
+                    aux.UnidadPaquete = int.Parse(txtUnidadPaquete.Text);
+                    aux.CantidadUnidad = int.Parse(txtCantidadPaquete.Text);
+                    aux.Stock = int.Parse(txtStock.Text);
+                    aux.Categoria = txtCategoria.Text;
+
+                    decimal precio = decimal.Parse(txtPrecioUnidad.Text);
+                    aux.PrecioUnidad = precio;
+
+                    aux.IDProveedor = (int)comboBoxaProveedor.SelectedValue;
+
+                    aux.PrecioFinal = aux.UnidadPaquete * aux.CantidadUnidad * aux.PrecioUnidad;
+
+                    ProductoNegocio negocio = new ProductoNegocio();
+                    negocio.ModificarProducto(aux);
+
+                    MessageBox.Show("Producto modificado correctamente.");
+
+                    CargarGrilla();
+
+                    btnAgregar.Visible = true;
+                    btnEliminar.Visible = true;
+                    btnModicarDefinitivo.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            // Limpieza
+            txtNombreProducto.Text = "";
+            txtUnidadPaquete.Text = "";
+            txtCantidadPaquete.Text = "";
+            txtStock.Text = "";
+            txtPrecioUnidad.Text = "";
+            txtCategoria.Text = "";
+            txtBucarProducto.Text = "";
+
+            comboBoxaProveedor.Focus();
         }
 
         private void txtCantidadPaquete_TextChanged(object sender, EventArgs e)

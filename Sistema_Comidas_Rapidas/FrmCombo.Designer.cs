@@ -53,6 +53,10 @@
             this.richTextBoxCombo = new System.Windows.Forms.RichTextBox();
             this.richTextBoxPromocion = new System.Windows.Forms.RichTextBox();
             this.btnEliminarCombo = new System.Windows.Forms.Button();
+            this.lblEliminado = new System.Windows.Forms.Label();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnGuardarCambios = new System.Windows.Forms.Button();
+            this.btnCancelarModficacion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComboPromociones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,10 +153,10 @@
             // dgvComboPromociones
             // 
             this.dgvComboPromociones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvComboPromociones.Location = new System.Drawing.Point(959, 140);
+            this.dgvComboPromociones.Location = new System.Drawing.Point(799, 151);
             this.dgvComboPromociones.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dgvComboPromociones.Name = "dgvComboPromociones";
-            this.dgvComboPromociones.Size = new System.Drawing.Size(670, 437);
+            this.dgvComboPromociones.Size = new System.Drawing.Size(952, 437);
             this.dgvComboPromociones.TabIndex = 11;
             this.dgvComboPromociones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvComboPromociones_CellContentClick);
             // 
@@ -182,10 +186,10 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(976, 601);
+            this.btnCancelar.Location = new System.Drawing.Point(1370, 668);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(104, 42);
+            this.btnCancelar.Size = new System.Drawing.Size(124, 34);
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -229,7 +233,7 @@
             // btnAgregarPromocion
             // 
             this.btnAgregarPromocion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarPromocion.Location = new System.Drawing.Point(593, 681);
+            this.btnAgregarPromocion.Location = new System.Drawing.Point(593, 678);
             this.btnAgregarPromocion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAgregarPromocion.Name = "btnAgregarPromocion";
             this.btnAgregarPromocion.Size = new System.Drawing.Size(163, 26);
@@ -242,7 +246,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(471, 681);
+            this.button1.Location = new System.Drawing.Point(473, 684);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 23);
@@ -317,19 +321,71 @@
             // btnEliminarCombo
             // 
             this.btnEliminarCombo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarCombo.Location = new System.Drawing.Point(1102, 608);
+            this.btnEliminarCombo.Location = new System.Drawing.Point(960, 670);
             this.btnEliminarCombo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnEliminarCombo.Name = "btnEliminarCombo";
-            this.btnEliminarCombo.Size = new System.Drawing.Size(117, 28);
+            this.btnEliminarCombo.Size = new System.Drawing.Size(175, 34);
             this.btnEliminarCombo.TabIndex = 33;
-            this.btnEliminarCombo.Text = "Eliminar Combo";
+            this.btnEliminarCombo.Text = "Eliminar Combo/Promo";
             this.btnEliminarCombo.UseVisualStyleBackColor = true;
+            this.btnEliminarCombo.Click += new System.EventHandler(this.btnEliminarCombo_Click);
+            // 
+            // lblEliminado
+            // 
+            this.lblEliminado.AutoSize = true;
+            this.lblEliminado.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEliminado.Location = new System.Drawing.Point(1311, 112);
+            this.lblEliminado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEliminado.Name = "lblEliminado";
+            this.lblEliminado.Size = new System.Drawing.Size(317, 19);
+            this.lblEliminado.TabIndex = 34;
+            this.lblEliminado.Text = "Combo/Promocion eliminado Correctamente";
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Location = new System.Drawing.Point(1161, 670);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(165, 34);
+            this.btnModificar.TabIndex = 35;
+            this.btnModificar.Text = "Modificar combo/Promo";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnGuardarCambios
+            // 
+            this.btnGuardarCambios.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarCambios.Location = new System.Drawing.Point(1370, 708);
+            this.btnGuardarCambios.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnGuardarCambios.Name = "btnGuardarCambios";
+            this.btnGuardarCambios.Size = new System.Drawing.Size(124, 34);
+            this.btnGuardarCambios.TabIndex = 36;
+            this.btnGuardarCambios.Text = "Guardar Cambios";
+            this.btnGuardarCambios.UseVisualStyleBackColor = true;
+            this.btnGuardarCambios.Click += new System.EventHandler(this.btnGuardarCambios_Click);
+            // 
+            // btnCancelarModficacion
+            // 
+            this.btnCancelarModficacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarModficacion.Location = new System.Drawing.Point(1516, 670);
+            this.btnCancelarModficacion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnCancelarModficacion.Name = "btnCancelarModficacion";
+            this.btnCancelarModficacion.Size = new System.Drawing.Size(162, 31);
+            this.btnCancelarModficacion.TabIndex = 37;
+            this.btnCancelarModficacion.Text = "Cancelar Modificacion";
+            this.btnCancelarModficacion.UseVisualStyleBackColor = true;
+            this.btnCancelarModficacion.Click += new System.EventHandler(this.btnCancelarModficacion_Click);
             // 
             // FrmCombo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 39F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1923, 1061);
+            this.Controls.Add(this.btnCancelarModficacion);
+            this.Controls.Add(this.btnGuardarCambios);
+            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.lblEliminado);
             this.Controls.Add(this.btnEliminarCombo);
             this.Controls.Add(this.richTextBoxPromocion);
             this.Controls.Add(this.richTextBoxCombo);
@@ -359,6 +415,8 @@
             this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.Name = "FrmCombo";
             this.Text = "FrmCombo";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmCombo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvComboPromociones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -392,5 +450,9 @@
         private System.Windows.Forms.RichTextBox richTextBoxCombo;
         private System.Windows.Forms.RichTextBox richTextBoxPromocion;
         private System.Windows.Forms.Button btnEliminarCombo;
+        private System.Windows.Forms.Label lblEliminado;
+        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnGuardarCambios;
+        private System.Windows.Forms.Button btnCancelarModficacion;
     }
 }

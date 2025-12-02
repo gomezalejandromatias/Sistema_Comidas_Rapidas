@@ -17,6 +17,7 @@ namespace Sistema_Comidas_Rapidas
     {
       public  List<Combo> listacombo = new List<Combo>();
         public  Combo comboactual;
+        public Combo aux;
           
         public FrmCombo()
         {
@@ -27,6 +28,9 @@ namespace Sistema_Comidas_Rapidas
             dgvComboPromociones.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             
             cargargrillacombo();
+
+            lblEliminado.Visible = false;
+            btnCancelarModficacion.Visible = false;
 
         }
 
@@ -57,9 +61,10 @@ namespace Sistema_Comidas_Rapidas
             dgvComboPromociones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // Ajustar peso de cada columna
-            dgvComboPromociones.Columns["Nombre"].FillWeight = 70;             // más chica
-            dgvComboPromociones.Columns["Precio"].FillWeight = 40;             // más chica
-            dgvComboPromociones.Columns["Ingredientes"].FillWeight = 200; // MUCHO más grande
+            dgvComboPromociones.Columns["Nombre"].FillWeight = 400;             // más chica
+            dgvComboPromociones.Columns["Precio"].FillWeight = 100;             // más chica
+            dgvComboPromociones.Columns["Ingredientes"].FillWeight = 400; // MUCHO más grande
+            dgvComboPromociones.Columns["FechaAlta"].FillWeight = 200;
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -321,6 +326,20 @@ namespace Sistema_Comidas_Rapidas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            DialogResult respuesta = MessageBox.Show("Desea Cancelar La Operacion?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (respuesta == DialogResult.Yes) 
+            {
+
+                frmVenta frmVenta = new frmVenta();
+                frmVenta.Owner = this;
+                frmVenta.Show();
+                this.Hide();
+
+
+              
+
+            }
 
         }
 
@@ -352,5 +371,141 @@ namespace Sistema_Comidas_Rapidas
 
         }
 
+        private void btnEliminarCombo_Click(object sender, EventArgs e)
+        {
+            ComboNegocio comboNegocio = new ComboNegocio();
+            Combo selecionado;
+
+
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Desea eliminar el Producto?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    selecionado = (Combo)dgvComboPromociones.CurrentRow.DataBoundItem;
+
+                    comboNegocio.EliminarCombo(selecionado.IdCombo);
+                    cargargrillacombo();
+
+                    lblEliminado.Visible = true;
+
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            aux = (Combo)dgvComboPromociones.CurrentRow.DataBoundItem;
+
+        
+
+            try
+            {
+                if (aux.Nombre.Replace(" ", "").Contains("+"))
+                {
+                    txtPromociones.Text = aux.Nombre;
+                    txtPrecioPromocion.Text = aux.Precio.ToString();
+                    richTextBoxPromocion.Text = aux.Ingredientes;
+
+                }
+
+                else
+                {
+                    txtCombo.Text = aux.Nombre;
+                    txtPrecioCombo.Text = aux.Precio.ToString();
+                    richTextBoxCombo.Text = aux.Ingredientes;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+            btnEliminarCombo.Visible = false;
+            btnCancelar.Visible = false;
+            btnGuardarCambios.Visible = true;
+            btnCancelarModficacion.Visible = true;
+
+        }
+
+        private void FrmCombo_Load(object sender, EventArgs e)
+        {
+            btnGuardarCambios.Visible = false;  
+        }
+
+        private void btnGuardarCambios_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("Desea Modificar el Producto?", "Modificado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            try
+            {
+                if (respuesta == DialogResult.Yes)
+                {
+                    bool esPromo = aux.Nombre.Contains("+");  // 🔍 Detectamos promo o combo
+
+                    if (esPromo)
+                    {
+                        // ⭐ ES PROMO → modificar los textbox de PROMO
+                        aux.Nombre = txtPromociones.Text;
+                        aux.Precio = decimal.Parse(txtPrecioPromocion.Text);
+                        aux.Ingredientes = richTextBoxPromocion.Text;
+                    }
+                    else
+                    {
+                        // ⭐ ES COMBO → modificar los textbox de COMBO
+                        aux.Nombre = txtCombo.Text;
+                        aux.Precio = decimal.Parse(txtPrecioCombo.Text);
+                        aux.Ingredientes = richTextBoxCombo.Text;
+                    }
+
+                    aux.FechaAlta = DateTime.Now;
+
+                    ComboNegocio comboNegocio = new ComboNegocio();
+                    comboNegocio.ModificarCombo(aux);
+
+                    cargargrillacombo();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar: " + ex.Message);
+            }
+
+            // LIMPIEZA
+            txtCombo.Text = "";
+            txtPrecioCombo.Text = "";
+            txtPromociones.Text = "";
+            txtPrecioPromocion.Text = "";
+            richTextBoxCombo.Text = "";
+            richTextBoxPromocion.Text = "";
+            txtCombo.Focus();
+        }
+
+        private void btnCancelarModficacion_Click(object sender, EventArgs e)
+        {
+            txtCombo.Text = "";
+            txtPrecioCombo.Text = "";
+            txtPromociones.Text = "";
+            txtPrecioPromocion.Text = "";
+            richTextBoxCombo.Text = "";
+
+
+            richTextBoxPromocion.Text = "";
+
+            btnEliminarCombo.Visible = true;
+            btnCancelar.Visible = true;
+            btnGuardarCambios.Visible = false;
+            btnCancelarModficacion.Visible = false;
+        }
     }
 }
