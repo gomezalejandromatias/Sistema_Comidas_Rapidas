@@ -104,10 +104,10 @@
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFiltro.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFiltro.Location = new System.Drawing.Point(206, 115);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(278, 21);
+            this.txtFiltro.Size = new System.Drawing.Size(278, 23);
             this.txtFiltro.TabIndex = 2;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
@@ -126,15 +126,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(30, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 19);
+            this.label2.Size = new System.Drawing.Size(111, 15);
             this.label2.TabIndex = 4;
             this.label2.Text = "Filtro de Productos";
             // 
             // btnVender
             // 
+            this.btnVender.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVender.Location = new System.Drawing.Point(88, 533);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(140, 23);
@@ -145,6 +146,7 @@
             // 
             // btnCancelarVenta
             // 
+            this.btnCancelarVenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelarVenta.Location = new System.Drawing.Point(307, 533);
             this.btnCancelarVenta.Name = "btnCancelarVenta";
             this.btnCancelarVenta.Size = new System.Drawing.Size(125, 23);
@@ -175,7 +177,7 @@
             // 
             // btnSeleccionarProducto
             // 
-            this.btnSeleccionarProducto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeleccionarProducto.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeleccionarProducto.Location = new System.Drawing.Point(679, 156);
             this.btnSeleccionarProducto.Name = "btnSeleccionarProducto";
             this.btnSeleccionarProducto.Size = new System.Drawing.Size(180, 29);
@@ -214,6 +216,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.Location = new System.Drawing.Point(498, 533);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(150, 23);
@@ -224,21 +227,21 @@
             // 
             // comboBoxFormaPago
             // 
-            this.comboBoxFormaPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFormaPago.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxFormaPago.FormattingEnabled = true;
             this.comboBoxFormaPago.Location = new System.Drawing.Point(679, 333);
             this.comboBoxFormaPago.Name = "comboBoxFormaPago";
-            this.comboBoxFormaPago.Size = new System.Drawing.Size(190, 24);
+            this.comboBoxFormaPago.Size = new System.Drawing.Size(190, 23);
             this.comboBoxFormaPago.TabIndex = 14;
             this.comboBoxFormaPago.SelectedIndexChanged += new System.EventHandler(this.comboBoxFormaPago_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(708, 294);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 16);
+            this.label4.Size = new System.Drawing.Size(89, 15);
             this.label4.TabIndex = 15;
             this.label4.Text = "Forma De Pago";
             // 

@@ -22,7 +22,7 @@ namespace Sistema_Comidas_Rapidas
 
         private void FrmDetalleVenta_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         public void cargargrilla()
@@ -48,45 +48,7 @@ namespace Sistema_Comidas_Rapidas
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-              
 
-              List<Venta> listafiltrada = new List<Venta>();
-            VentaNegocio ventaNegocio = new VentaNegocio(); 
-            string filtro = txtFiltroVenta.Text;
-            List<Venta> listaCompleta = ventaNegocio.listaventa();
-
-
-
-            DateTime fechaFiltro;
-
-            // Si el usuario escribió una fecha válida
-            if (DateTime.TryParse(filtro, out fechaFiltro))
-            {
-                // Me quedo solo con las ventas de ese día
-                foreach (Venta v in listaCompleta)
-                {
-                    if (v.FechaVenta.Date == fechaFiltro.Date)
-                    {
-                        listafiltrada.Add(v);
-                    }
-                }
-            }
-            else
-            {
-                // Si el filtro está vacío o no es fecha, muestro todo
-                listafiltrada = listaCompleta;
-            }
-
-            dataGridViewDetallaVenta.DataSource = null;
-            dataGridViewDetallaVenta.DataSource = listafiltrada;
-
-
-
-
-
-        }
 
         private void btnVolverVenta_Click(object sender, EventArgs e)
         {
@@ -98,6 +60,25 @@ namespace Sistema_Comidas_Rapidas
                 frmVenta.Show();
                 this.Hide();
             }
+        }
+
+        private void btnElegirFechaFiltrada_Click(object sender, EventArgs e)
+        {
+            VentaNegocio ventaNegocio = new VentaNegocio();
+
+            string elegir = dtmFiltarFecha.Value.ToString("dd/MM/yyyy");
+
+                var lista = ventaNegocio.listaventa(elegir);
+
+            dataGridViewDetallaVenta.DataSource = null;
+            dataGridViewDetallaVenta.DataSource = lista;
+            dataGridViewDetallaVenta.Columns["IDVenta"].Visible = false;
+
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            cargargrilla();
         }
     }
 }

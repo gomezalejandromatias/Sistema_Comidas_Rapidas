@@ -30,9 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewDetallaVenta = new System.Windows.Forms.DataGridView();
-            this.txtFiltroVenta = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVolverVenta = new System.Windows.Forms.Button();
+            this.dtmFiltarFecha = new System.Windows.Forms.DateTimePicker();
+            this.btnElegirFechaFiltrada = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallaVenta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,19 +56,11 @@
             this.dataGridViewDetallaVenta.Size = new System.Drawing.Size(639, 278);
             this.dataGridViewDetallaVenta.TabIndex = 1;
             // 
-            // txtFiltroVenta
-            // 
-            this.txtFiltroVenta.Location = new System.Drawing.Point(231, 98);
-            this.txtFiltroVenta.Name = "txtFiltroVenta";
-            this.txtFiltroVenta.Size = new System.Drawing.Size(146, 20);
-            this.txtFiltroVenta.TabIndex = 2;
-            this.txtFiltroVenta.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(73, 101);
+            this.label2.Location = new System.Drawing.Point(859, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 15);
             this.label2.TabIndex = 3;
@@ -83,14 +77,45 @@
             this.btnVolverVenta.UseVisualStyleBackColor = true;
             this.btnVolverVenta.Click += new System.EventHandler(this.btnVolverVenta_Click);
             // 
+            // dtmFiltarFecha
+            // 
+            this.dtmFiltarFecha.Location = new System.Drawing.Point(848, 162);
+            this.dtmFiltarFecha.Name = "dtmFiltarFecha";
+            this.dtmFiltarFecha.Size = new System.Drawing.Size(201, 20);
+            this.dtmFiltarFecha.TabIndex = 5;
+            // 
+            // btnElegirFechaFiltrada
+            // 
+            this.btnElegirFechaFiltrada.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnElegirFechaFiltrada.Location = new System.Drawing.Point(848, 317);
+            this.btnElegirFechaFiltrada.Name = "btnElegirFechaFiltrada";
+            this.btnElegirFechaFiltrada.Size = new System.Drawing.Size(201, 23);
+            this.btnElegirFechaFiltrada.TabIndex = 6;
+            this.btnElegirFechaFiltrada.Text = "Presione Para Elegir La Fecha";
+            this.btnElegirFechaFiltrada.UseVisualStyleBackColor = true;
+            this.btnElegirFechaFiltrada.Click += new System.EventHandler(this.btnElegirFechaFiltrada_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(243, 415);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(117, 23);
+            this.btnLimpiar.TabIndex = 7;
+            this.btnLimpiar.Text = "Limpiar Grilla";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // FrmDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1330, 450);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnElegirFechaFiltrada);
+            this.Controls.Add(this.dtmFiltarFecha);
             this.Controls.Add(this.btnVolverVenta);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtFiltroVenta);
             this.Controls.Add(this.dataGridViewDetallaVenta);
             this.Controls.Add(this.label1);
             this.Name = "FrmDetalleVenta";
@@ -106,8 +131,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewDetallaVenta;
-        private System.Windows.Forms.TextBox txtFiltroVenta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnVolverVenta;
+        private System.Windows.Forms.DateTimePicker dtmFiltarFecha;
+        private System.Windows.Forms.Button btnElegirFechaFiltrada;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

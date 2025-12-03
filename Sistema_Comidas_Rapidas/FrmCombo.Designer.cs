@@ -186,7 +186,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(1370, 668);
+            this.btnCancelar.Location = new System.Drawing.Point(1361, 684);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(124, 34);
@@ -233,10 +233,10 @@
             // btnAgregarPromocion
             // 
             this.btnAgregarPromocion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarPromocion.Location = new System.Drawing.Point(593, 678);
+            this.btnAgregarPromocion.Location = new System.Drawing.Point(593, 684);
             this.btnAgregarPromocion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAgregarPromocion.Name = "btnAgregarPromocion";
-            this.btnAgregarPromocion.Size = new System.Drawing.Size(163, 26);
+            this.btnAgregarPromocion.Size = new System.Drawing.Size(163, 23);
             this.btnAgregarPromocion.TabIndex = 25;
             this.btnAgregarPromocion.Text = "Agregar Poromocion";
             this.btnAgregarPromocion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -249,7 +249,7 @@
             this.button1.Location = new System.Drawing.Point(473, 684);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 23);
+            this.button1.Size = new System.Drawing.Size(85, 34);
             this.button1.TabIndex = 26;
             this.button1.Text = "Limpiar";
             this.button1.UseVisualStyleBackColor = true;
@@ -321,7 +321,7 @@
             // btnEliminarCombo
             // 
             this.btnEliminarCombo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarCombo.Location = new System.Drawing.Point(960, 670);
+            this.btnEliminarCombo.Location = new System.Drawing.Point(960, 684);
             this.btnEliminarCombo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnEliminarCombo.Name = "btnEliminarCombo";
             this.btnEliminarCombo.Size = new System.Drawing.Size(175, 34);
@@ -344,7 +344,7 @@
             // btnModificar
             // 
             this.btnModificar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(1161, 670);
+            this.btnModificar.Location = new System.Drawing.Point(1161, 684);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(165, 34);
@@ -356,7 +356,7 @@
             // btnGuardarCambios
             // 
             this.btnGuardarCambios.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCambios.Location = new System.Drawing.Point(1370, 708);
+            this.btnGuardarCambios.Location = new System.Drawing.Point(1361, 684);
             this.btnGuardarCambios.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGuardarCambios.Name = "btnGuardarCambios";
             this.btnGuardarCambios.Size = new System.Drawing.Size(124, 34);
@@ -368,7 +368,7 @@
             // btnCancelarModficacion
             // 
             this.btnCancelarModficacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarModficacion.Location = new System.Drawing.Point(1516, 670);
+            this.btnCancelarModficacion.Location = new System.Drawing.Point(1516, 687);
             this.btnCancelarModficacion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancelarModficacion.Name = "btnCancelarModficacion";
             this.btnCancelarModficacion.Size = new System.Drawing.Size(162, 31);

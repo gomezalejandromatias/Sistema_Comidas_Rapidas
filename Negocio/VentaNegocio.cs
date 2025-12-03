@@ -11,19 +11,32 @@ namespace Negocio
 {
     public class VentaNegocio
     {
-        public List<Venta> listaventa() 
+        public List<Venta> listaventa(string filtro = "") 
         {
 
-             AccesoDatos accesoDatos = new AccesoDatos();
-             List<Venta>lista  = new List<Venta> ();
+            AccesoDatos accesoDatos = new AccesoDatos();
+            List<Venta> lista = new List<Venta>();
 
             try
             {
-                accesoDatos.SetearConsulta(
-               "SELECT NumeroVenta, FechaVenta, FormaPago, TotalPrecio " +
-               "FROM Ventas " +
-               "ORDER BY NumeroVenta desc"
-           );
+                string consulta =
+                    "SELECT NumeroVenta, FechaVenta, FormaPago, TotalPrecio " +
+                    "FROM Ventas";
+
+                // Si hay filtro, agrego WHERE
+                if (filtro != "")
+                {
+                    consulta += " WHERE CONVERT(varchar, FechaVenta, 103) LIKE @filtro";
+                }
+
+                consulta += " ORDER BY NumeroVenta DESC";
+
+                accesoDatos.SetearConsulta(consulta);
+
+                if (filtro != "")
+                {
+                    accesoDatos.SetearParametro("@filtro", "%" + filtro + "%");
+                }
 
                 accesoDatos.EjecutarLectura();
 
@@ -38,7 +51,8 @@ namespace Negocio
 
                     lista.Add(aux);
                 }
-                    return lista;
+
+                return lista;
             }
             catch (Exception ex)
             {
