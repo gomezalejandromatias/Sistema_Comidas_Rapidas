@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Combo.cs" />
+    <Compile Include="ComboProducto.cs" />
+    <Compile Include="ComboProductoLinea.cs" />
     <Compile Include="VentaCombo.cs" />
     <Compile Include="Empleados.cs" />
     <Compile Include="Liquidacion.cs" />

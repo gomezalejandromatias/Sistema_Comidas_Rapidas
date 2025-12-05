@@ -226,5 +226,23 @@ namespace Sistema_Comidas_Rapidas
 
             txtNombreProv.Focus();
         }
+
+        private void btnVoverVentas_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("Desea Cancelar La Operacion?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (respuesta == DialogResult.Yes)
+            {
+
+                frmVenta frmVenta = new frmVenta();
+                frmVenta.Owner = this;
+                frmVenta.Show();
+                this.Hide();
+
+
+
+
+            }
+        }
     }
 }

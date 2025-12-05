@@ -303,5 +303,21 @@ namespace Sistema_Comidas_Rapidas
             frmDetalleVenta.Show();
             this.Hide();
         }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          
+            
+
+                FrmProveedor frmProveedor = new FrmProveedor();
+                frmProveedor.Owner = this;
+                frmProveedor.Show();
+                this.Hide();
+
+
+
+
+            
+        }
     }
 }

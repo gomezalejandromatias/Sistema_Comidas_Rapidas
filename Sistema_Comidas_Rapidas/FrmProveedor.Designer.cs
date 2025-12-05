@@ -46,6 +46,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnModificarDefinitivoProv = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnVoverVentas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgProveedor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,9 +150,9 @@
             // dtgProveedor
             // 
             this.dtgProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgProveedor.Location = new System.Drawing.Point(921, 115);
+            this.dtgProveedor.Location = new System.Drawing.Point(901, 116);
             this.dtgProveedor.Name = "dtgProveedor";
-            this.dtgProveedor.Size = new System.Drawing.Size(455, 285);
+            this.dtgProveedor.Size = new System.Drawing.Size(489, 285);
             this.dtgProveedor.TabIndex = 11;
             // 
             // btnAgregar
@@ -215,11 +216,22 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // btnVoverVentas
+            // 
+            this.btnVoverVentas.Location = new System.Drawing.Point(923, 517);
+            this.btnVoverVentas.Name = "btnVoverVentas";
+            this.btnVoverVentas.Size = new System.Drawing.Size(116, 23);
+            this.btnVoverVentas.TabIndex = 18;
+            this.btnVoverVentas.Text = "Volver a  ventas";
+            this.btnVoverVentas.UseVisualStyleBackColor = true;
+            this.btnVoverVentas.Click += new System.EventHandler(this.btnVoverVentas_Click);
+            // 
             // FrmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1379, 588);
+            this.ClientSize = new System.Drawing.Size(1394, 588);
+            this.Controls.Add(this.btnVoverVentas);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnModificarDefinitivoProv);
             this.Controls.Add(this.label7);
@@ -269,5 +281,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnModificarDefinitivoProv;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnVoverVentas;
     }
 }

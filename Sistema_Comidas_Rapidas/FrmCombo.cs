@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Sistema_Comidas_Rapidas
       public  List<Combo> listacombo = new List<Combo>();
         public  Combo comboactual;
         public Combo aux;
-          
+        public List<ComboProductoLinea> comboProductoLineas = new List<ComboProductoLinea>();
         public FrmCombo()
         {
             InitializeComponent();
@@ -148,10 +149,20 @@ namespace Sistema_Comidas_Rapidas
 
                 listacombo.Add(comboactual);
 
-             
+
 
                 // Refrescar la grilla
-                comboNegocio.AgregarCombo(comboactual);
+                int idComboNuevo = comboNegocio.AgregarCombo(comboactual);
+
+                // 2️⃣ Guardar cada producto de la receta en ComboProducto
+                foreach (var linea in comboProductoLineas)
+                {
+                    comboNegocio.AgregarComboProducto(
+                        idComboNuevo,
+                        linea.IdProducto,
+                        linea.Cantidad
+                    );
+                }
 
                 cargargrillacombo();
 
@@ -159,6 +170,23 @@ namespace Sistema_Comidas_Rapidas
                   
 
 
+            }
+            catch (SqlException sqlEx)
+            {
+                // ERROR POR CLAVE ÚNICA DUPLICADA
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("Ya existe un combo con ese nombre. Elegí otro.",
+                        "Nombre duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    txtCombo.Focus();
+                }
+                else
+                {
+                    // Otros errores SQL
+                    MessageBox.Show("Error SQL: " + sqlEx.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -276,7 +304,17 @@ namespace Sistema_Comidas_Rapidas
 
 
                 // Refrescar la grilla
-                comboNegocio.AgregarCombo(comboactual);
+                int idComboNuevo = comboNegocio.AgregarCombo(comboactual);
+
+                // 2️⃣ Guardar cada producto de la receta en ComboProducto
+                foreach (var linea in comboProductoLineas)
+                {
+                    comboNegocio.AgregarComboProducto(
+                        idComboNuevo,
+                        linea.IdProducto,
+                        linea.Cantidad
+                    );
+                }
 
                 cargargrillacombo();
 
@@ -284,6 +322,23 @@ namespace Sistema_Comidas_Rapidas
 
 
 
+            }
+            catch (SqlException sqlEx)
+            {
+                // ERROR POR CLAVE ÚNICA DUPLICADA
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("Ya existe la Promocion con ese nombre. Elegí otro.",
+                        "Nombre duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    txtCombo.Focus();
+                }
+                else
+                {
+                    // Otros errores SQL
+                    MessageBox.Show("Error SQL: " + sqlEx.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -355,7 +410,6 @@ namespace Sistema_Comidas_Rapidas
 
                 listrafiltrada = comboNegocio.listacombo().FindAll(x => x.Nombre.ToLower().Contains(filtro.ToLower()));
 
-
             }
 
             else
@@ -366,6 +420,8 @@ namespace Sistema_Comidas_Rapidas
             dgvComboPromociones.DataSource = null;
             dgvComboPromociones.DataSource = listrafiltrada;
 
+                dgvComboPromociones.Columns["IdCombo"].Visible = false;
+                dgvComboPromociones.Columns["Activo"].Visible = false;
 
 
 
@@ -442,6 +498,43 @@ namespace Sistema_Comidas_Rapidas
         private void FrmCombo_Load(object sender, EventArgs e)
         {
             btnGuardarCambios.Visible = false;  
+
+
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+
+           
+
+            try
+            {
+                List<Producto> listaProductos = productoNegocio.listaproducto();
+
+                comboBoxProducto.DataSource = listaProductos;
+
+                comboBoxProducto.DisplayMember = "NombreProducto";
+                comboBoxProducto.ValueMember = "IDProducto";
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            try
+            {
+                List<Producto> listaProductos = productoNegocio.listaproducto();
+
+                comboBoxPromocion.DataSource = listaProductos;
+
+                comboBoxPromocion.DisplayMember = "NombreProducto";
+                comboBoxPromocion.ValueMember = "IDProducto";
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
         }
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
@@ -506,6 +599,66 @@ namespace Sistema_Comidas_Rapidas
             btnCancelar.Visible = true;
             btnGuardarCambios.Visible = false;
             btnCancelarModficacion.Visible = false;
+        }
+
+        private void btnAgregarTipoProducto_Click(object sender, EventArgs e)
+        {
+            if (comboBoxProducto.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccioná un producto.");
+                return;
+            }
+
+            int cantidad;
+            if (!int.TryParse(txtCantidadProducto.Text, out cantidad) || cantidad <= 0)
+            {
+                MessageBox.Show("Ingresá una cantidad válida.");
+                return;
+            }
+
+            // Producto elegido
+            Producto prod = (Producto)comboBoxProducto.SelectedItem;
+            comboProductoLineas.Add(new ComboProductoLinea
+            {
+                IdProducto = prod.IDProducto,
+                NombreProducto = prod.NombreProducto,
+                Cantidad = cantidad
+            });
+
+            // Agregar a la receta
+
+            // Mostrarlo en el RichTextBox
+            richTextBoxCombo.AppendText($"{prod.NombreProducto} x {cantidad}\n");
+        }
+
+        private void btnAgregarPromo_Click_1(object sender, EventArgs e)
+        {
+            if (comboBoxPromocion.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccioná un producto.");
+                return;
+            }
+
+            int cantidad;
+            if (!int.TryParse(txtCantidadPromo.Text, out cantidad) || cantidad <= 0)
+            {
+                MessageBox.Show("Ingresá una cantidad válida.");
+                return;
+            }
+
+            // Producto elegido
+            Producto prod = (Producto)comboBoxProducto.SelectedItem;
+            comboProductoLineas.Add(new ComboProductoLinea
+            {
+                IdProducto = prod.IDProducto,
+                NombreProducto = prod.NombreProducto,
+                Cantidad = cantidad
+            });
+
+            // Agregar a la receta
+
+            // Mostrarlo en el RichTextBox
+            richTextBoxPromocion.AppendText($"{prod.NombreProducto} x {cantidad}\n");
         }
     }
 }

@@ -57,6 +57,16 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnGuardarCambios = new System.Windows.Forms.Button();
             this.btnCancelarModficacion = new System.Windows.Forms.Button();
+            this.comboBoxProducto = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtCantidadProducto = new System.Windows.Forms.TextBox();
+            this.btnAgregarTipoProducto = new System.Windows.Forms.Button();
+            this.txtCantidadPromo = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.comboBoxPromocion = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnAgregarPromo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComboPromociones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,27 +104,27 @@
             // 
             // txtCombo
             // 
-            this.txtCombo.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCombo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCombo.Location = new System.Drawing.Point(63, 192);
             this.txtCombo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtCombo.Name = "txtCombo";
-            this.txtCombo.Size = new System.Drawing.Size(189, 31);
+            this.txtCombo.Size = new System.Drawing.Size(209, 23);
             this.txtCombo.TabIndex = 3;
             // 
             // txtPromociones
             // 
-            this.txtPromociones.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPromociones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPromociones.Location = new System.Drawing.Point(471, 192);
             this.txtPromociones.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtPromociones.Name = "txtPromociones";
-            this.txtPromociones.Size = new System.Drawing.Size(215, 31);
+            this.txtPromociones.Size = new System.Drawing.Size(215, 23);
             this.txtPromociones.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(61, 268);
+            this.label4.Location = new System.Drawing.Point(64, 236);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(128, 19);
@@ -125,7 +135,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(469, 268);
+            this.label5.Location = new System.Drawing.Point(469, 236);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(168, 19);
@@ -134,20 +144,20 @@
             // 
             // txtPrecioCombo
             // 
-            this.txtPrecioCombo.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecioCombo.Location = new System.Drawing.Point(63, 325);
+            this.txtPrecioCombo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioCombo.Location = new System.Drawing.Point(63, 264);
             this.txtPrecioCombo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtPrecioCombo.Name = "txtPrecioCombo";
-            this.txtPrecioCombo.Size = new System.Drawing.Size(189, 31);
+            this.txtPrecioCombo.Size = new System.Drawing.Size(209, 23);
             this.txtPrecioCombo.TabIndex = 9;
             // 
             // txtPrecioPromocion
             // 
-            this.txtPrecioPromocion.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecioPromocion.Location = new System.Drawing.Point(471, 325);
+            this.txtPrecioPromocion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioPromocion.Location = new System.Drawing.Point(473, 264);
             this.txtPrecioPromocion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtPrecioPromocion.Name = "txtPrecioPromocion";
-            this.txtPrecioPromocion.Size = new System.Drawing.Size(215, 31);
+            this.txtPrecioPromocion.Size = new System.Drawing.Size(215, 23);
             this.txtPrecioPromocion.TabIndex = 10;
             // 
             // dgvComboPromociones
@@ -174,7 +184,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(63, 684);
+            this.btnLimpiar.Location = new System.Drawing.Point(65, 720);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(85, 23);
@@ -199,7 +209,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(61, 390);
+            this.label7.Location = new System.Drawing.Point(64, 507);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(170, 19);
@@ -210,7 +220,7 @@
             // btnIngredienteCombo
             // 
             this.btnIngredienteCombo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngredienteCombo.Location = new System.Drawing.Point(192, 684);
+            this.btnIngredienteCombo.Location = new System.Drawing.Point(187, 720);
             this.btnIngredienteCombo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnIngredienteCombo.Name = "btnIngredienteCombo";
             this.btnIngredienteCombo.Size = new System.Drawing.Size(117, 23);
@@ -223,7 +233,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(469, 390);
+            this.label8.Location = new System.Drawing.Point(469, 507);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(210, 19);
@@ -233,7 +243,7 @@
             // btnAgregarPromocion
             // 
             this.btnAgregarPromocion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarPromocion.Location = new System.Drawing.Point(593, 684);
+            this.btnAgregarPromocion.Location = new System.Drawing.Point(593, 720);
             this.btnAgregarPromocion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAgregarPromocion.Name = "btnAgregarPromocion";
             this.btnAgregarPromocion.Size = new System.Drawing.Size(163, 23);
@@ -246,10 +256,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(473, 684);
+            this.button1.Location = new System.Drawing.Point(457, 720);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 34);
+            this.button1.Size = new System.Drawing.Size(85, 28);
             this.button1.TabIndex = 26;
             this.button1.Text = "Limpiar";
             this.button1.UseVisualStyleBackColor = true;
@@ -280,7 +290,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(46, 333);
+            this.label10.Location = new System.Drawing.Point(34, 267);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(14, 15);
@@ -291,7 +301,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(454, 333);
+            this.label11.Location = new System.Drawing.Point(454, 267);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(14, 15);
@@ -301,7 +311,7 @@
             // richTextBoxCombo
             // 
             this.richTextBoxCombo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxCombo.Location = new System.Drawing.Point(63, 450);
+            this.richTextBoxCombo.Location = new System.Drawing.Point(65, 540);
             this.richTextBoxCombo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.richTextBoxCombo.Name = "richTextBoxCombo";
             this.richTextBoxCombo.Size = new System.Drawing.Size(244, 137);
@@ -311,7 +321,7 @@
             // richTextBoxPromocion
             // 
             this.richTextBoxPromocion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxPromocion.Location = new System.Drawing.Point(471, 450);
+            this.richTextBoxPromocion.Location = new System.Drawing.Point(457, 541);
             this.richTextBoxPromocion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.richTextBoxPromocion.Name = "richTextBoxPromocion";
             this.richTextBoxPromocion.Size = new System.Drawing.Size(266, 137);
@@ -377,11 +387,117 @@
             this.btnCancelarModficacion.UseVisualStyleBackColor = true;
             this.btnCancelarModficacion.Click += new System.EventHandler(this.btnCancelarModficacion_Click);
             // 
+            // comboBoxProducto
+            // 
+            this.comboBoxProducto.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProducto.FormattingEnabled = true;
+            this.comboBoxProducto.Location = new System.Drawing.Point(63, 358);
+            this.comboBoxProducto.Name = "comboBoxProducto";
+            this.comboBoxProducto.Size = new System.Drawing.Size(204, 23);
+            this.comboBoxProducto.TabIndex = 38;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(62, 325);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(207, 15);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Tipo de Producto que lleva el Combo";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(62, 394);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(242, 15);
+            this.label13.TabIndex = 40;
+            this.label13.Text = "Cantidad de 1 Producto que lleva el Combo";
+            // 
+            // txtCantidadProducto
+            // 
+            this.txtCantidadProducto.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadProducto.Location = new System.Drawing.Point(68, 437);
+            this.txtCantidadProducto.Name = "txtCantidadProducto";
+            this.txtCantidadProducto.Size = new System.Drawing.Size(204, 23);
+            this.txtCantidadProducto.TabIndex = 41;
+            // 
+            // btnAgregarTipoProducto
+            // 
+            this.btnAgregarTipoProducto.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarTipoProducto.Location = new System.Drawing.Point(321, 437);
+            this.btnAgregarTipoProducto.Name = "btnAgregarTipoProducto";
+            this.btnAgregarTipoProducto.Size = new System.Drawing.Size(41, 23);
+            this.btnAgregarTipoProducto.TabIndex = 42;
+            this.btnAgregarTipoProducto.Text = "+";
+            this.btnAgregarTipoProducto.UseVisualStyleBackColor = true;
+            this.btnAgregarTipoProducto.Click += new System.EventHandler(this.btnAgregarTipoProducto_Click);
+            // 
+            // txtCantidadPromo
+            // 
+            this.txtCantidadPromo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadPromo.Location = new System.Drawing.Point(471, 437);
+            this.txtCantidadPromo.Name = "txtCantidadPromo";
+            this.txtCantidadPromo.Size = new System.Drawing.Size(215, 23);
+            this.txtCantidadPromo.TabIndex = 43;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(470, 325);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(209, 15);
+            this.label14.TabIndex = 44;
+            this.label14.Text = "Tipo de Producto Que Lleva la Promo";
+            // 
+            // comboBoxPromocion
+            // 
+            this.comboBoxPromocion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxPromocion.FormattingEnabled = true;
+            this.comboBoxPromocion.Location = new System.Drawing.Point(473, 358);
+            this.comboBoxPromocion.Name = "comboBoxPromocion";
+            this.comboBoxPromocion.Size = new System.Drawing.Size(213, 23);
+            this.comboBoxPromocion.TabIndex = 45;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(470, 405);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(314, 15);
+            this.label15.TabIndex = 46;
+            this.label15.Text = "Cantidad De Productos Que lleva la Promo (en numeros)";
+            // 
+            // btnAgregarPromo
+            // 
+            this.btnAgregarPromo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarPromo.Location = new System.Drawing.Point(717, 437);
+            this.btnAgregarPromo.Name = "btnAgregarPromo";
+            this.btnAgregarPromo.Size = new System.Drawing.Size(48, 23);
+            this.btnAgregarPromo.TabIndex = 47;
+            this.btnAgregarPromo.Text = "+";
+            this.btnAgregarPromo.UseVisualStyleBackColor = true;
+            this.btnAgregarPromo.Click += new System.EventHandler(this.btnAgregarPromo_Click_1);
+            // 
             // FrmCombo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 39F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1923, 1061);
+            this.Controls.Add(this.btnAgregarPromo);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.comboBoxPromocion);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.txtCantidadPromo);
+            this.Controls.Add(this.btnAgregarTipoProducto);
+            this.Controls.Add(this.txtCantidadProducto);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.comboBoxProducto);
             this.Controls.Add(this.btnCancelarModficacion);
             this.Controls.Add(this.btnGuardarCambios);
             this.Controls.Add(this.btnModificar);
@@ -454,5 +570,15 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnGuardarCambios;
         private System.Windows.Forms.Button btnCancelarModficacion;
+        private System.Windows.Forms.ComboBox comboBoxProducto;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtCantidadProducto;
+        private System.Windows.Forms.Button btnAgregarTipoProducto;
+        private System.Windows.Forms.TextBox txtCantidadPromo;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox comboBoxPromocion;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnAgregarPromo;
     }
 }

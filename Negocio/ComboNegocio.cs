@@ -57,24 +57,26 @@ namespace Negocio
 
         }
 
-        public void AgregarCombo(Combo combo)
+        public int AgregarCombo(Combo combo)
         {
             AccesoDatos accesoDatos = new AccesoDatos();
 
             try
             {
                 accesoDatos.SetearConsulta(
-                    "INSERT INTO Combo (CodigoCombo,Nombre,Ingredientes,Precio,Activo, FechaAlta) " +
-                    "VALUES (@CodigoCombo, @Nombre, @Ingredientes,@Precio,@Activo, GETDATE());"
+                    "INSERT INTO Combo (CodigoCombo, Nombre, Ingredientes, Precio, Activo, FechaAlta) " +
+                    "VALUES (@CodigoCombo, @Nombre, @Ingredientes, @Precio, @Activo, GETDATE()); " +
+                    "SELECT SCOPE_IDENTITY();"
                 );
 
                 accesoDatos.SetearParametro("@CodigoCombo", combo.CodigoCombo);
                 accesoDatos.SetearParametro("@Nombre", combo.Nombre);
-                accesoDatos.SetearParametro("@Ingredientes", combo.Ingredientes); // 👈 texto del RichTextBox
+                accesoDatos.SetearParametro("@Ingredientes", combo.Ingredientes);
                 accesoDatos.SetearParametro("@Precio", combo.Precio);
                 accesoDatos.SetearParametro("@Activo", combo.Activo);
 
-                accesoDatos.EjecutarAccion();   // 👈 ya no necesito SCOPE_IDENTITY
+                int idCombo = Convert.ToInt32(accesoDatos.EjecutarEscalar());
+                return idCombo;
             }
             catch (Exception ex)
             {
@@ -84,10 +86,6 @@ namespace Negocio
             {
                 accesoDatos.CerrarConexion();
             }
-
-
-
-
         }
 
         public void EliminarCombo(int id) 
@@ -145,7 +143,32 @@ namespace Negocio
 
         }
 
+        public void AgregarComboProducto(int idCombo, int idProducto, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.SetearConsulta(
+                    "INSERT INTO ComboProducto (IdCombo, IdProducto, CantidadProducto) " +
+                    "VALUES (@IdCombo, @IdProducto, @CantidadProducto)"
+                );
+
+                datos.SetearParametro("@IdCombo", idCombo);
+                datos.SetearParametro("@IdProducto", idProducto);
+                datos.SetearParametro("@CantidadProducto", cantidad);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 }

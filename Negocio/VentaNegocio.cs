@@ -126,6 +126,62 @@ namespace Negocio
                 }
                 finally { accesoDatos1.CerrarConexion(); }
 
+                AccesoDatos datosReceta = new AccesoDatos();
+                try
+                {
+                    // BUSCO LA RECETA DEL COMBO (qué productos usa)
+                    datosReceta.SetearConsulta(
+                        "SELECT IdProducto, CantidadProducto " +
+                        "FROM ComboProducto " +
+                        "WHERE IdCombo = @IdCombo"
+                    );
+                    datosReceta.SetearParametro("@IdCombo", item.IdCombo);
+                    datosReceta.EjecutarLectura();
+
+                    // RECORRO CADA PRODUCTO QUE USA EL COMBO
+                    while (datosReceta.Lector.Read())
+                    {
+                        int idProducto = (int)datosReceta.Lector["IdProducto"];
+
+                        // La receta trae un DECIMAL → lo convierto a int
+                        int cantidadPorCombo = (int)(decimal)datosReceta.Lector["CantidadProducto"];
+
+                        // 🔢 Cantidad total que tengo que descontar
+                        int cantidadTotalDescontar = cantidadPorCombo * item.Cantidad;
+
+                        // 🔥 HAGO EL UPDATE AL STOCK DEL PRODUCTO
+                        AccesoDatos datosUpdate = new AccesoDatos();
+                        try
+                        {
+                            datosUpdate.SetearConsulta(
+                                "UPDATE Producto " +
+                                "SET Stock = Stock - @Cantidad " +
+                                "WHERE IdProducto = @IdProducto"
+                            );
+
+                            datosUpdate.SetearParametro("@Cantidad", cantidadTotalDescontar);
+                            datosUpdate.SetearParametro("@IdProducto", idProducto);
+
+                            datosUpdate.EjecutarAccion();
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                        finally
+                        {
+                            datosUpdate.CerrarConexion();
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    datosReceta.CerrarConexion();
+                }
 
 
 

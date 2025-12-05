@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dominio;
-using Negocio;
 
 namespace Sistema_Comidas_Rapidas
 {
@@ -106,6 +107,23 @@ namespace Sistema_Comidas_Rapidas
                productoNegocio.AgregarProducto(aux);
 
             }
+            catch (SqlException sqlEx)
+            {
+                // ERROR POR CLAVE ÚNICA DUPLICADA
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("Ya existe ese Producto con ese nombre. Elegí otro.",
+                        "Nombre duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    txtNombreProducto.Focus();
+                }
+                else
+                {
+                    // Otros errores SQL
+                    MessageBox.Show("Error SQL: " + sqlEx.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
             catch (Exception ex)
             {
 
@@ -160,8 +178,9 @@ namespace Sistema_Comidas_Rapidas
             if(filtro!= "") 
             { 
                listafiltrada = productoNegocio.listaproducto().FindAll(x => x.NombreProducto.ToLower().Contains(filtro));
-          
 
+              
+             
 
             }
 
@@ -174,7 +193,8 @@ namespace Sistema_Comidas_Rapidas
             dvbListaProducto.DataSource = null;
             dvbListaProducto.DataSource = listafiltrada;
 
-           
+            dvbListaProducto.Columns["IDProducto"].Visible = false;
+            dvbListaProducto.Columns["Activo"].Visible = false;
 
 
 
