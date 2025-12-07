@@ -17,8 +17,10 @@ namespace Sistema_Comidas_Rapidas
     public partial class Form1 : Form
     {
           List<Producto> lista = new List<Producto>();
-        int unidades, paquetes;
+        int unidades, paquetes, kilos;
+       
         Producto aux;
+        string tipo;
 
         public Form1()
         {
@@ -58,54 +60,148 @@ namespace Sistema_Comidas_Rapidas
         {
             ProductoNegocio productoNegocio = new ProductoNegocio();
             Producto aux = new Producto();
+
             try
             {
-                aux.NombreProducto = txtNombreProducto.Text;
+                // 1) VALIDACIONES BÁSICAS COMUNES
 
+                // Nombre
+                if (comboBoxaProveedor.SelectedItem == null)
+                {
+                    MessageBox.Show("Seleccioná un proveedor.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 Proveedores prov = (Proveedores)comboBoxaProveedor.SelectedItem;
-
                 aux.IDProveedor = prov.idproveedor;
 
+                string nombre = txtNombreProducto.Text.Trim();
+                if (nombre.Length == 0)
+                {
+                    MessageBox.Show("Ingresá un nombre de producto.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombreProducto.Focus();
+                    return;
+                }
+                aux.NombreProducto = nombre;
 
-                
-                aux.CodigoProducto = "C" + new Random().Next(1000, 9999);
-
+                // Proveedor
                 aux.FechaIngreso = DateTime.Now;
 
-
-
-                aux.CantidadUnidad = unidades;      
-                aux.UnidadPaquete = paquetes;       
-                aux.Stock = int.Parse(txtStock.Text);
-
-
-
-                aux.Stock =int.Parse( txtStock.Text);
-
-                aux.Categoria = txtCategoria.Text;
-
-                decimal precio;
-
-                if (!decimal.TryParse(txtPrecioUnidad.Text, out precio))
+                // Tipo de producto (Unidades o Gramos)
+                if (comboBoxElijeTipoProducto.SelectedItem == null)
                 {
-                    MessageBox.Show("El precio debe ser un número válido.", "Error");
+                    MessageBox.Show("Seleccioná el tipo de producto (unidades o gramos).", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                 tipo = comboBoxElijeTipoProducto.SelectedItem.ToString();
+
+                // Código y fecha
+                aux.CodigoProducto = "C" + new Random().Next(1000, 9999);
+
+                // Categoría
+                aux.Categoria = txtCategoria.Text.Trim();
+
+                // Precio por unidad (precio base)
+                decimal precio;
+                if (!decimal.TryParse(txtPrecioUnidad.Text, out precio) || precio <= 0)
+                {
+                    MessageBox.Show("El precio debe ser un número válido y mayor a 0.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPrecioUnidad.Focus();
                     return;
                 }
                 aux.PrecioUnidad = precio;
 
-                aux.PrecioFinal = unidades * paquetes* precio;
+
+                // 2) LÓGICA SEGÚN TIPO DE PRODUCTO
+
+                // =========================================
+                //      CASO A: PRODUCTO EN GRAMOS
+                // =========================================
+                if (tipo == "Producto en Gramos")
+                {
+                    // txtCantidadGramo → KILOS que escribe el usuario (ej: 10)
+                    // txtStockGramo   → GRAMOS totales (ej: 10000), debería estar calculado (kilos * 1000)
+
+                  
+                    if (!int.TryParse(txtCantidadGramo.Text, out kilos) || kilos <= 0)
+                    {
+                        MessageBox.Show("Ingresá la cantidad de kilos (número entero mayor a 0).", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCantidadGramo.Focus();
+                        return;
+                    }
+
+                    int stockGramos;
+                    // Si el usuario ya ve el total de gramos, lo leemos.
+                    // Si está vacío, lo calculamos nosotros.
+                    if (!int.TryParse(txtStockGramo.Text, out stockGramos) || stockGramos <= 0)
+                    {
+                        stockGramos = kilos * 1000;
+                        txtStockGramo.Text = stockGramos.ToString();
+                    }
+
+                    // Cómo lo guardamos en el objeto:
+                    // UnidadPaquete = cantidad de "kilos comprados"
+                    // CantidadUnidad = 1000 → definimos 1 "unidad lógica" = 1000 gramos
+                    aux.UnidadPaquete = kilos;        // ej: 10 (kilos)
+                    aux.CantidadUnidad = 1000;        // cada "unidad" son 1000 gramos
+                    aux.Stock = stockGramos;          // ej: 10000 gramos
+
+                    // PrecioFinal: depende de cómo lo quieras manejar
+                    // Ejemplo: precio es "precio por kilo" → PrecioFinal = kilos * precio
+                    aux.PrecioFinal = kilos * precio;
+                }
+
+                // =========================================
+                //      CASO B: PRODUCTO EN UNIDADES
+                // =========================================
+                else // "Producto en Unidades"
+                {
+                    int unidadesPorPaquete;
+                    int cantidadPaquetes;
+
+                    // txtUnidadPaquete → cuántas unidades trae cada paquete (ej: 6 salchichas por paquete)
+                    if (!int.TryParse(txtUnidadPaquete.Text, out unidadesPorPaquete) || unidadesPorPaquete <= 0)
+                    {
+                        MessageBox.Show("Ingresá la cantidad por paquete (unidades por paquete).", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtUnidadPaquete.Focus();
+                        return;
+                    }
+
+                    // txtCantidadPaquete → cuántos paquetes compraste (ej: 10 paquetes)
+                    if (!int.TryParse(txtCantidadPaquete.Text, out cantidadPaquetes) || cantidadPaquetes <= 0)
+                    {
+                        MessageBox.Show("Ingresá la cantidad de paquetes.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCantidadPaquete.Focus();
+                        return;
+                    }
+
+                    // Calculamos el stock total en unidades
+                    int stockUnidades = unidadesPorPaquete * cantidadPaquetes;
+                    txtStock.Text = stockUnidades.ToString();
+
+                    // Guardamos en el objeto:
+                    aux.CantidadUnidad = unidadesPorPaquete;  // ej: 6
+                    aux.UnidadPaquete = cantidadPaquetes;    // ej: 10
+                    aux.Stock = stockUnidades;       // ej: 60
+
+                    // PrecioFinal: ejemplo simple → precio * stock total
+                    aux.PrecioFinal = stockUnidades * precio;
+                }
 
 
+                // 3) GUARDAR EN LISTA Y BD
 
+              ////  lista.Add(aux);
+                productoNegocio.AgregarProducto(aux);
 
-                decimal contadorTotal = +aux.PrecioUnidad;
-
-                lblTotalPrecioProducto.Text = contadorTotal.ToString();
-
-                lista.Add(aux);
-
-               productoNegocio.AgregarProducto(aux);
-
+                MessageBox.Show("Producto agregado correctamente.", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
             {
@@ -120,36 +216,42 @@ namespace Sistema_Comidas_Rapidas
                 else
                 {
                     // Otros errores SQL
-                    MessageBox.Show("Error SQL: " + sqlEx.Message, "Error",
+                    MessageBox.Show("Error SQL: " + sqlEx.Message, "Error SQL",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                MessageBox.Show("Error general: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-      
 
-
-            
+            // 4) LIMPIAR CAMPOS PARA UNA NUEVA CARGA
 
             txtNombreProducto.Text = "";
-            
             txtUnidadPaquete.Text = "";
-            txtUnidadPaquete.Text = "";
-          
+            txtCantidadPaquete.Text = "";
             txtStock.Text = "";
             txtPrecioUnidad.Text = "";
             txtCategoria.Text = "";
+            txtCantidadGramo.Text = "";
+            txtStockGramo.Text = "";
+
+
+            lblGramos.Visible = false;
+
+            // Ocultar controles de UNIDADES
+            lblProductoporPeso.Visible = false;
+
+            txtStockGramo.Visible = false;
+            txtCantidadGramo.Visible = false;
 
             CargarGrilla();
-
             comboBoxaProveedor.Focus();
 
-   
-           
+
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -219,9 +321,19 @@ namespace Sistema_Comidas_Rapidas
 
              
             }
+
+
+          else if (int.TryParse(txtCantidadGramo.Text, out kilos) )
+          {
+                unidades = kilos * 1000;
+                txtStockGramo.Text = unidades.ToString();
+          }
+
+
             else
             {
                 txtStock.Text = "";
+                txtStockGramo.Text = "";
             }
         }
 
@@ -282,6 +394,19 @@ namespace Sistema_Comidas_Rapidas
 
                 throw ex;
             }
+
+            comboBoxElijeTipoProducto.Items.Add("Producto en Unidades");
+            comboBoxElijeTipoProducto.Items.Add("Producto en Gramos");
+
+            lblGramos.Visible = false;
+
+            // Ocultar controles de UNIDADES
+            lblProductoporPeso.Visible = false;
+
+            txtStockGramo.Visible = false;
+            txtCantidadGramo.Visible = false;
+
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -448,6 +573,74 @@ namespace Sistema_Comidas_Rapidas
             txtBucarProducto.Text = "";
 
             comboBoxaProveedor.Focus();
+        }
+
+        private void comboBoxElijeTipoProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tipo = comboBoxElijeTipoProducto.SelectedItem.ToString();
+
+            if (tipo == "Producto en Gramos")
+            {
+                // Mostrar controles de GRAMOS
+                lblGramos.Visible = true ;
+
+                // Ocultar controles de UNIDADES
+                lblProductoporPeso.Visible = true;
+
+               txtStockGramo.Visible = true;
+                txtCantidadGramo.Visible=true;
+
+
+                lblUnidadPaquete.Visible = false;
+                lblStockUnidad.Visible = false;
+                lblCantidadPaquete.Visible=false;
+
+                txtUnidadPaquete.Visible = false;
+                txtCantidadPaquete.Visible=false;
+                txtStock.Visible = false;
+                
+
+            }
+            else // Producto en Unidades
+            {
+                lblGramos.Visible = false;
+
+                // Ocultar controles de UNIDADES
+                lblProductoporPeso.Visible = false;
+
+                txtStockGramo.Visible = false;
+                txtCantidadGramo.Visible = false;
+
+
+
+                lblUnidadPaquete.Visible = true;
+                lblStockUnidad.Visible = true;
+                lblCantidadPaquete.Visible = true;
+
+                txtUnidadPaquete.Visible = true;
+                txtCantidadPaquete.Visible = true;
+                txtStock.Visible = true;
+            }
+        }
+
+        private void lblProductoporPeso_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCantidadGramo_TextChanged(object sender, EventArgs e)
+        {
+            CalcularStock();
+        }
+
+        private void txtStock_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void txtCantidadPaquete_TextChanged(object sender, EventArgs e)

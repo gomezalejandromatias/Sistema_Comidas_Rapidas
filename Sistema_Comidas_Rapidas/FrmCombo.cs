@@ -151,7 +151,7 @@ namespace Sistema_Comidas_Rapidas
 
 
 
-                // Refrescar la grilla
+        
                 int idComboNuevo = comboNegocio.AgregarCombo(comboactual);
 
                 // 2️⃣ Guardar cada producto de la receta en ComboProducto
