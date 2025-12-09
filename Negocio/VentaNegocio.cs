@@ -70,6 +70,8 @@ namespace Negocio
 
          public void guardarventa(Venta venta)
          {
+            VerificarStockDisponible(venta);
+      
             AccesoDatos accesoDatos = new AccesoDatos ();
 
             int idventa = 0;
@@ -193,6 +195,68 @@ namespace Negocio
 
 
          }
+
+        public void VerificarStockDisponible(Venta venta)
+        {
+            foreach (var item in venta.Detalles)
+            {
+                AccesoDatos datos = new AccesoDatos();
+
+                try
+                {
+                    datos.SetearConsulta(
+                        "SELECT p.IdProducto, p.NombreProducto, p.Stock, cp.CantidadProducto " +
+                        "FROM ComboProducto cp " +
+                        "INNER JOIN Producto p ON p.IdProducto = cp.IdProducto " +
+                        "WHERE cp.IdCombo = @IdCombo"
+                    );
+
+                    datos.SetearParametro("@IdCombo", item.IdCombo);
+                    datos.EjecutarLectura();
+
+                    bool hayReceta = false;
+
+                    while (datos.Lector.Read())
+                    {
+                        hayReceta = true;
+
+                        int stockActual = (int)datos.Lector["Stock"];
+                        int cantidadPorCombo = (int)(decimal)datos.Lector["CantidadProducto"];
+                        int cantidadNecesaria = cantidadPorCombo * item.Cantidad;
+
+                        if (stockActual < cantidadNecesaria)
+                        {
+                            string nombreProducto = datos.Lector["NombreProducto"].ToString();
+
+                            // Para que veas bien qué pasa:
+                            // MessageBox.Show("NO HAY STOCK de " + nombreProducto +
+                            //                 "\nStock: " + stockActual +
+                            //                 "\nNecesito: " + cantidadNecesaria);
+
+                            throw new Exception(
+                                "No hay stock suficiente del producto: " + nombreProducto +
+                                ". Stock actual: " + stockActual +
+                                ", se necesitan: " + cantidadNecesaria
+                            );
+                        }
+                    }
+
+                    if (!hayReceta)
+                    {
+                        throw new Exception(
+                            "El combo con Id " + item.IdCombo +
+                            " no tiene productos cargados en ComboProducto. No se puede verificar el stock."
+                        );
+                    }
+                }
+                finally
+                {
+                    datos.CerrarConexion();
+                }
+            }
+        }
+
+
 
 
 

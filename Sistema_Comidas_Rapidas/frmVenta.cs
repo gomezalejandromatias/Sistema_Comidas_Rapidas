@@ -23,7 +23,7 @@ namespace Sistema_Comidas_Rapidas
 
         public frmVenta()
         {
-            
+
             InitializeComponent();
             ConfigurarListView();
             CargarProductos();
@@ -31,8 +31,8 @@ namespace Sistema_Comidas_Rapidas
 
         private void dgvVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-             
-            
+
+
         }
 
         private void listViewCarrito_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,13 +43,13 @@ namespace Sistema_Comidas_Rapidas
         public void CargarProductos()
         {
 
-          ComboNegocio comboNegocio = new ComboNegocio();          
+            ComboNegocio comboNegocio = new ComboNegocio();
 
 
             dgvVenta.DataSource = null;
             dgvVenta.DataSource = comboNegocio.listacombo();
 
-           
+
             dgvVenta.Columns["IdCombo"].Visible = false;
             dgvVenta.Columns["CodigoCombo"].Visible = false;
             dgvVenta.Columns["Activo"].Visible = false;
@@ -69,7 +69,7 @@ namespace Sistema_Comidas_Rapidas
             if (e.RowIndex < 0) return; // si tocaste el header, no sirve
 
             // Esto obtiene la fila seleccionada
-             fila = e.RowIndex;
+            fila = e.RowIndex;
 
             // Esto obtiene el nombre del producto seleccionado
             string nombre = dgvVenta.Rows[fila].Cells["Nombre"].Value.ToString();
@@ -77,7 +77,7 @@ namespace Sistema_Comidas_Rapidas
             // Esto obtiene el precio del producto seleccionado
             decimal precio = Convert.ToDecimal(dgvVenta.Rows[fila].Cells["Precio"].Value);
 
-            
+
         }
 
         private void btnSeleccionarProducto_Click(object sender, EventArgs e)
@@ -128,7 +128,7 @@ namespace Sistema_Comidas_Rapidas
         private void btnVender_Click(object sender, EventArgs e)
         {
 
-            VentaNegocio ventaNegocio = new VentaNegocio(); 
+            VentaNegocio ventaNegocio = new VentaNegocio();
             if (listViewCarrito.Items.Count == 0)
             {
                 MessageBox.Show("No hay productos en el carrito.");
@@ -138,12 +138,12 @@ namespace Sistema_Comidas_Rapidas
 
             try
             {
-               
-                 Venta v = new Venta();
+
+                Venta v = new Venta();
 
                 v.NumeroVenta = ObtenerUltimoNumeroVenta();
                 v.FechaVenta = DateTime.Now;     // Fecha y hora actual
-                 v.TotalPrecio = cantidad;    // 👉 USAMOS EL totalGeneral QUE YA TENÉS
+                v.TotalPrecio = cantidad;    // 👉 USAMOS EL totalGeneral QUE YA TENÉS
                 if (comboBoxFormaPago.SelectedItem == null)
                 {
                     MessageBox.Show("Seleccioná una forma de pago.");
@@ -156,36 +156,33 @@ namespace Sistema_Comidas_Rapidas
 
 
                 ventaNegocio.guardarventa(v);
+
+                lblVentaExitosa.Text = "Venta Exitosa";
+                lblTotalCobro.Text = "Total a Cobrar: $" + cantidad.ToString();
+                listViewCarrito.Items.Clear();  // Vacía el carrito
+                cantidad = 0;
+
+                // 5️⃣ Limpio para la próxima venta
+                listViewCarrito.Items.Clear();
+            lblTotal.Visible = false;
             }
             catch (Exception ex)
             {
-                 
 
-                throw ex;
+                MessageBox.Show(ex.Message, "Error en la venta",
+                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            // 2️⃣ Creo una nueva venta
-
-            // 3️⃣ Guardo la venta en la lista
-          
-
-            // 4️⃣ Muestro un mensaje al usuario
-            lblVentaExitosa.Text = "Venta Exitosa";
-            lblTotalCobro.Text = "Total a Cobrar: $" + cantidad.ToString();
-
-            // 5️⃣ Limpio para la próxima venta
-            listViewCarrito.Items.Clear();  // Vacía el carrito
-            cantidad = 0;               // Reinicia el total
-            lblTotal.Visible= false;
+  
         }
 
         private void btnCancelarVenta_Click(object sender, EventArgs e)
         {
 
 
-            listViewCarrito.Items.Clear();  
-            cantidad = 0;               
-            lblTotal.Visible= false;
-            
+            listViewCarrito.Items.Clear();
+            cantidad = 0;
+            lblTotal.Visible = false;
+
             CargarProductos();
         }
 
@@ -193,12 +190,12 @@ namespace Sistema_Comidas_Rapidas
         {
             List<Combo> listrafiltrada;
             ComboNegocio comboNegocio = new ComboNegocio();
-            string filtro =txtFiltro.Text;
+            string filtro = txtFiltro.Text;
 
             if (filtro != "")
             {
 
-              listrafiltrada = comboNegocio.listacombo().FindAll(x => x.Nombre.ToLower().Contains(filtro.ToLower()));
+                listrafiltrada = comboNegocio.listacombo().FindAll(x => x.Nombre.ToLower().Contains(filtro.ToLower()));
 
 
             }
@@ -210,7 +207,7 @@ namespace Sistema_Comidas_Rapidas
 
             dgvVenta.DataSource = null;
             dgvVenta.DataSource = listrafiltrada;
-           
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -218,9 +215,9 @@ namespace Sistema_Comidas_Rapidas
             listViewCarrito.Items.Clear();
             cantidad = 0;
             lblTotal.Visible = false;
-            lblVentaExitosa.Visible= false;
-            lblTotalCobro.Visible= false;
-            lblTotal.Visible=false;
+            lblVentaExitosa.Visible = false;
+            lblTotalCobro.Visible = false;
+            lblTotal.Visible = false;
 
             CargarProductos();
         }
@@ -228,11 +225,11 @@ namespace Sistema_Comidas_Rapidas
         private void cargaDeProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
-            form1.Owner = this;  
+            form1.Owner = this;
             form1.Show();
             this.Hide();
         }
-    
+
 
         private void comboBoxFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -293,7 +290,7 @@ namespace Sistema_Comidas_Rapidas
             this.Hide();
 
 
-           
+
         }
 
         private void registrosDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -306,18 +303,18 @@ namespace Sistema_Comidas_Rapidas
 
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
-            
-
-                FrmProveedor frmProveedor = new FrmProveedor();
-                frmProveedor.Owner = this;
-                frmProveedor.Show();
-                this.Hide();
 
 
 
+            FrmProveedor frmProveedor = new FrmProveedor();
+            frmProveedor.Owner = this;
+            frmProveedor.Show();
+            this.Hide();
 
-            
+
+
+
+
         }
     }
 }

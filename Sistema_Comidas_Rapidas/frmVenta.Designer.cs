@@ -33,6 +33,7 @@
             this.registrosDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movimientosDeStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combosdeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.dgvVenta = new System.Windows.Forms.DataGridView();
@@ -48,7 +49,6 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.comboBoxFormaPago = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
             this.SuspendLayout();
@@ -84,8 +84,8 @@
             // movimientosDeStockToolStripMenuItem
             // 
             this.movimientosDeStockToolStripMenuItem.Name = "movimientosDeStockToolStripMenuItem";
-            this.movimientosDeStockToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
-            this.movimientosDeStockToolStripMenuItem.Text = "Movimientos de Stock";
+            this.movimientosDeStockToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.movimientosDeStockToolStripMenuItem.Text = "Agregar Stock";
             // 
             // combosdeVentasToolStripMenuItem
             // 
@@ -93,6 +93,13 @@
             this.combosdeVentasToolStripMenuItem.Size = new System.Drawing.Size(146, 20);
             this.combosdeVentasToolStripMenuItem.Text = "Combos y Promociones";
             this.combosdeVentasToolStripMenuItem.Click += new System.EventHandler(this.combosdeVentasToolStripMenuItem_Click);
+            // 
+            // proveedoresToolStripMenuItem
+            // 
+            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.proveedoresToolStripMenuItem.Text = "Proveedores";
+            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -246,13 +253,6 @@
             this.label4.Size = new System.Drawing.Size(89, 15);
             this.label4.TabIndex = 15;
             this.label4.Text = "Forma De Pago";
-            // 
-            // proveedoresToolStripMenuItem
-            // 
-            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.proveedoresToolStripMenuItem.Text = "Proveedores";
-            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
             // frmVenta
             // 
