@@ -25,7 +25,7 @@ namespace Negocio
         {
 
 
-           conexion = new SqlConnection("server = localhost\\SQLEXPRESS; database = ComidasRapidasDB; integrated security =true ;");
+           conexion = new SqlConnection("server = localhost\\SQLEXPRESS02; database = ComidasRapidasDB; integrated security =true ;");
 
             comando = new SqlCommand();
 
@@ -101,6 +101,17 @@ namespace Negocio
         {
             comando = new SqlCommand(nombreSP, conexion);
             comando.CommandType = CommandType.StoredProcedure;
+        }
+
+        public void SetearParametroTVP(string nombre, string typeName, DataTable tabla)
+        {
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = nombre;              // "@Detalles"
+            param.SqlDbType = SqlDbType.Structured;    // TVP
+            param.TypeName = typeName;                 // "dbo.DetalleVentaTVP"
+            param.Value = tabla;                       // el DataTable con las filas
+
+            comando.Parameters.Add(param);
         }
 
 

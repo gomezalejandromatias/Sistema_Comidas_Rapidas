@@ -64,6 +64,7 @@
             this.lblProductoporPeso = new System.Windows.Forms.Label();
             this.txtStockGramo = new System.Windows.Forms.TextBox();
             this.lblGramos = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dvbListaProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -414,7 +415,7 @@
             // txtCantidadGramo
             // 
             this.txtCantidadGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 305);
+            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 302);
             this.txtCantidadGramo.Name = "txtCantidadGramo";
             this.txtCantidadGramo.Size = new System.Drawing.Size(179, 23);
             this.txtCantidadGramo.TabIndex = 38;
@@ -450,11 +451,20 @@
             this.lblGramos.TabIndex = 43;
             this.lblGramos.Text = "Stock (en Gramos)";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1039);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1924, 22);
+            this.statusStrip1.TabIndex = 44;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 34F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lblGramos);
             this.Controls.Add(this.txtStockGramo);
             this.Controls.Add(this.lblProductoporPeso);
@@ -540,6 +550,7 @@
         private System.Windows.Forms.Label lblProductoporPeso;
         private System.Windows.Forms.TextBox txtStockGramo;
         private System.Windows.Forms.Label lblGramos;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }
 

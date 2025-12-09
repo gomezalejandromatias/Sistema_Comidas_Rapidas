@@ -47,6 +47,7 @@
             this.btnModificarDefinitivoProv = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnVoverVentas = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dtgProveedor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -226,11 +227,20 @@
             this.btnVoverVentas.UseVisualStyleBackColor = true;
             this.btnVoverVentas.Click += new System.EventHandler(this.btnVoverVentas_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 620);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1394, 22);
+            this.statusStrip1.TabIndex = 19;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // FrmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1394, 588);
+            this.ClientSize = new System.Drawing.Size(1394, 642);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnVoverVentas);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnModificarDefinitivoProv);
@@ -282,5 +292,6 @@
         private System.Windows.Forms.Button btnModificarDefinitivoProv;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnVoverVentas;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

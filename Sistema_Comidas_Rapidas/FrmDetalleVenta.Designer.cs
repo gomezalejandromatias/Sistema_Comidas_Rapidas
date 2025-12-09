@@ -35,7 +35,15 @@
             this.dtmFiltarFecha = new System.Windows.Forms.DateTimePicker();
             this.btnElegirFechaFiltrada = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.lblTotalGeneral = new System.Windows.Forms.Label();
+            this.lblTotalEfectivo = new System.Windows.Forms.Label();
+            this.lblTotalTransferencia = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallaVenta)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +77,7 @@
             // btnVolverVenta
             // 
             this.btnVolverVenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolverVenta.Location = new System.Drawing.Point(38, 415);
+            this.btnVolverVenta.Location = new System.Drawing.Point(1150, 415);
             this.btnVolverVenta.Name = "btnVolverVenta";
             this.btnVolverVenta.Size = new System.Drawing.Size(168, 23);
             this.btnVolverVenta.TabIndex = 4;
@@ -83,6 +91,7 @@
             this.dtmFiltarFecha.Name = "dtmFiltarFecha";
             this.dtmFiltarFecha.Size = new System.Drawing.Size(201, 20);
             this.dtmFiltarFecha.TabIndex = 5;
+            this.dtmFiltarFecha.ValueChanged += new System.EventHandler(this.dtmFiltarFecha_ValueChanged);
             // 
             // btnElegirFechaFiltrada
             // 
@@ -98,7 +107,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(243, 415);
+            this.btnLimpiar.Location = new System.Drawing.Point(974, 415);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(117, 23);
             this.btnLimpiar.TabIndex = 7;
@@ -106,11 +115,72 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // lblTotalGeneral
+            // 
+            this.lblTotalGeneral.AutoSize = true;
+            this.lblTotalGeneral.Location = new System.Drawing.Point(35, 420);
+            this.lblTotalGeneral.Name = "lblTotalGeneral";
+            this.lblTotalGeneral.Size = new System.Drawing.Size(35, 13);
+            this.lblTotalGeneral.TabIndex = 8;
+            this.lblTotalGeneral.Text = "label3";
+            // 
+            // lblTotalEfectivo
+            // 
+            this.lblTotalEfectivo.AutoSize = true;
+            this.lblTotalEfectivo.Location = new System.Drawing.Point(162, 420);
+            this.lblTotalEfectivo.Name = "lblTotalEfectivo";
+            this.lblTotalEfectivo.Size = new System.Drawing.Size(35, 13);
+            this.lblTotalEfectivo.TabIndex = 9;
+            this.lblTotalEfectivo.Text = "label4";
+            // 
+            // lblTotalTransferencia
+            // 
+            this.lblTotalTransferencia.AutoSize = true;
+            this.lblTotalTransferencia.Location = new System.Drawing.Point(307, 420);
+            this.lblTotalTransferencia.Name = "lblTotalTransferencia";
+            this.lblTotalTransferencia.Size = new System.Drawing.Size(35, 13);
+            this.lblTotalTransferencia.TabIndex = 10;
+            this.lblTotalTransferencia.Text = "label5";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 462);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1330, 22);
+            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
+            // 
             // FrmDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 450);
+            this.ClientSize = new System.Drawing.Size(1330, 484);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.lblTotalTransferencia);
+            this.Controls.Add(this.lblTotalEfectivo);
+            this.Controls.Add(this.lblTotalGeneral);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnElegirFechaFiltrada);
             this.Controls.Add(this.dtmFiltarFecha);
@@ -122,6 +192,8 @@
             this.Text = "FrmDetalleVenta";
             this.Load += new System.EventHandler(this.FrmDetalleVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallaVenta)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,5 +208,12 @@
         private System.Windows.Forms.DateTimePicker dtmFiltarFecha;
         private System.Windows.Forms.Button btnElegirFechaFiltrada;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Label lblTotalGeneral;
+        private System.Windows.Forms.Label lblTotalEfectivo;
+        private System.Windows.Forms.Label lblTotalTransferencia;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
     }
 }

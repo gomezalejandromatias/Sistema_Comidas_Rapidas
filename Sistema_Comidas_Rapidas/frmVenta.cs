@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using Dominio;
 using Negocio;
+using Sistema_Comidas_Rapidas.Helpers;
 
 namespace Sistema_Comidas_Rapidas
 {
@@ -127,52 +129,75 @@ namespace Sistema_Comidas_Rapidas
 
         private void btnVender_Click(object sender, EventArgs e)
         {
-
-            VentaNegocio ventaNegocio = new VentaNegocio();
             if (listViewCarrito.Items.Count == 0)
             {
                 MessageBox.Show("No hay productos en el carrito.");
                 return;
             }
 
+            // 2) Validar forma de pago
+            if (comboBoxFormaPago.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccioná una forma de pago.");
+                return;
+            }
 
             try
             {
-
+                VentaNegocio ventaNegocio = new VentaNegocio();
                 Venta v = new Venta();
 
+                // 3) Completar datos de la venta
                 v.NumeroVenta = ObtenerUltimoNumeroVenta();
-                v.FechaVenta = DateTime.Now;     // Fecha y hora actual
-                v.TotalPrecio = cantidad;    // 👉 USAMOS EL totalGeneral QUE YA TENÉS
-                if (comboBoxFormaPago.SelectedItem == null)
-                {
-                    MessageBox.Show("Seleccioná una forma de pago.");
-                    return;
-                }
-
+                v.FechaVenta = DateTime.Now;
+                v.TotalPrecio = cantidad;   // total general que venís acumulando
                 v.FormaPago = comboBoxFormaPago.SelectedItem.ToString();
+                v.Detalles = detallesActuales;   // la lista de combos del carrito
 
-                v.Detalles = detallesActuales;
-
-
+                // 4) Guardar venta (acá se llama al SP_GuardarVentaCompleta)
                 ventaNegocio.guardarventa(v);
 
-                lblVentaExitosa.Text = "Venta Exitosa";
+                // 5) Si llegó hasta acá, la venta se guardó OK
+                lblVentaExitosa.Text = "Venta exitosa";
                 lblTotalCobro.Text = "Total a Cobrar: $" + cantidad.ToString();
-                listViewCarrito.Items.Clear();  // Vacía el carrito
-                cantidad = 0;
 
-                // 5️⃣ Limpio para la próxima venta
+                // Limpiar carrito y totales para la próxima venta
                 listViewCarrito.Items.Clear();
-            lblTotal.Visible = false;
+                cantidad = 0;
+                lblTotal.Visible = false;
+            }
+            catch (SqlException ex)
+            {
+                // Errores que vienen desde SQL (incluye RAISERROR del SP)
+                if (ex.Message.Contains("No hay stock suficiente del producto"))
+                {
+                    // Mensaje claro de stock insuficiente
+                    MessageBox.Show(ex.Message,
+                                    "Stock insuficiente",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    // Otros errores de SQL (FK, sintaxis, etc.)
+                    MessageBox.Show("Error en la base de datos: " + ex.Message,
+                                    "Error en la venta",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+
+                // IMPORTANTE: acá NO limpio el carrito ni la cantidad.
+                // Así el usuario puede corregir y volver a intentar.
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message, "Error en la venta",
-                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Errores de C# (nulos, lógica, etc.)
+                MessageBox.Show("Ocurrió un error al realizar la venta: " + ex.Message,
+                                "Error en la venta",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
-  
+
         }
 
         private void btnCancelarVenta_Click(object sender, EventArgs e)
@@ -279,6 +304,21 @@ namespace Sistema_Comidas_Rapidas
             comboBoxFormaPago.Items.Add("Efectivo");
             comboBoxFormaPago.Items.Add("Transferencia");
             comboBoxFormaPago.Items.Add("QR");
+
+
+
+            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            lblHora.Text = DateTime.Now.ToString("HH:mm");
+            lblVersion.Text = "Versión 1.0";
+
+
+            UIHelper.BotonPrincipal(btnVender);
+            UIHelper.BotonSecundarioPremium(btnLimpiar);
+            UIHelper.BotonPeligroPremium(btnCancelarVenta);
+
+            UIHelper.BotonSecundarioPremium(btnSeleccionarProducto);
+
+            UIHelper.DataGridViewModerno(dgvVenta);
         }
 
         private void combosdeVentasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -315,6 +355,11 @@ namespace Sistema_Comidas_Rapidas
 
 
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }

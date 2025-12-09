@@ -49,8 +49,13 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.comboBoxFormaPago = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.statusStripFechaHora = new System.Windows.Forms.StatusStrip();
+            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
+            this.statusStripFechaHora.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -147,7 +152,7 @@
             this.btnVender.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVender.Location = new System.Drawing.Point(88, 533);
             this.btnVender.Name = "btnVender";
-            this.btnVender.Size = new System.Drawing.Size(140, 23);
+            this.btnVender.Size = new System.Drawing.Size(140, 32);
             this.btnVender.TabIndex = 5;
             this.btnVender.Text = "Realizar Venta";
             this.btnVender.UseVisualStyleBackColor = true;
@@ -156,9 +161,9 @@
             // btnCancelarVenta
             // 
             this.btnCancelarVenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarVenta.Location = new System.Drawing.Point(307, 533);
+            this.btnCancelarVenta.Location = new System.Drawing.Point(274, 533);
             this.btnCancelarVenta.Name = "btnCancelarVenta";
-            this.btnCancelarVenta.Size = new System.Drawing.Size(125, 23);
+            this.btnCancelarVenta.Size = new System.Drawing.Size(125, 32);
             this.btnCancelarVenta.TabIndex = 6;
             this.btnCancelarVenta.Text = "Cancelar Venta";
             this.btnCancelarVenta.UseVisualStyleBackColor = true;
@@ -226,9 +231,9 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(498, 533);
+            this.btnLimpiar.Location = new System.Drawing.Point(468, 533);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(150, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(150, 32);
             this.btnLimpiar.TabIndex = 13;
             this.btnLimpiar.Text = "Limpiar Pantalla ";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -254,11 +259,42 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Forma De Pago";
             // 
+            // statusStripFechaHora
+            // 
+            this.statusStripFechaHora.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblFecha,
+            this.lblHora,
+            this.lblVersion});
+            this.statusStripFechaHora.Location = new System.Drawing.Point(0, 583);
+            this.statusStripFechaHora.Name = "statusStripFechaHora";
+            this.statusStripFechaHora.Size = new System.Drawing.Size(1380, 22);
+            this.statusStripFechaHora.TabIndex = 16;
+            this.statusStripFechaHora.Text = "statusStrip1";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(118, 17);
+            this.lblFecha.Text = "toolStripStatusLabel1";
+            // 
+            // lblHora
+            // 
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(118, 17);
+            this.lblHora.Text = "toolStripStatusLabel1";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(118, 17);
+            this.lblVersion.Text = "toolStripStatusLabel1";
+            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1380, 578);
+            this.ClientSize = new System.Drawing.Size(1380, 605);
+            this.Controls.Add(this.statusStripFechaHora);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxFormaPago);
             this.Controls.Add(this.btnLimpiar);
@@ -283,6 +319,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
+            this.statusStripFechaHora.ResumeLayout(false);
+            this.statusStripFechaHora.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,5 +349,9 @@
         private System.Windows.Forms.ComboBox comboBoxFormaPago;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStripFechaHora;
+        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
+        private System.Windows.Forms.ToolStripStatusLabel lblHora;
+        private System.Windows.Forms.ToolStripStatusLabel lblVersion;
     }
 }

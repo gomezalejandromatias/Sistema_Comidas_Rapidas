@@ -11,250 +11,141 @@ namespace Negocio
 {
     public class VentaNegocio
     {
-        public List<Venta> listaventa(string filtro = "") 
+        public List<Venta> listaventa(string filtro = "")
         {
-
-            AccesoDatos accesoDatos = new AccesoDatos();
             List<Venta> lista = new List<Venta>();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                string consulta =
-                    "SELECT NumeroVenta, FechaVenta, FormaPago, TotalPrecio " +
-                    "FROM Ventas";
-
-                // Si hay filtro, agrego WHERE
-                if (filtro != "")
+                if (filtro == "")
                 {
-                    consulta += " WHERE CONVERT(varchar, FechaVenta, 103) LIKE @filtro";
+                    // Si no mandás fecha → devuelve todas las ventas
+                    datos.SetearConsulta(
+                        "SELECT IDVenta, NumeroVenta, FechaVenta, FormaPago, TotalPrecio " +
+                        "FROM Ventas " +
+                        "ORDER BY FechaVenta"
+                    );
+                }
+                else
+                {
+                    // Si mandás fecha → filtra por esa fecha exacta
+                    datos.SetearConsulta(
+                        "SELECT IDVenta, NumeroVenta, FechaVenta, FormaPago, TotalPrecio " +
+                        "FROM Ventas " +
+                        "WHERE CONVERT(varchar(10), FechaVenta, 103) = @Fecha " +
+                        "ORDER BY FechaVenta"
+                    );
+
+                    datos.SetearParametro("@Fecha", filtro);
                 }
 
-                consulta += " ORDER BY NumeroVenta DESC";
+                datos.EjecutarLectura();
 
-                accesoDatos.SetearConsulta(consulta);
-
-                if (filtro != "")
+                while (datos.Lector.Read())
                 {
-                    accesoDatos.SetearParametro("@filtro", "%" + filtro + "%");
+                    Venta v = new Venta();
+
+                    v.IDVenta = (int)datos.Lector["IDVenta"];
+                    v.NumeroVenta = (int)datos.Lector["NumeroVenta"];
+                    v.FechaVenta = (DateTime)datos.Lector["FechaVenta"];
+                    v.FormaPago = (string)datos.Lector["FormaPago"];
+                    v.TotalPrecio = (decimal)datos.Lector["TotalPrecio"];
+
+                    lista.Add(v);
                 }
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
 
-                accesoDatos.EjecutarLectura();
+            return lista;
+        }
+        public List<Venta> listaventaFiltrada(DateTime desde, DateTime hasta)
+        {
+            List<Venta> lista = new List<Venta>();
+            AccesoDatos datos = new AccesoDatos();
 
-                while (accesoDatos.Lector.Read())
+            try
+            {
+                // Solo ventas entre esas fechas (ignorando la hora)
+                datos.SetearConsulta(
+                    "SELECT IDVenta, NumeroVenta, FechaVenta, FormaPago, TotalPrecio " +
+                    "FROM Ventas " +
+                    "WHERE CONVERT(date, FechaVenta) BETWEEN @Desde AND @Hasta " +
+                    "ORDER BY FechaVenta"
+                );
+
+                datos.SetearParametro("@Desde", desde.Date);
+                datos.SetearParametro("@Hasta", hasta.Date);
+
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
                 {
-                    Venta aux = new Venta();
+                    Venta v = new Venta();
 
-                    aux.NumeroVenta = (int)accesoDatos.Lector["NumeroVenta"];
-                    aux.FechaVenta = (DateTime)accesoDatos.Lector["FechaVenta"];
-                    aux.FormaPago = accesoDatos.Lector["FormaPago"].ToString();
-                    aux.TotalPrecio = (decimal)accesoDatos.Lector["TotalPrecio"];
+                    v.IDVenta = (int)datos.Lector["IDVenta"];
+                    v.NumeroVenta = (int)datos.Lector["NumeroVenta"];
+                    v.FechaVenta = (DateTime)datos.Lector["FechaVenta"];
+                    v.FormaPago = (string)datos.Lector["FormaPago"];
+                    v.TotalPrecio = (decimal)datos.Lector["TotalPrecio"];
 
-                    lista.Add(aux);
+                    lista.Add(v);
                 }
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
 
-                return lista;
+            return lista;
+        }
+        public void guardarventa(Venta venta)
+        {
+            // 1) Armar la tabla que va a viajar como TVP (@Detalles)
+            DataTable tablaDetalles = new DataTable();
+            tablaDetalles.Columns.Add("IdCombo", typeof(int));
+            tablaDetalles.Columns.Add("Cantidad", typeof(int));
+            tablaDetalles.Columns.Add("PrecioUnitario", typeof(decimal));
+
+            // Cargo las filas con lo que tenés en venta.Detalles
+            foreach (var det in venta.Detalles)
+            {
+                tablaDetalles.Rows.Add(det.IdCombo, det.Cantidad, det.PrecioUnitario);
+            }
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                // 2) Indico que voy a ejecutar un SP
+                datos.SetearProcedimiento("SP_GuardarVentaCompleta");
+
+                // 3) Parámetros escalares
+                datos.SetearParametro("@NumeroVenta", venta.NumeroVenta);
+                datos.SetearParametro("@TotalPrecio", venta.TotalPrecio);
+                datos.SetearParametro("@FormaPago", venta.FormaPago);
+
+                // 4) Parámetro TVP (tabla DetalleVentaTVP)
+                datos.SetearParametroTVP("@Detalles", "dbo.DetalleVentaTVP", tablaDetalles);
+
+                // 5) Ejecutar el procedimiento
+                datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
+                // El SP te puede tirar errores de stock (RAISERROR)
                 throw ex;
             }
             finally
             {
-                accesoDatos.CerrarConexion();
-            }
-
-
-
-
-        }
-
-         public void guardarventa(Venta venta)
-         {
-            VerificarStockDisponible(venta);
-      
-            AccesoDatos accesoDatos = new AccesoDatos ();
-
-            int idventa = 0;
-
-            try
-            {
-                accesoDatos.SetearConsulta(
-                      "INSERT INTO Ventas (NumeroVenta, FechaVenta, TotalPrecio, FormaPago) " +
-                      "VALUES (@NumeroVenta, GETDATE(), @TotalPrecio, @FormaPago); " +
-                      "SELECT SCOPE_IDENTITY();"
-                                               );
-
-                accesoDatos.SetearParametro("@NumeroVenta", venta.NumeroVenta);
-                accesoDatos.SetearParametro("@TotalPrecio", venta.TotalPrecio);
-                accesoDatos.SetearParametro("@FormaPago", venta.FormaPago);
-                
-
-                idventa = Convert.ToInt32(accesoDatos.EjecutarEscalar());
-
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-            finally { accesoDatos.CerrarConexion(); }
-
-           
-            foreach (var item in venta.Detalles )
-            {
-              AccesoDatos accesoDatos1 = new AccesoDatos ();
-                try
-                {  
-
-                    accesoDatos1.SetearConsulta(
-                        "INSERT INTO VentaCombo (IDVenta, IdCombo, Cantidad, PrecioUnitario) " +
-                            "VALUES (@IDVenta, @IdCombo, @Cantidad, @PrecioUnitario)"
- );
-
-                    accesoDatos1.SetearParametro("@IDVenta", idventa);
-                    accesoDatos1.SetearParametro("@IdCombo", item.IdCombo);
-                    accesoDatos1.SetearParametro("@Cantidad", item.Cantidad);
-                    accesoDatos1.SetearParametro("@PrecioUnitario", item.PrecioUnitario);
-
-                    accesoDatos1.EjecutarAccion();
-
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-                finally { accesoDatos1.CerrarConexion(); }
-
-                AccesoDatos datosReceta = new AccesoDatos();
-                try
-                {
-                    // BUSCO LA RECETA DEL COMBO (qué productos usa)
-                    datosReceta.SetearConsulta(
-                        "SELECT IdProducto, CantidadProducto " +
-                        "FROM ComboProducto " +
-                        "WHERE IdCombo = @IdCombo"
-                    );
-                    datosReceta.SetearParametro("@IdCombo", item.IdCombo);
-                    datosReceta.EjecutarLectura();
-
-                    // RECORRO CADA PRODUCTO QUE USA EL COMBO
-                    while (datosReceta.Lector.Read())
-                    {
-                        int idProducto = (int)datosReceta.Lector["IdProducto"];
-
-                        // La receta trae un DECIMAL → lo convierto a int
-                        int cantidadPorCombo = (int)(decimal)datosReceta.Lector["CantidadProducto"];
-
-                        // 🔢 Cantidad total que tengo que descontar
-                        int cantidadTotalDescontar = cantidadPorCombo * item.Cantidad;
-
-                        // 🔥 HAGO EL UPDATE AL STOCK DEL PRODUCTO
-                        AccesoDatos datosUpdate = new AccesoDatos();
-                        try
-                        {
-                            datosUpdate.SetearConsulta(
-                                "UPDATE Producto " +
-                                "SET Stock = Stock - @Cantidad " +
-                                "WHERE IdProducto = @IdProducto"
-                            );
-
-                            datosUpdate.SetearParametro("@Cantidad", cantidadTotalDescontar);
-                            datosUpdate.SetearParametro("@IdProducto", idProducto);
-
-                            datosUpdate.EjecutarAccion();
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                        finally
-                        {
-                            datosUpdate.CerrarConexion();
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-                finally
-                {
-                    datosReceta.CerrarConexion();
-                }
-
-
-
-
-
-            }
-           
-
-
-
-         }
-
-        public void VerificarStockDisponible(Venta venta)
-        {
-            foreach (var item in venta.Detalles)
-            {
-                AccesoDatos datos = new AccesoDatos();
-
-                try
-                {
-                    datos.SetearConsulta(
-                        "SELECT p.IdProducto, p.NombreProducto, p.Stock, cp.CantidadProducto " +
-                        "FROM ComboProducto cp " +
-                        "INNER JOIN Producto p ON p.IdProducto = cp.IdProducto " +
-                        "WHERE cp.IdCombo = @IdCombo"
-                    );
-
-                    datos.SetearParametro("@IdCombo", item.IdCombo);
-                    datos.EjecutarLectura();
-
-                    bool hayReceta = false;
-
-                    while (datos.Lector.Read())
-                    {
-                        hayReceta = true;
-
-                        int stockActual = (int)datos.Lector["Stock"];
-                        int cantidadPorCombo = (int)(decimal)datos.Lector["CantidadProducto"];
-                        int cantidadNecesaria = cantidadPorCombo * item.Cantidad;
-
-                        if (stockActual < cantidadNecesaria)
-                        {
-                            string nombreProducto = datos.Lector["NombreProducto"].ToString();
-
-                            // Para que veas bien qué pasa:
-                            // MessageBox.Show("NO HAY STOCK de " + nombreProducto +
-                            //                 "\nStock: " + stockActual +
-                            //                 "\nNecesito: " + cantidadNecesaria);
-
-                            throw new Exception(
-                                "No hay stock suficiente del producto: " + nombreProducto +
-                                ". Stock actual: " + stockActual +
-                                ", se necesitan: " + cantidadNecesaria
-                            );
-                        }
-                    }
-
-                    if (!hayReceta)
-                    {
-                        throw new Exception(
-                            "El combo con Id " + item.IdCombo +
-                            " no tiene productos cargados en ComboProducto. No se puede verificar el stock."
-                        );
-                    }
-                }
-                finally
-                {
-                    datos.CerrarConexion();
-                }
+                datos.CerrarConexion();
             }
         }
+
+
 
 
 
