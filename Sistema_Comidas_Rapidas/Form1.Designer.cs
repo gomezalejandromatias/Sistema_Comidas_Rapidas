@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblNombrePro = new System.Windows.Forms.Label();
+            this.lblFechaIngre = new System.Windows.Forms.Label();
             this.lblStockUnidad = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dvbListaProducto = new System.Windows.Forms.DataGridView();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.txtCancelar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblPrecioUnidad = new System.Windows.Forms.Label();
             this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.txtFechaIngreso = new System.Windows.Forms.TextBox();
             this.txtStock = new System.Windows.Forms.TextBox();
@@ -45,21 +45,21 @@
             this.Categoria = new System.Windows.Forms.Label();
             this.txtCategoria = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblProductosGuardados = new System.Windows.Forms.Label();
             this.txtBucarProducto = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblBuscarProdu = new System.Windows.Forms.Label();
             this.lblCantidadPaquete = new System.Windows.Forms.Label();
             this.txtCantidadPaquete = new System.Windows.Forms.TextBox();
             this.lblUnidadPaquete = new System.Windows.Forms.Label();
             this.txtUnidadPaquete = new System.Windows.Forms.TextBox();
             this.lblTotalPrecioProducto = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblProvee = new System.Windows.Forms.Label();
             this.comboBoxaProveedor = new System.Windows.Forms.ComboBox();
             this.btnModificarProducto = new System.Windows.Forms.Button();
             this.btnModicarDefinitivo = new System.Windows.Forms.Button();
             this.comboBoxElijeTipoProducto = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTipoProdu = new System.Windows.Forms.Label();
             this.txtCantidadGramo = new System.Windows.Forms.TextBox();
             this.lblProductoporPeso = new System.Windows.Forms.Label();
             this.txtStockGramo = new System.Windows.Forms.TextBox();
@@ -68,38 +68,38 @@
             ((System.ComponentModel.ISupportInitialize)(this.dvbListaProducto)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(263, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(217, 36);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Sistema Negocio";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(263, 9);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(217, 36);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Sistema Negocio";
             // 
-            // label3
+            // lblNombrePro
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(43, 157);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Nombre del Producto";
+            this.lblNombrePro.AutoSize = true;
+            this.lblNombrePro.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombrePro.Location = new System.Drawing.Point(43, 157);
+            this.lblNombrePro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNombrePro.Name = "lblNombrePro";
+            this.lblNombrePro.Size = new System.Drawing.Size(126, 15);
+            this.lblNombrePro.TabIndex = 2;
+            this.lblNombrePro.Text = "Nombre del Producto";
             // 
-            // label4
+            // lblFechaIngre
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(43, 204);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Fecha de Ingreso";
+            this.lblFechaIngre.AutoSize = true;
+            this.lblFechaIngre.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaIngre.Location = new System.Drawing.Point(43, 204);
+            this.lblFechaIngre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFechaIngre.Name = "lblFechaIngre";
+            this.lblFechaIngre.Size = new System.Drawing.Size(98, 15);
+            this.lblFechaIngre.TabIndex = 3;
+            this.lblFechaIngre.Text = "Fecha de Ingreso";
             // 
             // lblStockUnidad
             // 
@@ -118,7 +118,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(549, 186);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(139, 27);
+            this.btnAgregar.Size = new System.Drawing.Size(139, 33);
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar Producto";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -127,9 +127,11 @@
             // dvbListaProducto
             // 
             this.dvbListaProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvbListaProducto.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dvbListaProducto.Location = new System.Drawing.Point(745, 82);
             this.dvbListaProducto.Margin = new System.Windows.Forms.Padding(4);
             this.dvbListaProducto.Name = "dvbListaProducto";
+            this.dvbListaProducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dvbListaProducto.Size = new System.Drawing.Size(1024, 472);
             this.dvbListaProducto.TabIndex = 6;
             this.dvbListaProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvbListaProducto_CellContentClick);
@@ -140,7 +142,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(46, 588);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(97, 30);
+            this.btnLimpiar.Size = new System.Drawing.Size(97, 34);
             this.btnLimpiar.TabIndex = 7;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -149,10 +151,10 @@
             // txtCancelar
             // 
             this.txtCancelar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCancelar.Location = new System.Drawing.Point(209, 591);
+            this.txtCancelar.Location = new System.Drawing.Point(219, 588);
             this.txtCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.txtCancelar.Name = "txtCancelar";
-            this.txtCancelar.Size = new System.Drawing.Size(117, 27);
+            this.txtCancelar.Size = new System.Drawing.Size(107, 34);
             this.txtCancelar.TabIndex = 8;
             this.txtCancelar.Text = "Cancelar";
             this.txtCancelar.UseVisualStyleBackColor = true;
@@ -164,22 +166,22 @@
             this.btnEliminar.Location = new System.Drawing.Point(549, 242);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(139, 27);
+            this.btnEliminar.Size = new System.Drawing.Size(139, 36);
             this.btnEliminar.TabIndex = 10;
             this.btnEliminar.Text = "Eliminar Producto";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // label6
+            // lblPrecioUnidad
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(43, 502);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Precio Por Unidad";
+            this.lblPrecioUnidad.AutoSize = true;
+            this.lblPrecioUnidad.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioUnidad.Location = new System.Drawing.Point(43, 502);
+            this.lblPrecioUnidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrecioUnidad.Name = "lblPrecioUnidad";
+            this.lblPrecioUnidad.Size = new System.Drawing.Size(104, 15);
+            this.lblPrecioUnidad.TabIndex = 11;
+            this.lblPrecioUnidad.Text = "Precio Por Unidad";
             // 
             // txtNombreProducto
             // 
@@ -249,16 +251,16 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "$";
             // 
-            // label8
+            // lblProductosGuardados
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(929, 9);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(249, 19);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Productos Guardados en el sistema";
+            this.lblProductosGuardados.AutoSize = true;
+            this.lblProductosGuardados.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductosGuardados.Location = new System.Drawing.Point(929, 9);
+            this.lblProductosGuardados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProductosGuardados.Name = "lblProductosGuardados";
+            this.lblProductosGuardados.Size = new System.Drawing.Size(249, 19);
+            this.lblProductosGuardados.TabIndex = 20;
+            this.lblProductosGuardados.Text = "Productos Guardados en el sistema";
             // 
             // txtBucarProducto
             // 
@@ -270,16 +272,16 @@
             this.txtBucarProducto.TabIndex = 21;
             this.txtBucarProducto.TextChanged += new System.EventHandler(this.txtBucarProducto_TextChanged);
             // 
-            // label9
+            // lblBuscarProdu
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(742, 48);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(128, 19);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "Buscar Productos";
+            this.lblBuscarProdu.AutoSize = true;
+            this.lblBuscarProdu.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscarProdu.Location = new System.Drawing.Point(742, 48);
+            this.lblBuscarProdu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBuscarProdu.Name = "lblBuscarProdu";
+            this.lblBuscarProdu.Size = new System.Drawing.Size(128, 19);
+            this.lblBuscarProdu.TabIndex = 22;
+            this.lblBuscarProdu.Text = "Buscar Productos";
             // 
             // lblCantidadPaquete
             // 
@@ -334,28 +336,28 @@
             this.lblTotalPrecioProducto.TabIndex = 27;
             this.lblTotalPrecioProducto.Text = "label12";
             // 
-            // label12
+            // lblTotal
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(664, 599);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 19);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "Total";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(664, 599);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(43, 19);
+            this.lblTotal.TabIndex = 28;
+            this.lblTotal.Text = "Total";
             // 
-            // label13
+            // lblProvee
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(43, 105);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 15);
-            this.label13.TabIndex = 29;
-            this.label13.Text = "Proveedor";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
+            this.lblProvee.AutoSize = true;
+            this.lblProvee.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProvee.Location = new System.Drawing.Point(43, 105);
+            this.lblProvee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProvee.Name = "lblProvee";
+            this.lblProvee.Size = new System.Drawing.Size(65, 15);
+            this.lblProvee.TabIndex = 29;
+            this.lblProvee.Text = "Proveedor";
+            this.lblProvee.Click += new System.EventHandler(this.label13_Click);
             // 
             // comboBoxaProveedor
             // 
@@ -374,7 +376,7 @@
             this.btnModificarProducto.Location = new System.Drawing.Point(549, 286);
             this.btnModificarProducto.Margin = new System.Windows.Forms.Padding(4);
             this.btnModificarProducto.Name = "btnModificarProducto";
-            this.btnModificarProducto.Size = new System.Drawing.Size(139, 23);
+            this.btnModificarProducto.Size = new System.Drawing.Size(139, 34);
             this.btnModificarProducto.TabIndex = 32;
             this.btnModificarProducto.Text = "Modificar Producto";
             this.btnModificarProducto.UseVisualStyleBackColor = true;
@@ -386,7 +388,7 @@
             this.btnModicarDefinitivo.Location = new System.Drawing.Point(549, 340);
             this.btnModicarDefinitivo.Margin = new System.Windows.Forms.Padding(4);
             this.btnModicarDefinitivo.Name = "btnModicarDefinitivo";
-            this.btnModicarDefinitivo.Size = new System.Drawing.Size(139, 23);
+            this.btnModicarDefinitivo.Size = new System.Drawing.Size(139, 27);
             this.btnModicarDefinitivo.TabIndex = 33;
             this.btnModicarDefinitivo.Text = "Guardar Cambios";
             this.btnModicarDefinitivo.UseVisualStyleBackColor = true;
@@ -402,20 +404,20 @@
             this.comboBoxElijeTipoProducto.TabIndex = 34;
             this.comboBoxElijeTipoProducto.SelectedIndexChanged += new System.EventHandler(this.comboBoxElijeTipoProducto_SelectedIndexChanged);
             // 
-            // label2
+            // lblTipoProdu
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(43, 254);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 15);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Tipo de Producto";
+            this.lblTipoProdu.AutoSize = true;
+            this.lblTipoProdu.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoProdu.Location = new System.Drawing.Point(43, 254);
+            this.lblTipoProdu.Name = "lblTipoProdu";
+            this.lblTipoProdu.Size = new System.Drawing.Size(100, 15);
+            this.lblTipoProdu.TabIndex = 35;
+            this.lblTipoProdu.Text = "Tipo de Producto";
             // 
             // txtCantidadGramo
             // 
             this.txtCantidadGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 302);
+            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 303);
             this.txtCantidadGramo.Name = "txtCantidadGramo";
             this.txtCantidadGramo.Size = new System.Drawing.Size(179, 23);
             this.txtCantidadGramo.TabIndex = 38;
@@ -445,7 +447,7 @@
             // 
             this.lblGramos.AutoSize = true;
             this.lblGramos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGramos.Location = new System.Drawing.Point(43, 388);
+            this.lblGramos.Location = new System.Drawing.Point(45, 391);
             this.lblGramos.Name = "lblGramos";
             this.lblGramos.Size = new System.Drawing.Size(106, 15);
             this.lblGramos.TabIndex = 43;
@@ -469,21 +471,21 @@
             this.Controls.Add(this.txtStockGramo);
             this.Controls.Add(this.lblProductoporPeso);
             this.Controls.Add(this.txtCantidadGramo);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblTipoProdu);
             this.Controls.Add(this.comboBoxElijeTipoProducto);
             this.Controls.Add(this.btnModicarDefinitivo);
             this.Controls.Add(this.btnModificarProducto);
             this.Controls.Add(this.comboBoxaProveedor);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lblProvee);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblTotalPrecioProducto);
             this.Controls.Add(this.txtUnidadPaquete);
             this.Controls.Add(this.lblUnidadPaquete);
             this.Controls.Add(this.txtCantidadPaquete);
             this.Controls.Add(this.lblCantidadPaquete);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblBuscarProdu);
             this.Controls.Add(this.txtBucarProducto);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblProductosGuardados);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.Categoria);
@@ -491,16 +493,16 @@
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.txtFechaIngreso);
             this.Controls.Add(this.txtNombreProducto);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblPrecioUnidad);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.txtCancelar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.dvbListaProducto);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblStockUnidad);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblFechaIngre);
+            this.Controls.Add(this.lblNombrePro);
+            this.Controls.Add(this.lblTitulo);
             this.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.Name = "Form1";
@@ -514,16 +516,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblNombrePro;
+        private System.Windows.Forms.Label lblFechaIngre;
         private System.Windows.Forms.Label lblStockUnidad;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView dvbListaProducto;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button txtCancelar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblPrecioUnidad;
         private System.Windows.Forms.TextBox txtNombreProducto;
         private System.Windows.Forms.TextBox txtFechaIngreso;
         private System.Windows.Forms.TextBox txtStock;
@@ -531,21 +533,21 @@
         private System.Windows.Forms.Label Categoria;
         private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblProductosGuardados;
         private System.Windows.Forms.TextBox txtBucarProducto;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblBuscarProdu;
         private System.Windows.Forms.Label lblCantidadPaquete;
         private System.Windows.Forms.TextBox txtCantidadPaquete;
         private System.Windows.Forms.Label lblUnidadPaquete;
         private System.Windows.Forms.TextBox txtUnidadPaquete;
         private System.Windows.Forms.Label lblTotalPrecioProducto;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblProvee;
         private System.Windows.Forms.ComboBox comboBoxaProveedor;
         private System.Windows.Forms.Button btnModificarProducto;
         private System.Windows.Forms.Button btnModicarDefinitivo;
         private System.Windows.Forms.ComboBox comboBoxElijeTipoProducto;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTipoProdu;
         private System.Windows.Forms.TextBox txtCantidadGramo;
         private System.Windows.Forms.Label lblProductoporPeso;
         private System.Windows.Forms.TextBox txtStockGramo;

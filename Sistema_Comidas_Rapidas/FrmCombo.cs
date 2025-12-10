@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Negocio;
+using Sistema_Comidas_Rapidas.Helpers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -534,6 +535,39 @@ namespace Sistema_Comidas_Rapidas
                 throw ex;
             }
 
+            UIHelper.LabelPremium(lblEliminado);
+            UIHelper.LabelPremium(lblFiltro);
+            UIHelper.LabelPremium(lblTituloData);
+            UIHelper.LabelPremium(label2);
+            UIHelper.LabelPremium(label3);
+            UIHelper.LabelPremium(label4);
+            UIHelper.LabelPremium(label5);
+            UIHelper.LabelPremium(label7);
+            UIHelper.LabelPremium(label10);
+            UIHelper.LabelPremium(label11);
+            UIHelper.LabelPremium(label12);
+            UIHelper.LabelPremium(label14);
+            UIHelper.LabelPremium(label13);
+            UIHelper.LabelPremium(label15);
+            UIHelper.LabelPremium(label8);
+            UIHelper.LabelTituloPremium(labelTitulo);
+            UIHelper.ComboBoxModerno(comboBoxProducto);
+            UIHelper.ComboBoxModerno(comboBoxPromocion);
+            UIHelper.BotonPrincipal(btnAgregarPromo);
+            UIHelper.BotonPrincipal(btnAgregarPromocion);
+            UIHelper.BotonPrincipal(btnAgregarTipoProducto);
+            UIHelper.BotonPrincipal(btnIngredienteCombo);
+
+            UIHelper.BotonAmarilloPremium(btnLimpiar);
+            UIHelper.BotonAmarilloPremium(button1);
+            UIHelper.BotonPeligroPremium(btnEliminarCombo);
+            UIHelper.BotonAmarilloPremium(btnModificar);
+            UIHelper.BotonAmarilloPremium(btnCancelarModficacion);
+            UIHelper.BotonAmarilloPremium(btnGuardarCambios);
+            UIHelper.BotonAmarilloPremium(btnCancelar);
+
+            UIHelper.DataGridViewModerno(dgvComboPromociones);
+            dgvComboPromociones.ClearSelection();
 
         }
 

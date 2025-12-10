@@ -318,7 +318,19 @@ namespace Sistema_Comidas_Rapidas
 
             UIHelper.BotonSecundarioPremium(btnSeleccionarProducto);
 
+            UIHelper.LabelPremium(lblFiltar);
+            UIHelper.LabelPremium(lblTotal);
+            UIHelper.LabelPremium(lblProductos);
+            UIHelper.LabelPremium(lblFormaPago);
+            UIHelper.LabelPremium(lblTotalCobro);
+            UIHelper.LabelPremium(lblVentaExitosa);
+            UIHelper.LabelTituloPremium(lblTitulo);
+
+
             UIHelper.DataGridViewModerno(dgvVenta);
+            UIHelper.ListViewModerno(listViewCarrito);
+            UIHelper.ComboBoxModerno(comboBoxFormaPago);
+            dgvVenta.ClearSelection();
         }
 
         private void combosdeVentasToolStripMenuItem_Click(object sender, EventArgs e)

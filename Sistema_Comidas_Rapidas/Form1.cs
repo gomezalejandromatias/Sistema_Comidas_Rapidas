@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Negocio;
+using Sistema_Comidas_Rapidas.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +17,9 @@ namespace Sistema_Comidas_Rapidas
 {
     public partial class Form1 : Form
     {
-          List<Producto> lista = new List<Producto>();
+        List<Producto> lista = new List<Producto>();
         int unidades, paquetes, kilos;
-       
+
         Producto aux;
         string tipo;
 
@@ -34,25 +35,25 @@ namespace Sistema_Comidas_Rapidas
 
 
 
-           
-            
 
 
-            CargarGrilla(); 
+
+
+            CargarGrilla();
         }
 
 
-   
+
 
         private void CargarGrilla()
         {
-             ProductoNegocio productoNegocio = new ProductoNegocio();
+            ProductoNegocio productoNegocio = new ProductoNegocio();
 
             dvbListaProducto.DataSource = null;
             dvbListaProducto.DataSource = productoNegocio.listaproducto();
-            
+
             dvbListaProducto.Columns["IDProducto"].Visible = false;
-             dvbListaProducto.Columns["Activo"].Visible = false;
+            dvbListaProducto.Columns["Activo"].Visible = false;
             dvbListaProducto.Columns["IDProveedor"].Visible = false;
         }
 
@@ -95,7 +96,7 @@ namespace Sistema_Comidas_Rapidas
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                 tipo = comboBoxElijeTipoProducto.SelectedItem.ToString();
+                tipo = comboBoxElijeTipoProducto.SelectedItem.ToString();
 
                 // Código y fecha
                 aux.CodigoProducto = "C" + new Random().Next(1000, 9999);
@@ -125,7 +126,7 @@ namespace Sistema_Comidas_Rapidas
                     // txtCantidadGramo → KILOS que escribe el usuario (ej: 10)
                     // txtStockGramo   → GRAMOS totales (ej: 10000), debería estar calculado (kilos * 1000)
 
-                  
+
                     if (!int.TryParse(txtCantidadGramo.Text, out kilos) || kilos <= 0)
                     {
                         MessageBox.Show("Ingresá la cantidad de kilos (número entero mayor a 0).", "Error",
@@ -197,7 +198,7 @@ namespace Sistema_Comidas_Rapidas
 
                 // 3) GUARDAR EN LISTA Y BD
 
-              ////  lista.Add(aux);
+                ////  lista.Add(aux);
                 productoNegocio.AgregarProducto(aux);
 
                 MessageBox.Show("Producto agregado correctamente.", "Éxito",
@@ -257,13 +258,13 @@ namespace Sistema_Comidas_Rapidas
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtNombreProducto.Text = "";
-          
+
             txtUnidadPaquete.Text = "";
             txtCantidadPaquete.Text = "";
             txtStock.Text = "";
             txtPrecioUnidad.Text = "";
             txtCategoria.Text = "";
-        
+
             txtBucarProducto.Text = "";
 
             comboBoxaProveedor.Focus();
@@ -277,12 +278,12 @@ namespace Sistema_Comidas_Rapidas
             ProductoNegocio productoNegocio = new ProductoNegocio();
 
 
-            if(filtro!= "") 
-            { 
-               listafiltrada = productoNegocio.listaproducto().FindAll(x => x.NombreProducto.ToLower().Contains(filtro));
+            if (filtro != "")
+            {
+                listafiltrada = productoNegocio.listaproducto().FindAll(x => x.NombreProducto.ToLower().Contains(filtro));
 
-              
-             
+
+
 
             }
 
@@ -305,13 +306,13 @@ namespace Sistema_Comidas_Rapidas
 
         public void CalcularStock()
         {
-           
+
 
             if (int.TryParse(txtUnidadPaquete.Text, out unidades) &&
                 int.TryParse(txtCantidadPaquete.Text, out paquetes))
             {
                 Producto aux = new Producto();
-                 
+
                 int total = unidades * paquetes;
                 txtStock.Text = total.ToString();
 
@@ -319,15 +320,15 @@ namespace Sistema_Comidas_Rapidas
 
 
 
-             
+
             }
 
 
-          else if (int.TryParse(txtCantidadGramo.Text, out kilos) )
-          {
+            else if (int.TryParse(txtCantidadGramo.Text, out kilos))
+            {
                 unidades = kilos * 1000;
                 txtStockGramo.Text = unidades.ToString();
-          }
+            }
 
 
             else
@@ -345,13 +346,13 @@ namespace Sistema_Comidas_Rapidas
         private void txtCancelar_Click(object sender, EventArgs e)
         {
             txtNombreProducto.Text = "";
-          
+
             txtUnidadPaquete.Text = "";
             txtCantidadPaquete.Text = "";
             txtStock.Text = "";
             txtPrecioUnidad.Text = "";
             txtCategoria.Text = "";
-           
+
             txtBucarProducto.Text = "";
 
             DialogResult respuesta = MessageBox.Show("Desea Cancelar La Operacion?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -368,7 +369,7 @@ namespace Sistema_Comidas_Rapidas
                 venta.Show();
 
                 this.Close();
-            }  
+            }
         }
 
         private void dvbListaProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -378,7 +379,7 @@ namespace Sistema_Comidas_Rapidas
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            btnModicarDefinitivo.Visible=false;
+            btnModicarDefinitivo.Visible = false;
             ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
 
 
@@ -386,7 +387,7 @@ namespace Sistema_Comidas_Rapidas
             {
                 comboBoxaProveedor.DataSource = proveedorNegocio.ListaProveedores();
 
-                comboBoxaProveedor.DisplayMember = "Nombre";     
+                comboBoxaProveedor.DisplayMember = "Nombre";
                 comboBoxaProveedor.ValueMember = "idproveedor";
             }
             catch (Exception ex)
@@ -406,30 +407,56 @@ namespace Sistema_Comidas_Rapidas
             txtStockGramo.Visible = false;
             txtCantidadGramo.Visible = false;
 
+            UIHelper.DataGridViewModerno(dvbListaProducto);
+            UIHelper.BotonPrincipal(btnAgregar);
+            UIHelper.BotonPeligroPremium(btnEliminar);
+            UIHelper.BotonSecundarioPremium(btnModicarDefinitivo);
+            UIHelper.BotonSecundarioPremium(btnModificarProducto);
+            UIHelper.BotonAmarilloPremium(txtCancelar);
+            UIHelper.BotonAmarilloPremium(btnLimpiar);
 
+            UIHelper.LabelPremium(lblBuscarProdu);
+            UIHelper.LabelPremium(lblUnidadPaquete);
+            UIHelper.LabelPremium(lblCantidadPaquete);
+            UIHelper.LabelPremium(lblNombrePro);
+            UIHelper.LabelPremium(lblPrecioUnidad);
+            UIHelper.LabelPremium(lblProductoporPeso);
+            UIHelper.LabelPremium(lblProductosGuardados);
+            UIHelper.LabelPremium(lblProvee);
+            UIHelper.LabelPremium(lblTipoProdu);
+            UIHelper.LabelPremium(lblStockUnidad);
+            UIHelper.LabelPremium(Categoria);
+            UIHelper.LabelPremium(lblTotal);
+            UIHelper.LabelPremium(lblFechaIngre);
+            UIHelper.LabelTituloPremium(lblTitulo);
+            UIHelper.LabelPremium(lblGramos);
+            UIHelper.ComboBoxModerno(comboBoxaProveedor);
+            UIHelper.ComboBoxModerno(comboBoxElijeTipoProducto);
+
+            dvbListaProducto.ClearSelection();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-             ProductoNegocio productoNegocio = new ProductoNegocio();
+            ProductoNegocio productoNegocio = new ProductoNegocio();
             Producto selecionado;
 
-             
+
             try
             {
                 DialogResult respuesta = MessageBox.Show("Desea eliminar el Producto?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-               if( respuesta == DialogResult.Yes)
-               {
-                  selecionado = (Producto)dvbListaProducto.CurrentRow.DataBoundItem;
-                      
-                  productoNegocio.EliminarProducto(selecionado.IDProducto);
+                if (respuesta == DialogResult.Yes)
+                {
+                    selecionado = (Producto)dvbListaProducto.CurrentRow.DataBoundItem;
+
+                    productoNegocio.EliminarProducto(selecionado.IDProducto);
                     CargarGrilla();
 
-                   lblTotalPrecioProducto.Text= "Eliminado Correctamente";
-                   
-               }
-                
+                    lblTotalPrecioProducto.Text = "Eliminado Correctamente";
+
+                }
+
 
 
             }
@@ -439,7 +466,7 @@ namespace Sistema_Comidas_Rapidas
                 throw ex;
             }
 
-            lblTotalPrecioProducto.Visible= false;
+            lblTotalPrecioProducto.Visible = false;
             txtNombreProducto.Text = "";
 
             txtUnidadPaquete.Text = "";
@@ -456,10 +483,10 @@ namespace Sistema_Comidas_Rapidas
 
         private void btnModificarProducto_Click(object sender, EventArgs e)
         {
-            btnAgregar.Visible=false;
-            btnEliminar.Visible=false;
+            btnAgregar.Visible = false;
+            btnEliminar.Visible = false;
             btnModicarDefinitivo.Visible = true;
-           
+
 
             aux = (Producto)dvbListaProducto.CurrentRow.DataBoundItem;
 
@@ -582,23 +609,23 @@ namespace Sistema_Comidas_Rapidas
             if (tipo == "Producto en Gramos")
             {
                 // Mostrar controles de GRAMOS
-                lblGramos.Visible = true ;
+                lblGramos.Visible = true;
 
                 // Ocultar controles de UNIDADES
                 lblProductoporPeso.Visible = true;
 
-               txtStockGramo.Visible = true;
-                txtCantidadGramo.Visible=true;
+                txtStockGramo.Visible = true;
+                txtCantidadGramo.Visible = true;
 
 
                 lblUnidadPaquete.Visible = false;
                 lblStockUnidad.Visible = false;
-                lblCantidadPaquete.Visible=false;
+                lblCantidadPaquete.Visible = false;
 
                 txtUnidadPaquete.Visible = false;
-                txtCantidadPaquete.Visible=false;
+                txtCantidadPaquete.Visible = false;
                 txtStock.Visible = false;
-                
+
 
             }
             else // Producto en Unidades

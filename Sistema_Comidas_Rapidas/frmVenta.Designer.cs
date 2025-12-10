@@ -34,21 +34,21 @@
             this.movimientosDeStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combosdeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.dgvVenta = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblFiltar = new System.Windows.Forms.Label();
             this.btnVender = new System.Windows.Forms.Button();
             this.btnCancelarVenta = new System.Windows.Forms.Button();
             this.listViewCarrito = new System.Windows.Forms.ListView();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblProductos = new System.Windows.Forms.Label();
             this.btnSeleccionarProducto = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblVentaExitosa = new System.Windows.Forms.Label();
             this.lblTotalCobro = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.comboBoxFormaPago = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblFormaPago = new System.Windows.Forms.Label();
             this.statusStripFechaHora = new System.Windows.Forms.StatusStrip();
             this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
@@ -68,7 +68,7 @@
             this.proveedoresToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1380, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1398, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -106,15 +106,15 @@
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(254, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(311, 34);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Exitos con las Ventas";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(254, 55);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(311, 34);
+            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.Text = "Exitos con las Ventas";
             // 
             // txtFiltro
             // 
@@ -137,15 +137,15 @@
             this.dgvVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVenta_CellClick);
             this.dgvVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVenta_CellContentClick);
             // 
-            // label2
+            // lblFiltar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 115);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Filtro de Productos";
+            this.lblFiltar.AutoSize = true;
+            this.lblFiltar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiltar.Location = new System.Drawing.Point(30, 115);
+            this.lblFiltar.Name = "lblFiltar";
+            this.lblFiltar.Size = new System.Drawing.Size(111, 15);
+            this.lblFiltar.TabIndex = 4;
+            this.lblFiltar.Text = "Filtro de Productos";
             // 
             // btnVender
             // 
@@ -172,22 +172,22 @@
             // listViewCarrito
             // 
             this.listViewCarrito.HideSelection = false;
-            this.listViewCarrito.Location = new System.Drawing.Point(924, 144);
+            this.listViewCarrito.Location = new System.Drawing.Point(928, 144);
             this.listViewCarrito.Name = "listViewCarrito";
-            this.listViewCarrito.Size = new System.Drawing.Size(432, 279);
+            this.listViewCarrito.Size = new System.Drawing.Size(427, 315);
             this.listViewCarrito.TabIndex = 7;
             this.listViewCarrito.UseCompatibleStateImageBehavior = false;
             this.listViewCarrito.SelectedIndexChanged += new System.EventHandler(this.listViewCarrito_SelectedIndexChanged);
             // 
-            // label3
+            // lblProductos
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1062, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(179, 19);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Productos Seleccionados";
+            this.lblProductos.AutoSize = true;
+            this.lblProductos.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductos.Location = new System.Drawing.Point(1062, 117);
+            this.lblProductos.Name = "lblProductos";
+            this.lblProductos.Size = new System.Drawing.Size(179, 19);
+            this.lblProductos.TabIndex = 8;
+            this.lblProductos.Text = "Productos Seleccionados";
             // 
             // btnSeleccionarProducto
             // 
@@ -249,15 +249,15 @@
             this.comboBoxFormaPago.TabIndex = 14;
             this.comboBoxFormaPago.SelectedIndexChanged += new System.EventHandler(this.comboBoxFormaPago_SelectedIndexChanged);
             // 
-            // label4
+            // lblFormaPago
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(708, 294);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 15);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Forma De Pago";
+            this.lblFormaPago.AutoSize = true;
+            this.lblFormaPago.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFormaPago.Location = new System.Drawing.Point(708, 294);
+            this.lblFormaPago.Name = "lblFormaPago";
+            this.lblFormaPago.Size = new System.Drawing.Size(89, 15);
+            this.lblFormaPago.TabIndex = 15;
+            this.lblFormaPago.Text = "Forma De Pago";
             // 
             // statusStripFechaHora
             // 
@@ -267,7 +267,7 @@
             this.lblVersion});
             this.statusStripFechaHora.Location = new System.Drawing.Point(0, 583);
             this.statusStripFechaHora.Name = "statusStripFechaHora";
-            this.statusStripFechaHora.Size = new System.Drawing.Size(1380, 22);
+            this.statusStripFechaHora.Size = new System.Drawing.Size(1398, 22);
             this.statusStripFechaHora.TabIndex = 16;
             this.statusStripFechaHora.Text = "statusStrip1";
             // 
@@ -293,23 +293,23 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1380, 605);
+            this.ClientSize = new System.Drawing.Size(1398, 605);
             this.Controls.Add(this.statusStripFechaHora);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblFormaPago);
             this.Controls.Add(this.comboBoxFormaPago);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblTotalCobro);
             this.Controls.Add(this.lblVentaExitosa);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnSeleccionarProducto);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblProductos);
             this.Controls.Add(this.listViewCarrito);
             this.Controls.Add(this.btnCancelarVenta);
             this.Controls.Add(this.btnVender);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblFiltar);
             this.Controls.Add(this.dgvVenta);
             this.Controls.Add(this.txtFiltro);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmVenta";
@@ -333,21 +333,21 @@
         private System.Windows.Forms.ToolStripMenuItem registrosDeVentasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem movimientosDeStockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem combosdeVentasToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.DataGridView dgvVenta;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblFiltar;
         private System.Windows.Forms.Button btnVender;
         private System.Windows.Forms.Button btnCancelarVenta;
         private System.Windows.Forms.ListView listViewCarrito;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblProductos;
         private System.Windows.Forms.Button btnSeleccionarProducto;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblVentaExitosa;
         private System.Windows.Forms.Label lblTotalCobro;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.ComboBox comboBoxFormaPago;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblFormaPago;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStripFechaHora;
         private System.Windows.Forms.ToolStripStatusLabel lblFecha;

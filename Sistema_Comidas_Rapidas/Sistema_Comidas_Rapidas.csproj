@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAgregarStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAgregarStock.Designer.cs">
+      <DependentUpon>FrmAgregarStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCombo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAgregarStock.resx">
+      <DependentUpon>FrmAgregarStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCombo.resx">
       <DependentUpon>FrmCombo.cs</DependentUpon>

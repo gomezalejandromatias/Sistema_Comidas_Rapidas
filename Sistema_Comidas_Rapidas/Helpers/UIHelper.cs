@@ -51,7 +51,7 @@ namespace Sistema_Comidas_Rapidas.Helpers
             btn.Cursor = Cursors.Hand;
 
             // 🔥 ESTO ES LO QUE LE FALTA A TU SECUNDARIO 🔥  
-            RedondearSiempre(btn, 18);
+           
 
             btn.MouseEnter += (s, e) => btn.BackColor = colorHover;
             btn.MouseLeave += (s, e) => btn.BackColor = colorBase;
@@ -85,6 +85,54 @@ namespace Sistema_Comidas_Rapidas.Helpers
             btn.MouseDown += (s, e) => { btn.BackColor = colorClick; };
             btn.MouseUp += (s, e) => { btn.BackColor = colorHover; };
         }
+
+        public static void BotonAmarilloPremium(Button btn)
+        {
+            // 🎨 PALETA Warning moderna
+            Color colorBase = Color.FromArgb(241, 196, 15);   // Amarillo fuerte
+            Color colorHover = Color.FromArgb(243, 203, 49);  // Amarillo más suave
+            Color colorClick = Color.FromArgb(212, 172, 13);  // Amarillo oscuro para click
+
+            // Estilo base
+            btn.BackColor = colorBase;
+            btn.ForeColor = Color.Black;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            btn.Cursor = Cursors.Hand;
+
+            // Bordes redondeados (si ya usás esto en otros)
+            btn.Region = System.Drawing.Region.FromHrgn(
+                UIHelper.CreateRoundRectRgn(0, 0, btn.Width, btn.Height, 18, 18)
+            );
+
+            // Hover, Leave, Click, Up
+            btn.MouseEnter += (s, e) => btn.BackColor = colorHover;
+            btn.MouseLeave += (s, e) => btn.BackColor = colorBase;
+            btn.MouseDown += (s, e) => btn.BackColor = colorClick;
+            btn.MouseUp += (s, e) => btn.BackColor = colorHover;
+
+            // Mantener redondeado si cambia el tamaño
+            btn.Resize += (s, e) =>
+            {
+                btn.Region = System.Drawing.Region.FromHrgn(
+                    UIHelper.CreateRoundRectRgn(0, 0, btn.Width, btn.Height, 18, 18)
+                );
+            };
+        }
+
+        public static void LabelPremium(Label lbl)
+        {
+            lbl.ForeColor = Color.FromArgb(44, 62, 80); // Gris oscuro elegante
+            lbl.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+        }
+
+        public static void LabelTituloPremium(Label lbl)
+        {
+            lbl.ForeColor = Color.FromArgb(26, 82, 118); // Azul profesional oscuro
+            lbl.Font = new Font("Segoe UI", 22, FontStyle.Bold);
+        }
+
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
          public static extern IntPtr CreateRoundRectRgn
                        (
@@ -96,29 +144,7 @@ namespace Sistema_Comidas_Rapidas.Helpers
                           int nHeightEllipse
                          );
 
-        private static void RedondearSiempre(Button btn, int radio)
-        {
-            void Aplicar()
-            {
-                if (btn.Width <= 0 || btn.Height <= 0)
-                    return;
 
-                btn.Region?.Dispose();
-                btn.Region = Region.FromHrgn(
-                    CreateRoundRectRgn(0, 0, btn.Width, btn.Height, radio, radio)
-                );
-            }
-
-            // Cuando se crea el botón → redondearlo
-            btn.HandleCreated += (s, e) => Aplicar();
-
-            // Cuando cambia de tamaño → redondearlo
-            btn.Resize += (s, e) => Aplicar();
-
-            // Si ya está creado cuando llamamos a UIHelper → redondearlo
-            if (btn.IsHandleCreated)
-                Aplicar();
-        }
 
 
         public static void DataGridViewModerno(DataGridView dgv)
@@ -153,6 +179,108 @@ namespace Sistema_Comidas_Rapidas.Helpers
 
             // Bordes redondeados simulados (mejora visual)
             dgv.GridColor = Color.FromArgb(220, 220, 220);
+        }
+
+        public static void ListViewModerno(ListView lv)
+        {
+            // Vista en detalles (columnas)
+            lv.View = View.Details;
+
+            // Selección linda
+            lv.FullRowSelect = true;
+            lv.HideSelection = false;
+            lv.MultiSelect = false;
+
+            // Estilo general
+            lv.BackColor = Color.White;
+            lv.ForeColor = Color.FromArgb(44, 62, 80);          // gris azulado premium
+            lv.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+
+            // Borde limpio
+            lv.BorderStyle = BorderStyle.None;
+
+            // Líneas de grilla (si querés más “tabla”, poné true)
+            lv.GridLines = false;
+
+            // Encabezados no clickeables (más “app” que “explorador de archivos”)
+            lv.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+
+            // Color de selección más parecido al DataGridView
+            lv.OwnerDraw = true;
+
+            lv.DrawColumnHeader += (s, e) =>
+            {
+                using (var backBrush = new SolidBrush(Color.FromArgb(52, 152, 219))) // azul header
+                using (var textBrush = new SolidBrush(Color.White))
+                using (var sf = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+                {
+                    e.Graphics.FillRectangle(backBrush, e.Bounds);
+                    e.Graphics.DrawString(e.Header.Text, new Font("Segoe UI", 10, FontStyle.Bold), textBrush, e.Bounds, sf);
+                }
+            };
+
+            lv.DrawItem += (s, e) =>
+            {
+                // Nada acá, se dibuja en DrawSubItem
+            };
+
+            lv.DrawSubItem += (s, e) =>
+            {
+                bool selected = (e.ItemState & ListViewItemStates.Selected) != 0;
+
+                Color backColor = selected
+                    ? Color.FromArgb(52, 152, 219)   // azul selección
+                    : Color.White;
+
+                Color textColor = selected ? Color.White : Color.FromArgb(44, 62, 80);
+
+                using (var backBrush = new SolidBrush(backColor))
+                using (var textBrush = new SolidBrush(textColor))
+                {
+                    e.Graphics.FillRectangle(backBrush, e.Bounds);
+                    e.Graphics.DrawString(e.SubItem.Text, lv.Font, textBrush, e.Bounds);
+                }
+            };
+        }
+
+        public static void ComboBoxModerno(ComboBox cb)
+        {
+            // Fondo y texto
+            cb.BackColor = Color.White;
+            cb.ForeColor = Color.FromArgb(44, 62, 80);   // gris azulado premium
+            cb.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+
+            cb.FlatStyle = FlatStyle.Flat;
+            cb.Cursor = Cursors.Hand;
+
+            cb.DrawMode = DrawMode.OwnerDrawFixed;
+            cb.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            cb.DrawItem += (s, e) =>
+            {
+                if (e.Index < 0) return;
+
+                bool selected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+
+                Color backColor = selected
+                    ? Color.FromArgb(52, 152, 219)     // Azul selección
+                    : Color.White;
+
+                Color textColor = selected
+                    ? Color.White
+                    : Color.FromArgb(44, 62, 80);
+
+                using (SolidBrush bg = new SolidBrush(backColor))
+                    e.Graphics.FillRectangle(bg, e.Bounds);
+
+                // 👇 ESTA ES LA CLAVE: respeta DisplayMember
+                string texto = cb.GetItemText(cb.Items[e.Index]);
+
+                using (SolidBrush tx = new SolidBrush(textColor))
+                    e.Graphics.DrawString(texto, cb.Font, tx, e.Bounds);
+
+                e.DrawFocusRectangle();
+            };
         }
 
 

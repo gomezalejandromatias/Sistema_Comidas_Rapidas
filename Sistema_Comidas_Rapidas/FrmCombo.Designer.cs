@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTitulo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCombo = new System.Windows.Forms.TextBox();
@@ -38,7 +38,7 @@
             this.txtPrecioCombo = new System.Windows.Forms.TextBox();
             this.txtPrecioPromocion = new System.Windows.Forms.TextBox();
             this.dgvComboPromociones = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblTituloData = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.btnAgregarPromocion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblFiltro = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.richTextBoxCombo = new System.Windows.Forms.RichTextBox();
@@ -75,15 +75,15 @@
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // labelTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(396, 34);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(325, 39);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Combos y Promociones";
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Location = new System.Drawing.Point(396, 34);
+            this.labelTitulo.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(325, 39);
+            this.labelTitulo.TabIndex = 0;
+            this.labelTitulo.Text = "Combos y Promociones";
             // 
             // label2
             // 
@@ -168,23 +168,26 @@
             // dgvComboPromociones
             // 
             this.dgvComboPromociones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvComboPromociones.Location = new System.Drawing.Point(799, 151);
+            this.dgvComboPromociones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvComboPromociones.Location = new System.Drawing.Point(884, 149);
             this.dgvComboPromociones.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dgvComboPromociones.MultiSelect = false;
             this.dgvComboPromociones.Name = "dgvComboPromociones";
+            this.dgvComboPromociones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComboPromociones.Size = new System.Drawing.Size(952, 437);
             this.dgvComboPromociones.TabIndex = 11;
             this.dgvComboPromociones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvComboPromociones_CellContentClick);
             // 
-            // label6
+            // lblTituloData
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1047, 34);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(254, 23);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Combos y Promociones Activas";
+            this.lblTituloData.AutoSize = true;
+            this.lblTituloData.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloData.Location = new System.Drawing.Point(1144, 70);
+            this.lblTituloData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTituloData.Name = "lblTituloData";
+            this.lblTituloData.Size = new System.Drawing.Size(254, 23);
+            this.lblTituloData.TabIndex = 12;
+            this.lblTituloData.Text = "Combos y Promociones Activas";
             // 
             // btnLimpiar
             // 
@@ -192,7 +195,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(65, 720);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(85, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(85, 28);
             this.btnLimpiar.TabIndex = 14;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -228,7 +231,7 @@
             this.btnIngredienteCombo.Location = new System.Drawing.Point(187, 720);
             this.btnIngredienteCombo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnIngredienteCombo.Name = "btnIngredienteCombo";
-            this.btnIngredienteCombo.Size = new System.Drawing.Size(117, 23);
+            this.btnIngredienteCombo.Size = new System.Drawing.Size(142, 34);
             this.btnIngredienteCombo.TabIndex = 19;
             this.btnIngredienteCombo.Text = "Agregrar Combo";
             this.btnIngredienteCombo.UseVisualStyleBackColor = true;
@@ -251,9 +254,9 @@
             this.btnAgregarPromocion.Location = new System.Drawing.Point(593, 720);
             this.btnAgregarPromocion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAgregarPromocion.Name = "btnAgregarPromocion";
-            this.btnAgregarPromocion.Size = new System.Drawing.Size(163, 23);
+            this.btnAgregarPromocion.Size = new System.Drawing.Size(163, 34);
             this.btnAgregarPromocion.TabIndex = 25;
-            this.btnAgregarPromocion.Text = "Agregar Poromocion";
+            this.btnAgregarPromocion.Text = "Agregar promocion";
             this.btnAgregarPromocion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAgregarPromocion.UseVisualStyleBackColor = true;
             this.btnAgregarPromocion.Click += new System.EventHandler(this.btnAgregarPromocion_Click);
@@ -273,23 +276,23 @@
             // txtFiltro
             // 
             this.txtFiltro.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFiltro.Location = new System.Drawing.Point(1120, 109);
+            this.txtFiltro.Location = new System.Drawing.Point(1068, 114);
             this.txtFiltro.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(164, 23);
             this.txtFiltro.TabIndex = 27;
             this.txtFiltro.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // label9
+            // lblFiltro
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(957, 112);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(144, 15);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Buscar Combos o Promos";
+            this.lblFiltro.AutoSize = true;
+            this.lblFiltro.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiltro.Location = new System.Drawing.Point(881, 117);
+            this.lblFiltro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFiltro.Name = "lblFiltro";
+            this.lblFiltro.Size = new System.Drawing.Size(144, 15);
+            this.lblFiltro.TabIndex = 28;
+            this.lblFiltro.Text = "Buscar Combos o Promos";
             // 
             // label10
             // 
@@ -415,7 +418,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(62, 394);
+            this.label13.Location = new System.Drawing.Point(50, 407);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(242, 15);
             this.label13.TabIndex = 40;
@@ -471,7 +474,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(470, 405);
+            this.label15.Location = new System.Drawing.Point(454, 407);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(314, 15);
             this.label15.TabIndex = 46;
@@ -543,7 +546,7 @@
             this.Controls.Add(this.richTextBoxCombo);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblFiltro);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAgregarPromocion);
@@ -552,7 +555,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblTituloData);
             this.Controls.Add(this.dgvComboPromociones);
             this.Controls.Add(this.txtPrecioPromocion);
             this.Controls.Add(this.txtPrecioCombo);
@@ -562,7 +565,7 @@
             this.Controls.Add(this.txtCombo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelTitulo);
             this.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.Name = "FrmCombo";
@@ -579,7 +582,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCombo;
@@ -589,7 +592,7 @@
         private System.Windows.Forms.TextBox txtPrecioCombo;
         private System.Windows.Forms.TextBox txtPrecioPromocion;
         private System.Windows.Forms.DataGridView dgvComboPromociones;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTituloData;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label7;
@@ -598,7 +601,7 @@
         private System.Windows.Forms.Button btnAgregarPromocion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtFiltro;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.RichTextBox richTextBoxCombo;

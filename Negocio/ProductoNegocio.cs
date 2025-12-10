@@ -175,6 +175,31 @@ namespace Negocio
         
         
         }
+        public void ModificarStock(Producto producto)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            try
+            {
+                accesoDatos.SetearConsulta(
+                    "UPDATE Producto SET Stock = @Stock " +
+                    "WHERE IdProducto = @IdProducto");
+
+                accesoDatos.SetearParametro("@Stock", producto.Stock);
+                accesoDatos.SetearParametro("@IdProducto", producto.IDProducto);
+
+                accesoDatos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.CerrarConexion();
+            }
+        }
+
 
 
 

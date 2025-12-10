@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Negocio;
+using Sistema_Comidas_Rapidas.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -131,6 +132,8 @@ namespace Sistema_Comidas_Rapidas
         private void FrmProveedor_Load(object sender, EventArgs e)
         {
             btnModificarDefinitivoProv.Visible = false;
+
+            UIHelper.DataGridViewModerno(dtgProveedor);
         }
 
         private void btnModificarDefinitivoProv_Click(object sender, EventArgs e)

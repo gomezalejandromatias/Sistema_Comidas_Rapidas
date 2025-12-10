@@ -26,7 +26,8 @@ namespace Sistema_Comidas_Rapidas
 
         private void FrmDetalleVenta_Load(object sender, EventArgs e)
         {
-            
+            UIHelper.DataGridViewModerno(dataGridViewDetallaVenta);
+            dataGridViewDetallaVenta.ClearSelection();
         }
 
         public void cargargrilla()
