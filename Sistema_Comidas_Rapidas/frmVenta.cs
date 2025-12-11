@@ -373,5 +373,13 @@ namespace Sistema_Comidas_Rapidas
         {
             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
+
+        private void movimientosDeStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAgregarStock frmAgregarStock = new FrmAgregarStock();
+            frmAgregarStock.Owner = this;
+            frmAgregarStock.Show();
+            this.Hide();
+        }
     }
 }

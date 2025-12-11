@@ -91,6 +91,7 @@
             this.movimientosDeStockToolStripMenuItem.Name = "movimientosDeStockToolStripMenuItem";
             this.movimientosDeStockToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.movimientosDeStockToolStripMenuItem.Text = "Agregar Stock";
+            this.movimientosDeStockToolStripMenuItem.Click += new System.EventHandler(this.movimientosDeStockToolStripMenuItem_Click);
             // 
             // combosdeVentasToolStripMenuItem
             // 

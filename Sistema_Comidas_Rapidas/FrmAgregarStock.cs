@@ -99,17 +99,39 @@ namespace Sistema_Comidas_Rapidas
             bool esPorPeso = (aux.CantidadUnidad == 1000);
 
             int stockASumar;
+            int SumarUnidadPaquete;
+
+            int CantidadUnidad;
+        
 
             if (esPorPeso)
             {
                 // 🧀 Producto por peso: el usuario escribe KILOS
                 // Ej: queso, ingreso 20 -> sumo 20 * 1000 gramos
                 stockASumar = cantidadIngresada * 1000;
+                SumarUnidadPaquete = cantidadIngresada + aux.UnidadPaquete;
+
+                CantidadUnidad = 0;
             }
             else
             {
-                // 📦 Producto por unidades: el usuario escribe UNIDADES
-                stockASumar = cantidadIngresada;
+                int paquetesNuevos = int.Parse(txtCantidadPaquetes.Text);
+
+                // 2) Leer cuántas unidades trae AHORA cada pack (puede haber cambiado)
+                int unidadesPorPackNuevo = int.Parse(txtStockModificado.Text);
+
+                // 3) Calcular cuántas unidades nuevas se suman al stock
+                int unidadesNuevas = paquetesNuevos * unidadesPorPackNuevo;
+
+                // 4) Lo que vas a sumar al stock total de unidades
+                stockASumar = unidadesNuevas;
+
+                // 5) Actualizar la cantidad de packs (UnidadPaquete)
+                SumarUnidadPaquete = aux.UnidadPaquete + paquetesNuevos;
+
+                // 6) Actualizar también la presentación del producto
+                CantidadUnidad = unidadesPorPackNuevo;
+
             }
 
             int stockNuevo = stockActual + stockASumar;
@@ -132,8 +154,14 @@ namespace Sistema_Comidas_Rapidas
             }
 
             // SI el usuario responde SÍ → aplicamos el cambio de stock
+          
+            aux.Stock = stockNuevo;
+            aux.UnidadPaquete = SumarUnidadPaquete;
 
             aux.Stock = stockNuevo;
+            aux.UnidadPaquete = SumarUnidadPaquete;
+            aux.CantidadUnidad = CantidadUnidad;
+
 
             // 6) Guardar en BD
             ProductoNegocio productoNegocio = new ProductoNegocio();
@@ -154,6 +182,16 @@ namespace Sistema_Comidas_Rapidas
             txtNombreProd.Text = "";
             txtStockActual.Text = "";
             txtStockModificado.Text = "";
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            frmVenta frmVenta = new frmVenta();
+
+            frmVenta.Owner = this;
+            frmVenta.Show();
+            this.Hide();
+
         }
     }
     

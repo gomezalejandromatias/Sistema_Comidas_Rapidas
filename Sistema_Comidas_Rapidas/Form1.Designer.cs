@@ -297,7 +297,7 @@
             // txtCantidadPaquete
             // 
             this.txtCantidadPaquete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadPaquete.Location = new System.Drawing.Point(319, 340);
+            this.txtCantidadPaquete.Location = new System.Drawing.Point(319, 299);
             this.txtCantidadPaquete.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidadPaquete.Name = "txtCantidadPaquete";
             this.txtCantidadPaquete.Size = new System.Drawing.Size(179, 27);
@@ -417,7 +417,7 @@
             // txtCantidadGramo
             // 
             this.txtCantidadGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 303);
+            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 340);
             this.txtCantidadGramo.Name = "txtCantidadGramo";
             this.txtCantidadGramo.Size = new System.Drawing.Size(179, 23);
             this.txtCantidadGramo.TabIndex = 38;
@@ -438,7 +438,7 @@
             // 
             this.txtStockGramo.AcceptsReturn = true;
             this.txtStockGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockGramo.Location = new System.Drawing.Point(319, 391);
+            this.txtStockGramo.Location = new System.Drawing.Point(319, 392);
             this.txtStockGramo.Name = "txtStockGramo";
             this.txtStockGramo.Size = new System.Drawing.Size(179, 23);
             this.txtStockGramo.TabIndex = 42;
@@ -447,7 +447,7 @@
             // 
             this.lblGramos.AutoSize = true;
             this.lblGramos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGramos.Location = new System.Drawing.Point(45, 391);
+            this.lblGramos.Location = new System.Drawing.Point(37, 388);
             this.lblGramos.Name = "lblGramos";
             this.lblGramos.Size = new System.Drawing.Size(106, 15);
             this.lblGramos.TabIndex = 43;

@@ -47,6 +47,8 @@
             this.lblStockActualGramos = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtCantidadPaquetes = new System.Windows.Forms.TextBox();
+            this.lblCantidadPaquetes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgregarStock)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +70,7 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 525);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1203, 22);
             this.statusStrip1.TabIndex = 1;
@@ -141,11 +143,11 @@
             // lblModificarStock
             // 
             this.lblModificarStock.AutoSize = true;
-            this.lblModificarStock.Location = new System.Drawing.Point(730, 317);
+            this.lblModificarStock.Location = new System.Drawing.Point(726, 317);
             this.lblModificarStock.Name = "lblModificarStock";
-            this.lblModificarStock.Size = new System.Drawing.Size(84, 13);
+            this.lblModificarStock.Size = new System.Drawing.Size(118, 13);
             this.lblModificarStock.TabIndex = 7;
-            this.lblModificarStock.Text = "Actualizar Stock";
+            this.lblModificarStock.Text = "Unidades por Paquetes";
             // 
             // txtNombreProd
             // 
@@ -170,7 +172,7 @@
             // 
             // btnGuardarStock
             // 
-            this.btnGuardarStock.Location = new System.Drawing.Point(1046, 312);
+            this.btnGuardarStock.Location = new System.Drawing.Point(1056, 467);
             this.btnGuardarStock.Name = "btnGuardarStock";
             this.btnGuardarStock.Size = new System.Drawing.Size(124, 23);
             this.btnGuardarStock.TabIndex = 11;
@@ -190,7 +192,7 @@
             // lblStockActualGramos
             // 
             this.lblStockActualGramos.AutoSize = true;
-            this.lblStockActualGramos.Location = new System.Drawing.Point(726, 321);
+            this.lblStockActualGramos.Location = new System.Drawing.Point(730, 317);
             this.lblStockActualGramos.Name = "lblStockActualGramos";
             this.lblStockActualGramos.Size = new System.Drawing.Size(115, 13);
             this.lblStockActualGramos.TabIndex = 13;
@@ -214,12 +216,31 @@
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // txtCantidadPaquetes
+            // 
+            this.txtCantidadPaquetes.Location = new System.Drawing.Point(859, 370);
+            this.txtCantidadPaquetes.Name = "txtCantidadPaquetes";
+            this.txtCantidadPaquetes.Size = new System.Drawing.Size(140, 20);
+            this.txtCantidadPaquetes.TabIndex = 17;
+            // 
+            // lblCantidadPaquetes
+            // 
+            this.lblCantidadPaquetes.AutoSize = true;
+            this.lblCantidadPaquetes.Location = new System.Drawing.Point(730, 377);
+            this.lblCantidadPaquetes.Name = "lblCantidadPaquetes";
+            this.lblCantidadPaquetes.Size = new System.Drawing.Size(123, 13);
+            this.lblCantidadPaquetes.TabIndex = 18;
+            this.lblCantidadPaquetes.Text = "Cantidades de Paquetes";
             // 
             // FrmAgregarStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1203, 450);
+            this.ClientSize = new System.Drawing.Size(1203, 547);
+            this.Controls.Add(this.lblCantidadPaquetes);
+            this.Controls.Add(this.txtCantidadPaquetes);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblStockActualGramos);
@@ -268,5 +289,7 @@
         private System.Windows.Forms.Label lblStockActualGramos;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtCantidadPaquetes;
+        private System.Windows.Forms.Label lblCantidadPaquetes;
     }
 }

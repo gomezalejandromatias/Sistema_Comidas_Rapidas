@@ -177,15 +177,18 @@ namespace Negocio
         }
         public void ModificarStock(Producto producto)
         {
+       
             AccesoDatos accesoDatos = new AccesoDatos();
 
             try
             {
                 accesoDatos.SetearConsulta(
-                    "UPDATE Producto SET Stock = @Stock " +
+                    "UPDATE Producto SET Stock = @Stock,UnidadPaquete =@UnidadPaquete ,CantidadUnidad=@CantidadUnidad " +
                     "WHERE IdProducto = @IdProducto");
 
                 accesoDatos.SetearParametro("@Stock", producto.Stock);
+                accesoDatos.SetearParametro("@UnidadPaquete", producto.UnidadPaquete);
+                accesoDatos.SetearParametro("@CantidadUnidad", producto.CantidadUnidad);
                 accesoDatos.SetearParametro("@IdProducto", producto.IDProducto);
 
                 accesoDatos.EjecutarAccion();
