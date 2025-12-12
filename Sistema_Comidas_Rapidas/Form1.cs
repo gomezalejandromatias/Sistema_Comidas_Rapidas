@@ -33,7 +33,7 @@ namespace Sistema_Comidas_Rapidas
             txtFechaIngreso.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             txtFechaIngreso.ReadOnly = true;
 
-
+            btnCancelarcambio.Visible = false;
 
 
 
@@ -410,10 +410,11 @@ namespace Sistema_Comidas_Rapidas
             UIHelper.DataGridViewModerno(dvbListaProducto);
             UIHelper.BotonPrincipal(btnAgregar);
             UIHelper.BotonPeligroPremium(btnEliminar);
-            UIHelper.BotonSecundarioPremium(btnModicarDefinitivo);
-            UIHelper.BotonSecundarioPremium(btnModificarProducto);
+            UIHelper.BotonAmarilloPremium(btnModicarDefinitivo);
+            UIHelper.BotonAmarilloPremium(btnModificarProducto);
             UIHelper.BotonAmarilloPremium(txtCancelar);
             UIHelper.BotonAmarilloPremium(btnLimpiar);
+            UIHelper.BotonAmarilloPremium(btnCancelarcambio);
 
             UIHelper.LabelPremium(lblBuscarProdu);
             UIHelper.LabelPremium(lblUnidadPaquete);
@@ -426,7 +427,7 @@ namespace Sistema_Comidas_Rapidas
             UIHelper.LabelPremium(lblTipoProdu);
             UIHelper.LabelPremium(lblStockUnidad);
             UIHelper.LabelPremium(Categoria);
-            UIHelper.LabelPremium(lblTotal);
+     
             UIHelper.LabelPremium(lblFechaIngre);
             UIHelper.LabelTituloPremium(lblTitulo);
             UIHelper.LabelPremium(lblGramos);
@@ -439,45 +440,76 @@ namespace Sistema_Comidas_Rapidas
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ProductoNegocio productoNegocio = new ProductoNegocio();
-            Producto selecionado;
-
 
             try
             {
-                DialogResult respuesta = MessageBox.Show("Desea eliminar el Producto?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                // 1) Validar que haya productos en la grilla
+                if (dvbListaProducto.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay productos para eliminar.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2) Validar que haya una fila seleccionada
+                if (dvbListaProducto.CurrentRow == null)
+                {
+                    MessageBox.Show("Seleccioná un producto de la lista.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dvbListaProducto.Focus();
+                    return;
+                }
+
+                // 3) Validar que el DataBoundItem exista
+                Producto seleccionado = dvbListaProducto.CurrentRow.DataBoundItem as Producto;
+                if (seleccionado == null)
+                {
+                    MessageBox.Show("No se pudo obtener el producto seleccionado.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 4) Validar ID
+                if (seleccionado.IDProducto <= 0)
+                {
+                    MessageBox.Show("El producto seleccionado tiene un ID inválido.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 5) Confirmación (mensaje más lindo)
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Querés eliminar el producto \"{seleccionado.NombreProducto}\"?\n\nEsta acción no se puede deshacer.",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
                 if (respuesta == DialogResult.Yes)
                 {
-                    selecionado = (Producto)dvbListaProducto.CurrentRow.DataBoundItem;
-
-                    productoNegocio.EliminarProducto(selecionado.IDProducto);
+                    productoNegocio.EliminarProducto(seleccionado.IDProducto);
                     CargarGrilla();
 
-                    lblTotalPrecioProducto.Text = "Eliminado Correctamente";
+                    MessageBox.Show("Producto eliminado correctamente ✅", "Listo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    // Limpieza SOLO si se eliminó
+                    txtNombreProducto.Text = "";
+                    txtUnidadPaquete.Text = "";
+                    txtCantidadPaquete.Text = "";
+                    txtStock.Text = "";
+                    txtPrecioUnidad.Text = "";
+                    txtCategoria.Text = "";
+                    txtBucarProducto.Text = "";
+
+                    comboBoxaProveedor.Focus();
                 }
-
-
-
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                MessageBox.Show("Error al eliminar el producto: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            lblTotalPrecioProducto.Visible = false;
-            txtNombreProducto.Text = "";
-
-            txtUnidadPaquete.Text = "";
-            txtCantidadPaquete.Text = "";
-            txtStock.Text = "";
-            txtPrecioUnidad.Text = "";
-            txtCategoria.Text = "";
-
-            txtBucarProducto.Text = "";
-
-            comboBoxaProveedor.Focus();
 
         }
 
@@ -486,6 +518,7 @@ namespace Sistema_Comidas_Rapidas
             btnAgregar.Visible = false;
             btnEliminar.Visible = false;
             btnModicarDefinitivo.Visible = true;
+            btnCancelarcambio.Visible = true;
 
 
             aux = (Producto)dvbListaProducto.CurrentRow.DataBoundItem;
@@ -663,6 +696,28 @@ namespace Sistema_Comidas_Rapidas
         private void txtStock_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancelarcambio_Click(object sender, EventArgs e)
+        {
+            txtNombreProducto.Text = "";
+
+            txtUnidadPaquete.Text = "";
+            txtCantidadPaquete.Text = "";
+            txtStock.Text = "";
+            txtPrecioUnidad.Text = "";
+            txtCategoria.Text = "";
+
+            txtBucarProducto.Text = "";
+
+            btnCancelarcambio.Visible = false;
+            btnModicarDefinitivo.Visible = false;
+
+            btnAgregar.Visible = true;
+            btnEliminar.Visible = true;
+            btnModificarProducto.Visible = true;
+
+            comboBoxaProveedor.Focus();
         }
 
         private void label13_Click(object sender, EventArgs e)

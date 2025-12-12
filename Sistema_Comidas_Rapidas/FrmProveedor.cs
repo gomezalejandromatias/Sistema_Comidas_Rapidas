@@ -28,33 +28,66 @@ namespace Sistema_Comidas_Rapidas
         {
             try
             {
-                proveedores = new Proveedores();
+                // Validaciones
+                if (string.IsNullOrWhiteSpace(txtNombreProv.Text))
+                {
+                    MessageBox.Show("El nombre del proveedor es obligatorio.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNombreProv.Focus();
+                    return;
+                }
 
-                proveedores.Nombre = txtNombreProv.Text;
-                proveedores.Telefono = txtTelProv.Text;
-                proveedores.Email = txtEmailProv.Text;
-                proveedores.Direccion = txtDireccionProv.Text;
-                proveedores.Descripcion = rtbProv.Text;
+                if (string.IsNullOrWhiteSpace(txtTelProv.Text) || !txtTelProv.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("El teléfono es obligatorio y debe contener solo números.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtTelProv.Focus();
+                    return;
+                }
 
+                if (string.IsNullOrWhiteSpace(txtEmailProv.Text) || !IsValidEmail(txtEmailProv.Text))
+                {
+                    MessageBox.Show("El email es obligatorio y debe tener un formato válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmailProv.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtDireccionProv.Text))
+                {
+                    MessageBox.Show("La dirección es obligatoria.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtDireccionProv.Focus();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(rtbProv.Text))
+                {
+                    MessageBox.Show("La descripción es obligatoria.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    rtbProv.Focus();
+                    return;
+                }
+
+                // Crear el proveedor y asignar los valores
+                proveedores = new Proveedores
+                {
+                    Nombre = txtNombreProv.Text,
+                    Telefono = txtTelProv.Text,
+                    Email = txtEmailProv.Text,
+                    Direccion = txtDireccionProv.Text,
+                    Descripcion = rtbProv.Text
+                };
+
+                // Agregar el proveedor a la base de datos o lista
                 ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
-
                 proveedorNegocio.AgregarProveedor(proveedores);
 
+                // Mensaje de éxito
+                MessageBox.Show("Proveedor agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                MessageBox.Show("bien");
-
+                // Recargar los proveedores
                 CargarProveedor();
-
-
-
-
-
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                // Mostrar el error si ocurre una excepción
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -80,33 +113,63 @@ namespace Sistema_Comidas_Rapidas
 
             ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
 
-            Proveedores seleccionado;
-
-
-            seleccionado = (Proveedores)dtgProveedor.CurrentRow.DataBoundItem;
-
             try
             {
-                DialogResult respuesta = MessageBox.Show("Desea eliminar el Proveedor?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                // 1) Validar que haya filas en el DataGridView
+                if (dtgProveedor.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay proveedores para eliminar.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2) Validar que haya una fila seleccionada
+                if (dtgProveedor.CurrentRow == null)
+                {
+                    MessageBox.Show("Seleccioná un proveedor de la lista.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dtgProveedor.Focus();
+                    return;
+                }
+
+                // 3) Validar que el DataBoundItem no sea null
+                Proveedores seleccionado = dtgProveedor.CurrentRow.DataBoundItem as Proveedores;
+                if (seleccionado == null)
+                {
+                    MessageBox.Show("No se pudo obtener el proveedor seleccionado.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 4) Validar que el ID sea válido
+                if (seleccionado.idproveedor <= 0)
+                {
+                    MessageBox.Show("El proveedor seleccionado tiene un ID inválido.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 5) Confirmación
+                DialogResult respuesta = MessageBox.Show(
+                    "¿Desea eliminar el proveedor seleccionado?",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
                 if (respuesta == DialogResult.Yes)
                 {
-                    seleccionado = (Proveedores)dtgProveedor.CurrentRow.DataBoundItem;
-
                     proveedorNegocio.EliminarProv(seleccionado.idproveedor);
                     CargarProveedor();
 
-                    MessageBox.Show("bien");
-
+                    MessageBox.Show("Proveedor eliminado correctamente.", "Listo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-
-
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                MessageBox.Show("Error al eliminar proveedor: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -116,7 +179,8 @@ namespace Sistema_Comidas_Rapidas
         {
             btnModificarDefinitivoProv.Visible = true;
             btnAgregar.Visible = false;
-            btnEliminar.Visible = false;
+            btnCncelarCambios.Visible = true;
+           
             aux = (Proveedores)dtgProveedor.CurrentRow.DataBoundItem;
 
             txtNombreProv.Text = aux.Nombre;
@@ -132,6 +196,25 @@ namespace Sistema_Comidas_Rapidas
         private void FrmProveedor_Load(object sender, EventArgs e)
         {
             btnModificarDefinitivoProv.Visible = false;
+            btnCncelarCambios.Visible = false;
+
+            UIHelper.BotonPrincipal(btnAgregar);
+            UIHelper.BotonPeligroPremium(btnEliminar);
+            UIHelper.BotonAmarilloPremium(btnModificar);
+            UIHelper.BotonAmarilloPremium(btnModificarDefinitivoProv);
+            UIHelper.BotonAmarilloPremium(btnLimpiar);
+            UIHelper.BotonAmarilloPremium(btnVoverVentas);
+            UIHelper.BotonAmarilloPremium(btnCncelarCambios);
+
+            UIHelper.LabelPremium(lblDescripcion);
+            UIHelper.LabelPremium(lblDireccion);
+            UIHelper.LabelPremium(lblEmail);
+            UIHelper.LabelPremium(lblNombre);
+            UIHelper.LabelPremium(lblSubtitulo);
+            UIHelper.LabelPremium(lblTelefono);
+            UIHelper.LabelPremium (lblTitulo);
+
+
 
             UIHelper.DataGridViewModerno(dtgProveedor);
         }
@@ -245,6 +328,35 @@ namespace Sistema_Comidas_Rapidas
 
 
 
+            }
+        }
+
+        private void btnCncelarCambios_Click(object sender, EventArgs e)
+        {
+
+            txtNombreProv.Text = "";
+            txtTelProv.Text = "";
+            txtDireccionProv.Text = "";
+            txtEmailProv.Text = "";
+            rtbProv.Text = "";
+
+            btnModificarDefinitivoProv.Visible = false;
+            btnAgregar.Visible = true;
+            btnCncelarCambios.Visible = false;
+
+
+            txtNombreProv.Focus();
+        }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

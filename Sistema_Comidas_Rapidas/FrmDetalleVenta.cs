@@ -27,6 +27,25 @@ namespace Sistema_Comidas_Rapidas
         private void FrmDetalleVenta_Load(object sender, EventArgs e)
         {
             UIHelper.DataGridViewModerno(dataGridViewDetallaVenta);
+            UIHelper.LabelPremium(lblTotalEfectivo);
+            UIHelper.LabelPremium(lblTotalTransferencia);
+            UIHelper.LabelTituloPremium(lblTitulo);
+            UIHelper.LabelPremium(lblFiltro);
+
+            UIHelper.BotonPrincipal(btnElegirFechaFiltrada);
+            UIHelper.BotonAmarilloPremium(btnLimpiar);
+            UIHelper.BotonPeligroPremium(btnVolverVenta);
+
+
+
+
+
+
+
+
+
+
+
             dataGridViewDetallaVenta.ClearSelection();
         }
 

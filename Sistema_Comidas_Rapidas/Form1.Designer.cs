@@ -52,8 +52,6 @@
             this.txtCantidadPaquete = new System.Windows.Forms.TextBox();
             this.lblUnidadPaquete = new System.Windows.Forms.Label();
             this.txtUnidadPaquete = new System.Windows.Forms.TextBox();
-            this.lblTotalPrecioProducto = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.lblProvee = new System.Windows.Forms.Label();
             this.comboBoxaProveedor = new System.Windows.Forms.ComboBox();
             this.btnModificarProducto = new System.Windows.Forms.Button();
@@ -65,6 +63,7 @@
             this.txtStockGramo = new System.Windows.Forms.TextBox();
             this.lblGramos = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.btnCancelarcambio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dvbListaProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +104,7 @@
             // 
             this.lblStockUnidad.AutoSize = true;
             this.lblStockUnidad.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockUnidad.Location = new System.Drawing.Point(43, 388);
+            this.lblStockUnidad.Location = new System.Drawing.Point(56, 410);
             this.lblStockUnidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockUnidad.Name = "lblStockUnidad";
             this.lblStockUnidad.Size = new System.Drawing.Size(36, 15);
@@ -204,7 +203,7 @@
             // txtStock
             // 
             this.txtStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStock.Location = new System.Drawing.Point(319, 388);
+            this.txtStock.Location = new System.Drawing.Point(319, 399);
             this.txtStock.Margin = new System.Windows.Forms.Padding(4);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(179, 26);
@@ -287,7 +286,7 @@
             // 
             this.lblCantidadPaquete.AutoSize = true;
             this.lblCantidadPaquete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidadPaquete.Location = new System.Drawing.Point(43, 352);
+            this.lblCantidadPaquete.Location = new System.Drawing.Point(43, 363);
             this.lblCantidadPaquete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidadPaquete.Name = "lblCantidadPaquete";
             this.lblCantidadPaquete.Size = new System.Drawing.Size(122, 15);
@@ -297,7 +296,7 @@
             // txtCantidadPaquete
             // 
             this.txtCantidadPaquete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadPaquete.Location = new System.Drawing.Point(319, 299);
+            this.txtCantidadPaquete.Location = new System.Drawing.Point(319, 351);
             this.txtCantidadPaquete.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidadPaquete.Name = "txtCantidadPaquete";
             this.txtCantidadPaquete.Size = new System.Drawing.Size(179, 27);
@@ -308,7 +307,7 @@
             // 
             this.lblUnidadPaquete.AutoSize = true;
             this.lblUnidadPaquete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnidadPaquete.Location = new System.Drawing.Point(43, 305);
+            this.lblUnidadPaquete.Location = new System.Drawing.Point(45, 317);
             this.lblUnidadPaquete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUnidadPaquete.Name = "lblUnidadPaquete";
             this.lblUnidadPaquete.Size = new System.Drawing.Size(133, 15);
@@ -318,34 +317,12 @@
             // txtUnidadPaquete
             // 
             this.txtUnidadPaquete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUnidadPaquete.Location = new System.Drawing.Point(319, 299);
+            this.txtUnidadPaquete.Location = new System.Drawing.Point(319, 305);
             this.txtUnidadPaquete.Margin = new System.Windows.Forms.Padding(4);
             this.txtUnidadPaquete.Name = "txtUnidadPaquete";
             this.txtUnidadPaquete.Size = new System.Drawing.Size(179, 27);
             this.txtUnidadPaquete.TabIndex = 26;
             this.txtUnidadPaquete.TextChanged += new System.EventHandler(this.txtUnidadPaquete_TextChanged);
-            // 
-            // lblTotalPrecioProducto
-            // 
-            this.lblTotalPrecioProducto.AutoSize = true;
-            this.lblTotalPrecioProducto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalPrecioProducto.Location = new System.Drawing.Point(947, 603);
-            this.lblTotalPrecioProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotalPrecioProducto.Name = "lblTotalPrecioProducto";
-            this.lblTotalPrecioProducto.Size = new System.Drawing.Size(58, 19);
-            this.lblTotalPrecioProducto.TabIndex = 27;
-            this.lblTotalPrecioProducto.Text = "label12";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(664, 599);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(43, 19);
-            this.lblTotal.TabIndex = 28;
-            this.lblTotal.Text = "Total";
             // 
             // lblProvee
             // 
@@ -417,7 +394,7 @@
             // txtCantidadGramo
             // 
             this.txtCantidadGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 340);
+            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 309);
             this.txtCantidadGramo.Name = "txtCantidadGramo";
             this.txtCantidadGramo.Size = new System.Drawing.Size(179, 23);
             this.txtCantidadGramo.TabIndex = 38;
@@ -427,7 +404,7 @@
             // 
             this.lblProductoporPeso.AutoSize = true;
             this.lblProductoporPeso.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductoporPeso.Location = new System.Drawing.Point(43, 305);
+            this.lblProductoporPeso.Location = new System.Drawing.Point(43, 317);
             this.lblProductoporPeso.Name = "lblProductoporPeso";
             this.lblProductoporPeso.Size = new System.Drawing.Size(108, 15);
             this.lblProductoporPeso.TabIndex = 41;
@@ -438,7 +415,7 @@
             // 
             this.txtStockGramo.AcceptsReturn = true;
             this.txtStockGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockGramo.Location = new System.Drawing.Point(319, 392);
+            this.txtStockGramo.Location = new System.Drawing.Point(319, 402);
             this.txtStockGramo.Name = "txtStockGramo";
             this.txtStockGramo.Size = new System.Drawing.Size(179, 23);
             this.txtStockGramo.TabIndex = 42;
@@ -447,7 +424,7 @@
             // 
             this.lblGramos.AutoSize = true;
             this.lblGramos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGramos.Location = new System.Drawing.Point(37, 388);
+            this.lblGramos.Location = new System.Drawing.Point(43, 410);
             this.lblGramos.Name = "lblGramos";
             this.lblGramos.Size = new System.Drawing.Size(106, 15);
             this.lblGramos.TabIndex = 43;
@@ -461,11 +438,23 @@
             this.statusStrip1.TabIndex = 44;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // btnCancelarcambio
+            // 
+            this.btnCancelarcambio.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarcambio.Location = new System.Drawing.Point(549, 402);
+            this.btnCancelarcambio.Name = "btnCancelarcambio";
+            this.btnCancelarcambio.Size = new System.Drawing.Size(139, 32);
+            this.btnCancelarcambio.TabIndex = 45;
+            this.btnCancelarcambio.Text = "Cancelar Cambios";
+            this.btnCancelarcambio.UseVisualStyleBackColor = true;
+            this.btnCancelarcambio.Click += new System.EventHandler(this.btnCancelarcambio_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 34F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.Controls.Add(this.btnCancelarcambio);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lblGramos);
             this.Controls.Add(this.txtStockGramo);
@@ -477,8 +466,6 @@
             this.Controls.Add(this.btnModificarProducto);
             this.Controls.Add(this.comboBoxaProveedor);
             this.Controls.Add(this.lblProvee);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.lblTotalPrecioProducto);
             this.Controls.Add(this.txtUnidadPaquete);
             this.Controls.Add(this.lblUnidadPaquete);
             this.Controls.Add(this.txtCantidadPaquete);
@@ -540,8 +527,6 @@
         private System.Windows.Forms.TextBox txtCantidadPaquete;
         private System.Windows.Forms.Label lblUnidadPaquete;
         private System.Windows.Forms.TextBox txtUnidadPaquete;
-        private System.Windows.Forms.Label lblTotalPrecioProducto;
-        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblProvee;
         private System.Windows.Forms.ComboBox comboBoxaProveedor;
         private System.Windows.Forms.Button btnModificarProducto;
@@ -553,6 +538,7 @@
         private System.Windows.Forms.TextBox txtStockGramo;
         private System.Windows.Forms.Label lblGramos;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Button btnCancelarcambio;
     }
 }
 

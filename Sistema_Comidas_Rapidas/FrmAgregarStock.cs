@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dominio;
 using Negocio;
+using Sistema_Comidas_Rapidas.Helpers;
 
 namespace Sistema_Comidas_Rapidas
 {
-    public partial class FrmAgregarStock : Form
+    public partial class lblVersion : Form
     {
 
         Producto aux;
-        public FrmAgregarStock()
+        public lblVersion()
         {
             InitializeComponent();
         }
@@ -27,6 +28,28 @@ namespace Sistema_Comidas_Rapidas
 
             lblStockActualGramos.Visible = false;
             lblStockGramos.Visible=false;
+            lblAclaratorio.Visible = false;
+
+            UIHelper.LabelTituloPremium(lblTitulo);
+            UIHelper.DataGridViewModerno(dgvAgregarStock);
+
+            UIHelper.LabelPremium(lblCantidadPaquetes);
+            UIHelper.LabelPremium(lblModificarStock);
+            UIHelper.LabelPremium(lblNombreProducto);
+            UIHelper.LabelPremium(lblStockActual);
+            UIHelper.LabelPremium(lblStockActualGramos);
+            UIHelper.BotonPrincipal(btnGuardarStock);
+            UIHelper.BotonAmarilloPremium(btnLimpiar);
+            UIHelper.BotonPeligroPremium(btnCancelar);
+            UIHelper.BotonAmarilloPremium(txtSeleccionar);
+            UIHelper.LabelPremium(lblSubTitulo);
+            UIHelper.LabelPremium(lblStockGramos);
+            UIHelper.LabelPremium(lblAclaratorio);
+            
+
+
+
+
 
 
         }
@@ -63,9 +86,16 @@ namespace Sistema_Comidas_Rapidas
 
                 lblStockActualGramos.Visible = true;
                 lblStockGramos.Visible = true;
+                lblAclaratorio.Visible = true;
 
                 lblStockActual.Visible = false;
                 lblModificarStock.Visible=false;
+                lblCantidadPaquetes.Visible = false;
+                txtCantidadPaquetes.Visible=false;
+
+
+                
+
             }
 
 
@@ -111,7 +141,7 @@ namespace Sistema_Comidas_Rapidas
                 stockASumar = cantidadIngresada * 1000;
                 SumarUnidadPaquete = cantidadIngresada + aux.UnidadPaquete;
 
-                CantidadUnidad = 0;
+                CantidadUnidad = 1000;
             }
             else
             {
@@ -138,8 +168,8 @@ namespace Sistema_Comidas_Rapidas
 
             // 5) Confirmación con TU mensaje:
             DialogResult respuesta = MessageBox.Show(
-                "Desea Cancelar La Operacion?",
-                "Cancelar",
+                "Desea Agregar Stock?",
+                "Actualizar",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
             );
@@ -182,6 +212,12 @@ namespace Sistema_Comidas_Rapidas
             txtNombreProd.Text = "";
             txtStockActual.Text = "";
             txtStockModificado.Text = "";
+
+            lblModificarStock.Visible = true;
+            lblCantidadPaquetes.Visible = true;
+            txtCantidadPaquetes.Visible= true;
+            lblStockActualGramos.Visible = false;
+            lblAclaratorio.Visible = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -191,6 +227,11 @@ namespace Sistema_Comidas_Rapidas
             frmVenta.Owner = this;
             frmVenta.Show();
             this.Hide();
+
+        }
+
+        private void dgvAgregarStock_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

@@ -151,7 +151,7 @@
             // btnVender
             // 
             this.btnVender.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVender.Location = new System.Drawing.Point(88, 533);
+            this.btnVender.Location = new System.Drawing.Point(928, 533);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(140, 32);
             this.btnVender.TabIndex = 5;
@@ -162,7 +162,7 @@
             // btnCancelarVenta
             // 
             this.btnCancelarVenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarVenta.Location = new System.Drawing.Point(274, 533);
+            this.btnCancelarVenta.Location = new System.Drawing.Point(1145, 533);
             this.btnCancelarVenta.Name = "btnCancelarVenta";
             this.btnCancelarVenta.Size = new System.Drawing.Size(125, 32);
             this.btnCancelarVenta.TabIndex = 6;
@@ -175,7 +175,7 @@
             this.listViewCarrito.HideSelection = false;
             this.listViewCarrito.Location = new System.Drawing.Point(928, 144);
             this.listViewCarrito.Name = "listViewCarrito";
-            this.listViewCarrito.Size = new System.Drawing.Size(427, 315);
+            this.listViewCarrito.Size = new System.Drawing.Size(369, 315);
             this.listViewCarrito.TabIndex = 7;
             this.listViewCarrito.UseCompatibleStateImageBehavior = false;
             this.listViewCarrito.SelectedIndexChanged += new System.EventHandler(this.listViewCarrito_SelectedIndexChanged);
@@ -184,7 +184,7 @@
             // 
             this.lblProductos.AutoSize = true;
             this.lblProductos.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductos.Location = new System.Drawing.Point(1062, 117);
+            this.lblProductos.Location = new System.Drawing.Point(988, 119);
             this.lblProductos.Name = "lblProductos";
             this.lblProductos.Size = new System.Drawing.Size(179, 19);
             this.lblProductos.TabIndex = 8;
@@ -232,7 +232,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(468, 533);
+            this.btnLimpiar.Location = new System.Drawing.Point(12, 548);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(150, 32);
             this.btnLimpiar.TabIndex = 13;

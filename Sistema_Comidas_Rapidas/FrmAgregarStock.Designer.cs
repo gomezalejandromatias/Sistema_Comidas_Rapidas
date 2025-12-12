@@ -1,6 +1,6 @@
 ﻿namespace Sistema_Comidas_Rapidas
 {
-    partial class FrmAgregarStock
+    partial class lblVersion
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,11 @@
         {
             this.dgvAgregarStock = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSubTitulo = new System.Windows.Forms.Label();
             this.txtSeleccionar = new System.Windows.Forms.Button();
             this.lblNombreProducto = new System.Windows.Forms.Label();
             this.lblStockActual = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtCantidadPaquetes = new System.Windows.Forms.TextBox();
             this.lblCantidadPaquetes = new System.Windows.Forms.Label();
+            this.lblAclaratorio = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgregarStock)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,18 +58,19 @@
             // 
             this.dgvAgregarStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAgregarStock.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvAgregarStock.Location = new System.Drawing.Point(12, 48);
+            this.dgvAgregarStock.Location = new System.Drawing.Point(18, 119);
             this.dgvAgregarStock.MultiSelect = false;
             this.dgvAgregarStock.Name = "dgvAgregarStock";
             this.dgvAgregarStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAgregarStock.Size = new System.Drawing.Size(667, 324);
+            this.dgvAgregarStock.Size = new System.Drawing.Size(602, 324);
             this.dgvAgregarStock.TabIndex = 0;
+            this.dgvAgregarStock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgregarStock_CellContentClick);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2,
+            this.lblFecha,
+            this.lblHora,
             this.toolStripStatusLabel3});
             this.statusStrip1.Location = new System.Drawing.Point(0, 525);
             this.statusStrip1.Name = "statusStrip1";
@@ -76,17 +78,17 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // lblFecha
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(118, 17);
+            this.lblFecha.Text = "toolStripStatusLabel1";
             // 
-            // toolStripStatusLabel2
+            // lblHora
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(118, 17);
+            this.lblHora.Text = "toolStripStatusLabel2";
             // 
             // toolStripStatusLabel3
             // 
@@ -99,24 +101,24 @@
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Location = new System.Drawing.Point(291, 22);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(35, 13);
+            this.lblTitulo.Size = new System.Drawing.Size(75, 13);
             this.lblTitulo.TabIndex = 2;
-            this.lblTitulo.Text = "label1";
+            this.lblTitulo.Text = "Agregar Stock";
             // 
-            // label1
+            // lblSubTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(771, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Agregar Stock al producto";
+            this.lblSubTitulo.AutoSize = true;
+            this.lblSubTitulo.Location = new System.Drawing.Point(771, 48);
+            this.lblSubTitulo.Name = "lblSubTitulo";
+            this.lblSubTitulo.Size = new System.Drawing.Size(131, 13);
+            this.lblSubTitulo.TabIndex = 3;
+            this.lblSubTitulo.Text = "Agregar Stock al producto";
             // 
             // txtSeleccionar
             // 
-            this.txtSeleccionar.Location = new System.Drawing.Point(691, 119);
+            this.txtSeleccionar.Location = new System.Drawing.Point(729, 146);
             this.txtSeleccionar.Name = "txtSeleccionar";
-            this.txtSeleccionar.Size = new System.Drawing.Size(172, 23);
+            this.txtSeleccionar.Size = new System.Drawing.Size(172, 36);
             this.txtSeleccionar.TabIndex = 4;
             this.txtSeleccionar.Text = "Seleccione el Producto";
             this.txtSeleccionar.UseVisualStyleBackColor = true;
@@ -151,32 +153,32 @@
             // 
             // txtNombreProd
             // 
-            this.txtNombreProd.Location = new System.Drawing.Point(859, 211);
+            this.txtNombreProd.Location = new System.Drawing.Point(906, 211);
             this.txtNombreProd.Name = "txtNombreProd";
             this.txtNombreProd.Size = new System.Drawing.Size(140, 20);
             this.txtNombreProd.TabIndex = 8;
             // 
             // txtStockActual
             // 
-            this.txtStockActual.Location = new System.Drawing.Point(859, 262);
+            this.txtStockActual.Location = new System.Drawing.Point(906, 262);
             this.txtStockActual.Name = "txtStockActual";
             this.txtStockActual.Size = new System.Drawing.Size(140, 20);
             this.txtStockActual.TabIndex = 9;
             // 
             // txtStockModificado
             // 
-            this.txtStockModificado.Location = new System.Drawing.Point(859, 314);
+            this.txtStockModificado.Location = new System.Drawing.Point(906, 317);
             this.txtStockModificado.Name = "txtStockModificado";
             this.txtStockModificado.Size = new System.Drawing.Size(140, 20);
             this.txtStockModificado.TabIndex = 10;
             // 
             // btnGuardarStock
             // 
-            this.btnGuardarStock.Location = new System.Drawing.Point(1056, 467);
+            this.btnGuardarStock.Location = new System.Drawing.Point(729, 444);
             this.btnGuardarStock.Name = "btnGuardarStock";
-            this.btnGuardarStock.Size = new System.Drawing.Size(124, 23);
+            this.btnGuardarStock.Size = new System.Drawing.Size(124, 43);
             this.btnGuardarStock.TabIndex = 11;
-            this.btnGuardarStock.Text = "Guardar Stock";
+            this.btnGuardarStock.Text = "Actualizar Stock";
             this.btnGuardarStock.UseVisualStyleBackColor = true;
             this.btnGuardarStock.Click += new System.EventHandler(this.btnGuardarStock_Click);
             // 
@@ -192,7 +194,7 @@
             // lblStockActualGramos
             // 
             this.lblStockActualGramos.AutoSize = true;
-            this.lblStockActualGramos.Location = new System.Drawing.Point(730, 317);
+            this.lblStockActualGramos.Location = new System.Drawing.Point(726, 320);
             this.lblStockActualGramos.Name = "lblStockActualGramos";
             this.lblStockActualGramos.Size = new System.Drawing.Size(115, 13);
             this.lblStockActualGramos.TabIndex = 13;
@@ -200,9 +202,9 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(24, 393);
+            this.btnLimpiar.Location = new System.Drawing.Point(895, 444);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(99, 43);
             this.btnLimpiar.TabIndex = 14;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -210,9 +212,9 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(161, 392);
+            this.btnCancelar.Location = new System.Drawing.Point(18, 467);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(154, 38);
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -220,7 +222,7 @@
             // 
             // txtCantidadPaquetes
             // 
-            this.txtCantidadPaquetes.Location = new System.Drawing.Point(859, 370);
+            this.txtCantidadPaquetes.Location = new System.Drawing.Point(906, 374);
             this.txtCantidadPaquetes.Name = "txtCantidadPaquetes";
             this.txtCantidadPaquetes.Size = new System.Drawing.Size(140, 20);
             this.txtCantidadPaquetes.TabIndex = 17;
@@ -228,17 +230,27 @@
             // lblCantidadPaquetes
             // 
             this.lblCantidadPaquetes.AutoSize = true;
-            this.lblCantidadPaquetes.Location = new System.Drawing.Point(730, 377);
+            this.lblCantidadPaquetes.Location = new System.Drawing.Point(726, 377);
             this.lblCantidadPaquetes.Name = "lblCantidadPaquetes";
             this.lblCantidadPaquetes.Size = new System.Drawing.Size(123, 13);
             this.lblCantidadPaquetes.TabIndex = 18;
             this.lblCantidadPaquetes.Text = "Cantidades de Paquetes";
             // 
-            // FrmAgregarStock
+            // lblAclaratorio
+            // 
+            this.lblAclaratorio.AutoSize = true;
+            this.lblAclaratorio.Location = new System.Drawing.Point(903, 301);
+            this.lblAclaratorio.Name = "lblAclaratorio";
+            this.lblAclaratorio.Size = new System.Drawing.Size(169, 13);
+            this.lblAclaratorio.TabIndex = 19;
+            this.lblAclaratorio.Text = "Importante: la cantidad va en kilos";
+            // 
+            // lblVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 547);
+            this.Controls.Add(this.lblAclaratorio);
             this.Controls.Add(this.lblCantidadPaquetes);
             this.Controls.Add(this.txtCantidadPaquetes);
             this.Controls.Add(this.btnCancelar);
@@ -253,11 +265,11 @@
             this.Controls.Add(this.lblStockActual);
             this.Controls.Add(this.lblNombreProducto);
             this.Controls.Add(this.txtSeleccionar);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSubTitulo);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvAgregarStock);
-            this.Name = "FrmAgregarStock";
+            this.Name = "lblVersion";
             this.Text = "Guardar Stock";
             this.Load += new System.EventHandler(this.FrmAgregarStock_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgregarStock)).EndInit();
@@ -272,11 +284,11 @@
 
         private System.Windows.Forms.DataGridView dgvAgregarStock;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
+        private System.Windows.Forms.ToolStripStatusLabel lblHora;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSubTitulo;
         private System.Windows.Forms.Button txtSeleccionar;
         private System.Windows.Forms.Label lblNombreProducto;
         private System.Windows.Forms.Label lblStockActual;
@@ -291,5 +303,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtCantidadPaquetes;
         private System.Windows.Forms.Label lblCantidadPaquetes;
+        private System.Windows.Forms.Label lblAclaratorio;
     }
 }
