@@ -71,6 +71,8 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblObservacion = new System.Windows.Forms.Label();
+            this.lblOservacion1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComboPromociones)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -450,6 +452,7 @@
             this.txtCantidadPromo.Name = "txtCantidadPromo";
             this.txtCantidadPromo.Size = new System.Drawing.Size(215, 23);
             this.txtCantidadPromo.TabIndex = 43;
+            this.txtCantidadPromo.TextChanged += new System.EventHandler(this.txtCantidadPromo_TextChanged);
             // 
             // label14
             // 
@@ -521,11 +524,34 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
             // 
+            // lblObservacion
+            // 
+            this.lblObservacion.AutoSize = true;
+            this.lblObservacion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObservacion.Location = new System.Drawing.Point(280, 787);
+            this.lblObservacion.Name = "lblObservacion";
+            this.lblObservacion.Size = new System.Drawing.Size(274, 45);
+            this.lblObservacion.TabIndex = 49;
+            this.lblObservacion.Text = "Si el producto se vende por peso.\nIngresá la cantidad en gramos.\nEjemplo: 250 (eq" +
+    "uivale a 250 g) Pizza Queso etc.”";
+            // 
+            // lblOservacion1
+            // 
+            this.lblOservacion1.AutoSize = true;
+            this.lblOservacion1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOservacion1.Location = new System.Drawing.Point(168, 799);
+            this.lblOservacion1.Name = "lblOservacion1";
+            this.lblOservacion1.Size = new System.Drawing.Size(76, 15);
+            this.lblOservacion1.TabIndex = 50;
+            this.lblOservacion1.Text = "observación:";
+            // 
             // FrmCombo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 39F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1923, 1061);
+            this.Controls.Add(this.lblOservacion1);
+            this.Controls.Add(this.lblObservacion);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnAgregarPromo);
             this.Controls.Add(this.label15);
@@ -625,5 +651,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.Label lblObservacion;
+        private System.Windows.Forms.Label lblOservacion1;
     }
 }

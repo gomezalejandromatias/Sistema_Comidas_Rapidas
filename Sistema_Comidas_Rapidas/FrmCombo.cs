@@ -17,8 +17,8 @@ namespace Sistema_Comidas_Rapidas
 {
     public partial class FrmCombo : Form
     {
-      public  List<Combo> listacombo = new List<Combo>();
-        public  Combo comboactual;
+        public List<Combo> listacombo = new List<Combo>();
+        public Combo comboactual;
         public Combo aux;
         public List<ComboProductoLinea> comboProductoLineas = new List<ComboProductoLinea>();
         public FrmCombo()
@@ -28,7 +28,7 @@ namespace Sistema_Comidas_Rapidas
             dgvComboPromociones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvComboPromociones.Font = new Font("Segoe UI", 10);  // tamaño normal
             dgvComboPromociones.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            
+
             cargargrillacombo();
 
             lblEliminado.Visible = false;
@@ -58,7 +58,7 @@ namespace Sistema_Comidas_Rapidas
 
             dgvComboPromociones.Columns["IdCombo"].Visible = false;
             dgvComboPromociones.Columns["Activo"].Visible = false;
-          
+
 
             dgvComboPromociones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -152,7 +152,7 @@ namespace Sistema_Comidas_Rapidas
 
 
 
-        
+
                 int idComboNuevo = comboNegocio.AgregarCombo(comboactual);
 
                 // 2️⃣ Guardar cada producto de la receta en ComboProducto
@@ -168,7 +168,7 @@ namespace Sistema_Comidas_Rapidas
                 cargargrillacombo();
 
                 MessageBox.Show(" Combo Agregado con exito  ");
-                  
+
 
 
             }
@@ -198,7 +198,7 @@ namespace Sistema_Comidas_Rapidas
 
             cargargrillacombo();
 
-            
+
 
 
 
@@ -218,7 +218,7 @@ namespace Sistema_Comidas_Rapidas
             // 2) Validar texto ingresado
 
             // 3) Evitar duplicados
-     
+
 
 
 
@@ -231,9 +231,8 @@ namespace Sistema_Comidas_Rapidas
 
             ComboNegocio comboNegocio = new ComboNegocio();
 
-
             // 1) Validar nombre del combo
-            string nombrePromocion =txtPromociones.Text.Trim();
+            string nombrePromocion = txtPromociones.Text.Trim();
             if (nombrePromocion.Length == 0)
             {
                 MessageBox.Show("Ingresá un nombre para el combo.", "Atención",
@@ -272,6 +271,24 @@ namespace Sistema_Comidas_Rapidas
                 return;
             }
 
+            // ✅ (NUEVO) 4.5) Validar OBSERVACIÓN / CONTENIDO (obligatorio)
+            string observacion = richTextBoxPromocion.Text.Trim();
+            if (observacion.Length == 0)
+            {
+                MessageBox.Show("Cargá la observación / contenido de la promoción (lo que descuenta stock).", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                richTextBoxPromocion.Focus();
+                return;
+            }
+
+            // ✅ (NUEVO) 4.6) Validar que haya DETALLE (productos) cargados
+            if (comboProductoLineas == null || comboProductoLineas.Count == 0)
+            {
+                MessageBox.Show("Tenés que agregar al menos 1 producto a la promoción (detalle que descuenta stock).", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // 5) Validar que no exista otro combo con el mismo nombre
             bool nombreRepetido = false;
             for (int i = 0; i < listacombo.Count; i++)
@@ -286,7 +303,7 @@ namespace Sistema_Comidas_Rapidas
             {
                 MessageBox.Show("Ya existe un combo con ese nombre. Elegí otro.", "Atención",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtCombo.Focus();
+                txtPromociones.Focus();
                 return;
             }
 
@@ -296,13 +313,14 @@ namespace Sistema_Comidas_Rapidas
                 comboactual = new Combo();
                 comboactual.Nombre = nombrePromocion;
                 comboactual.Precio = precio;
-                comboactual.Ingredientes = richTextBoxPromocion.Text;
+
+                // ✅ (NUEVO) usar la observación validada
+                comboactual.Ingredientes = observacion;
+
                 comboactual.CodigoCombo = "C" + new Random().Next(1000, 9999);
                 comboactual.Activo = true;
 
                 listacombo.Add(comboactual);
-
-
 
                 // Refrescar la grilla
                 int idComboNuevo = comboNegocio.AgregarCombo(comboactual);
@@ -319,17 +337,19 @@ namespace Sistema_Comidas_Rapidas
 
                 cargargrillacombo();
 
-                MessageBox.Show(" Promocion Agregado con exito  ");
+                MessageBox.Show("Promoción agregada con éxito.");
 
-
-
+                txtPromociones.Text = "";
+                txtPrecioPromocion.Text = "";
+                richTextBoxPromocion.Text = "";
+                txtCantidadPromo.Text = "";
             }
             catch (SqlException sqlEx)
             {
                 // ERROR POR CLAVE ÚNICA DUPLICADA
                 if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
                 {
-                    MessageBox.Show("Ya existe la Promocion con ese nombre. Elegí otro.",
+                    MessageBox.Show("Ya existe la Promoción con ese nombre. Elegí otro.",
                         "Nombre duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     txtCombo.Focus();
@@ -343,10 +363,9 @@ namespace Sistema_Comidas_Rapidas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al crear La Promocion : " + ex.Message,
+                MessageBox.Show("Ocurrió un error al crear La Promoción: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
 
             cargargrillacombo();
         }
@@ -359,6 +378,7 @@ namespace Sistema_Comidas_Rapidas
             txtPromociones.Text = "";
             txtPrecioPromocion.Text = "";
             richTextBoxCombo.Text = "";
+            txtCantidadProducto.Text = "";
 
             // Limpiar listas
             richTextBoxCombo.Text = "";
@@ -384,7 +404,7 @@ namespace Sistema_Comidas_Rapidas
         {
             DialogResult respuesta = MessageBox.Show("Desea Cancelar La Operacion?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (respuesta == DialogResult.Yes) 
+            if (respuesta == DialogResult.Yes)
             {
 
                 frmVenta frmVenta = new frmVenta();
@@ -393,7 +413,7 @@ namespace Sistema_Comidas_Rapidas
                 this.Hide();
 
 
-              
+
 
             }
 
@@ -421,8 +441,8 @@ namespace Sistema_Comidas_Rapidas
             dgvComboPromociones.DataSource = null;
             dgvComboPromociones.DataSource = listrafiltrada;
 
-                dgvComboPromociones.Columns["IdCombo"].Visible = false;
-                dgvComboPromociones.Columns["Activo"].Visible = false;
+            dgvComboPromociones.Columns["IdCombo"].Visible = false;
+            dgvComboPromociones.Columns["Activo"].Visible = false;
 
 
 
@@ -463,7 +483,7 @@ namespace Sistema_Comidas_Rapidas
         {
             aux = (Combo)dgvComboPromociones.CurrentRow.DataBoundItem;
 
-        
+
 
             try
             {
@@ -498,12 +518,12 @@ namespace Sistema_Comidas_Rapidas
 
         private void FrmCombo_Load(object sender, EventArgs e)
         {
-            btnGuardarCambios.Visible = false;  
+            btnGuardarCambios.Visible = false;
 
 
             ProductoNegocio productoNegocio = new ProductoNegocio();
 
-           
+
 
             try
             {
@@ -557,7 +577,8 @@ namespace Sistema_Comidas_Rapidas
             UIHelper.BotonPrincipal(btnAgregarPromocion);
             UIHelper.BotonPrincipal(btnAgregarTipoProducto);
             UIHelper.BotonPrincipal(btnIngredienteCombo);
-
+            UIHelper.LabelPremium(lblObservacion);
+            UIHelper.LabelPremium(lblOservacion1);
             UIHelper.BotonAmarilloPremium(btnLimpiar);
             UIHelper.BotonAmarilloPremium(button1);
             UIHelper.BotonPeligroPremium(btnEliminarCombo);
@@ -573,49 +594,138 @@ namespace Sistema_Comidas_Rapidas
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Desea Modificar el Producto?", "Modificado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (aux == null)
+            {
+                MessageBox.Show("Primero seleccioná un combo/promo para modificar.", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult respuesta = MessageBox.Show("¿Desea modificar el producto?", "Modificar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (respuesta != DialogResult.Yes)
+                return;
+
             try
             {
-                if (respuesta == DialogResult.Yes)
+                bool esPromo = aux.Nombre != null && aux.Nombre.Contains("+"); // tu criterio
+
+                // ----------------------------
+                // VALIDACIONES
+                // ----------------------------
+                if (esPromo)
                 {
-                    bool esPromo = aux.Nombre.Contains("+");  // 🔍 Detectamos promo o combo
-
-                    if (esPromo)
+                    // Nombre promo
+                    string nombre = txtPromociones.Text.Trim();
+                    if (nombre.Length == 0)
                     {
-                        // ⭐ ES PROMO → modificar los textbox de PROMO
-                        aux.Nombre = txtPromociones.Text;
-                        aux.Precio = decimal.Parse(txtPrecioPromocion.Text);
-                        aux.Ingredientes = richTextBoxPromocion.Text;
-                    }
-                    else
-                    {
-                        // ⭐ ES COMBO → modificar los textbox de COMBO
-                        aux.Nombre = txtCombo.Text;
-                        aux.Precio = decimal.Parse(txtPrecioCombo.Text);
-                        aux.Ingredientes = richTextBoxCombo.Text;
+                        MessageBox.Show("Ingresá un nombre para la promoción.", "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtPromociones.Focus();
+                        return;
                     }
 
-                    aux.FechaAlta = DateTime.Now;
+                    // Precio promo
+                    decimal precio;
+                    if (!decimal.TryParse(txtPrecioPromocion.Text.Trim(), out precio) || precio <= 0)
+                    {
+                        MessageBox.Show("Ingresá un precio válido para la promoción (mayor a 0).", "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtPrecioPromocion.Focus();
+                        return;
+                    }
 
-                    ComboNegocio comboNegocio = new ComboNegocio();
-                    comboNegocio.ModificarCombo(aux);
+                    // Contenido promo (obligatorio)
+                    string ingredientes = richTextBoxPromocion.Text.Trim();
+                    if (ingredientes.Length == 0)
+                    {
+                        MessageBox.Show("Cargá el contenido de la promoción (detalle/ingredientes).", "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        richTextBoxPromocion.Focus();
+                        return;
+                    }
 
-                    cargargrillacombo();
+                    // ----------------------------
+                    // ASIGNAR
+                    // ----------------------------
+                    aux.Nombre = nombre;
+                    aux.Precio = precio;
+                    aux.Ingredientes = ingredientes;
                 }
+                else
+                {
+                    // Nombre combo
+                    string nombre = txtCombo.Text.Trim();
+                    if (nombre.Length == 0)
+                    {
+                        MessageBox.Show("Ingresá un nombre para el combo.", "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtCombo.Focus();
+                        return;
+                    }
+
+                    // Precio combo
+                    decimal precio;
+                    if (!decimal.TryParse(txtPrecioCombo.Text.Trim(), out precio) || precio <= 0)
+                    {
+                        MessageBox.Show("Ingresá un precio válido para el combo (mayor a 0).", "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtPrecioCombo.Focus();
+                        return;
+                    }
+
+                    // Contenido combo (obligatorio)
+                    string ingredientes = richTextBoxCombo.Text.Trim();
+                    if (ingredientes.Length == 0)
+                    {
+                        MessageBox.Show("Cargá el contenido del combo (detalle/ingredientes).", "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        richTextBoxCombo.Focus();
+                        return;
+                    }
+
+                    // ----------------------------
+                    // ASIGNAR
+                    // ----------------------------
+                    aux.Nombre = nombre;
+                    aux.Precio = precio;
+                    aux.Ingredientes = ingredientes;
+                }
+
+                // Si tenés FechaModificacion, mejor usar esa.
+                aux.FechaAlta = DateTime.Now;
+
+                ComboNegocio comboNegocio = new ComboNegocio();
+                comboNegocio.ModificarCombo(aux);
+
+                cargargrillacombo();
+
+                MessageBox.Show("Modificado correctamente.", "OK",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // LIMPIEZA
+                txtCombo.Text = "";
+                txtPrecioCombo.Text = "";
+                txtPromociones.Text = "";
+                txtPrecioPromocion.Text = "";
+                richTextBoxCombo.Text = "";
+                richTextBoxPromocion.Text = "";
+
+                btnGuardarCambios.Visible=false;
+                btnCancelarModficacion.Visible=false;
+                btnModificar.Visible = true;
+                btnEliminarCombo.Visible=true;
+
+
+
+                txtCombo.Focus();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar: " + ex.Message);
+                MessageBox.Show("Error al modificar: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // LIMPIEZA
-            txtCombo.Text = "";
-            txtPrecioCombo.Text = "";
-            txtPromociones.Text = "";
-            txtPrecioPromocion.Text = "";
-            richTextBoxCombo.Text = "";
-            richTextBoxPromocion.Text = "";
-            txtCombo.Focus();
         }
 
         private void btnCancelarModficacion_Click(object sender, EventArgs e)
@@ -658,7 +768,7 @@ namespace Sistema_Comidas_Rapidas
                 NombreProducto = prod.NombreProducto,
                 Cantidad = cantidad
             });
-
+            txtCantidadProducto.Text = "";
             // Agregar a la receta
 
             // Mostrarlo en el RichTextBox
@@ -681,7 +791,7 @@ namespace Sistema_Comidas_Rapidas
             }
 
             // Producto elegido
-            Producto prod = (Producto)comboBoxProducto.SelectedItem;
+            Producto prod = (Producto)comboBoxPromocion.SelectedItem;
             comboProductoLineas.Add(new ComboProductoLinea
             {
                 IdProducto = prod.IDProducto,
@@ -689,10 +799,17 @@ namespace Sistema_Comidas_Rapidas
                 Cantidad = cantidad
             });
 
+            txtCantidadPromo.Text = "";
+            txtCantidadPromo.Focus();
             // Agregar a la receta
 
             // Mostrarlo en el RichTextBox
             richTextBoxPromocion.AppendText($"{prod.NombreProducto} x {cantidad}\n");
+        }
+
+        private void txtCantidadPromo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

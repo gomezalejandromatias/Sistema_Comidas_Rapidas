@@ -28,67 +28,79 @@ namespace Sistema_Comidas_Rapidas
         {
             try
             {
-                // Validaciones
+                // 🔹 Nombre obligatorio
                 if (string.IsNullOrWhiteSpace(txtNombreProv.Text))
                 {
-                    MessageBox.Show("El nombre del proveedor es obligatorio.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El nombre del proveedor es obligatorio.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNombreProv.Focus();
                     return;
                 }
 
+                // 🔹 Teléfono obligatorio (solo números)
                 if (string.IsNullOrWhiteSpace(txtTelProv.Text) || !txtTelProv.Text.All(char.IsDigit))
                 {
-                    MessageBox.Show("El teléfono es obligatorio y debe contener solo números.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El teléfono es obligatorio y debe contener solo números.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtTelProv.Focus();
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtEmailProv.Text) || !IsValidEmail(txtEmailProv.Text))
+                // 🔹 Email OPCIONAL
+                if (!string.IsNullOrWhiteSpace(txtEmailProv.Text))
                 {
-                    MessageBox.Show("El email es obligatorio y debe tener un formato válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtEmailProv.Focus();
-                    return;
+                    if (!IsValidEmail(txtEmailProv.Text))
+                    {
+                        MessageBox.Show("El email ingresado no tiene un formato válido.", "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtEmailProv.Focus();
+                        return;
+                    }
                 }
 
+                // 🔹 Dirección obligatoria
                 if (string.IsNullOrWhiteSpace(txtDireccionProv.Text))
                 {
-                    MessageBox.Show("La dirección es obligatoria.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("La dirección es obligatoria.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtDireccionProv.Focus();
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(rtbProv.Text))
+                // 🔹 Crear proveedor (descripción opcional)
+                Proveedores proveedores = new Proveedores
                 {
-                    MessageBox.Show("La descripción es obligatoria.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    rtbProv.Focus();
-                    return;
-                }
-
-                // Crear el proveedor y asignar los valores
-                proveedores = new Proveedores
-                {
-                    Nombre = txtNombreProv.Text,
-                    Telefono = txtTelProv.Text,
-                    Email = txtEmailProv.Text,
-                    Direccion = txtDireccionProv.Text,
-                    Descripcion = rtbProv.Text
+                    Nombre = txtNombreProv.Text.Trim(),
+                    Telefono = txtTelProv.Text.Trim(),
+                    Email = txtEmailProv.Text.Trim(),        // puede quedar vacío
+                    Direccion = txtDireccionProv.Text.Trim(),
+                    Descripcion = rtbProv.Text.Trim()        // puede quedar vacío
                 };
 
-                // Agregar el proveedor a la base de datos o lista
                 ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
                 proveedorNegocio.AgregarProveedor(proveedores);
 
-                // Mensaje de éxito
-                MessageBox.Show("Proveedor agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Proveedor agregado correctamente ✔", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Recargar los proveedores
                 CargarProveedor();
+                txtNombreProv.Text = "";
+                txtTelProv.Text = "";
+                txtDireccionProv.Text = "";
+                txtEmailProv.Text = "";
+                rtbProv.Text = "";
             }
             catch (Exception ex)
             {
-                // Mostrar el error si ocurre una excepción
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            txtNombreProv.Text = "";
+            txtTelProv.Text = "";
+            txtDireccionProv.Text = "";
+            txtEmailProv.Text = "";
+            rtbProv.Text = "";
         }
 
         public void CargarProveedor()
@@ -213,6 +225,7 @@ namespace Sistema_Comidas_Rapidas
             UIHelper.LabelPremium(lblSubtitulo);
             UIHelper.LabelPremium(lblTelefono);
             UIHelper.LabelPremium (lblTitulo);
+            UIHelper.LabelPremium(lblFiltroProv);
 
 
 
@@ -222,7 +235,7 @@ namespace Sistema_Comidas_Rapidas
         private void btnModificarDefinitivoProv_Click(object sender, EventArgs e)
         {
 
-            DialogResult respuesta = MessageBox.Show("Desea eliminar el Producto?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult respuesta = MessageBox.Show("Desea Modificar el Producto?", "modificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (respuesta == DialogResult.Yes)
             {
@@ -292,6 +305,7 @@ namespace Sistema_Comidas_Rapidas
             txtDireccionProv.Text = "";
             txtEmailProv.Text = "";
             rtbProv.Text = "";
+            btnCncelarCambios.Visible = false;
 
             btnModificarDefinitivoProv.Visible = false;
             btnAgregar.Visible = true;
@@ -358,6 +372,36 @@ namespace Sistema_Comidas_Rapidas
             {
                 return false;
             }
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Proveedores> listafiltrada;
+            string filtro = txtFiltro.Text;
+
+            ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
+
+
+            if (filtro != "")
+            {
+                listafiltrada = proveedorNegocio.ListaProveedores().FindAll(x => x.Nombre.ToLower().Contains(filtro));
+
+
+
+
+            }
+
+            else
+            {
+                listafiltrada = proveedorNegocio.ListaProveedores();
+
+            }
+
+            dtgProveedor.DataSource = null;
+            dtgProveedor.DataSource = listafiltrada;
+
+            dtgProveedor.Columns["idproveedor"].Visible = false;
+            dtgProveedor.Columns["Activo"].Visible = false;
         }
     }
 }

@@ -64,6 +64,7 @@
             this.lblGramos = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.btnCancelarcambio = new System.Windows.Forms.Button();
+            this.lblPrecioKilos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dvbListaProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -286,7 +287,7 @@
             // 
             this.lblCantidadPaquete.AutoSize = true;
             this.lblCantidadPaquete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidadPaquete.Location = new System.Drawing.Point(43, 363);
+            this.lblCantidadPaquete.Location = new System.Drawing.Point(45, 363);
             this.lblCantidadPaquete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidadPaquete.Name = "lblCantidadPaquete";
             this.lblCantidadPaquete.Size = new System.Drawing.Size(122, 15);
@@ -296,7 +297,7 @@
             // txtCantidadPaquete
             // 
             this.txtCantidadPaquete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadPaquete.Location = new System.Drawing.Point(319, 351);
+            this.txtCantidadPaquete.Location = new System.Drawing.Point(319, 363);
             this.txtCantidadPaquete.Margin = new System.Windows.Forms.Padding(4);
             this.txtCantidadPaquete.Name = "txtCantidadPaquete";
             this.txtCantidadPaquete.Size = new System.Drawing.Size(179, 27);
@@ -317,7 +318,7 @@
             // txtUnidadPaquete
             // 
             this.txtUnidadPaquete.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUnidadPaquete.Location = new System.Drawing.Point(319, 305);
+            this.txtUnidadPaquete.Location = new System.Drawing.Point(319, 311);
             this.txtUnidadPaquete.Margin = new System.Windows.Forms.Padding(4);
             this.txtUnidadPaquete.Name = "txtUnidadPaquete";
             this.txtUnidadPaquete.Size = new System.Drawing.Size(179, 27);
@@ -394,7 +395,7 @@
             // txtCantidadGramo
             // 
             this.txtCantidadGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 309);
+            this.txtCantidadGramo.Location = new System.Drawing.Point(319, 314);
             this.txtCantidadGramo.Name = "txtCantidadGramo";
             this.txtCantidadGramo.Size = new System.Drawing.Size(179, 23);
             this.txtCantidadGramo.TabIndex = 38;
@@ -404,18 +405,18 @@
             // 
             this.lblProductoporPeso.AutoSize = true;
             this.lblProductoporPeso.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductoporPeso.Location = new System.Drawing.Point(43, 317);
+            this.lblProductoporPeso.Location = new System.Drawing.Point(45, 322);
             this.lblProductoporPeso.Name = "lblProductoporPeso";
-            this.lblProductoporPeso.Size = new System.Drawing.Size(108, 15);
+            this.lblProductoporPeso.Size = new System.Drawing.Size(209, 15);
             this.lblProductoporPeso.TabIndex = 41;
-            this.lblProductoporPeso.Text = "Producto por Peso";
+            this.lblProductoporPeso.Text = "Atencion: La cantidad aqui va en kilos";
             this.lblProductoporPeso.Click += new System.EventHandler(this.lblProductoporPeso_Click);
             // 
             // txtStockGramo
             // 
             this.txtStockGramo.AcceptsReturn = true;
             this.txtStockGramo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockGramo.Location = new System.Drawing.Point(319, 402);
+            this.txtStockGramo.Location = new System.Drawing.Point(319, 407);
             this.txtStockGramo.Name = "txtStockGramo";
             this.txtStockGramo.Size = new System.Drawing.Size(179, 23);
             this.txtStockGramo.TabIndex = 42;
@@ -424,11 +425,11 @@
             // 
             this.lblGramos.AutoSize = true;
             this.lblGramos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGramos.Location = new System.Drawing.Point(43, 410);
+            this.lblGramos.Location = new System.Drawing.Point(45, 411);
             this.lblGramos.Name = "lblGramos";
-            this.lblGramos.Size = new System.Drawing.Size(106, 15);
+            this.lblGramos.Size = new System.Drawing.Size(218, 15);
             this.lblGramos.TabIndex = 43;
-            this.lblGramos.Text = "Stock (en Gramos)";
+            this.lblGramos.Text = "Stock (Muestra la Cantidad en Gramos)";
             // 
             // statusStrip1
             // 
@@ -449,11 +450,22 @@
             this.btnCancelarcambio.UseVisualStyleBackColor = true;
             this.btnCancelarcambio.Click += new System.EventHandler(this.btnCancelarcambio_Click);
             // 
+            // lblPrecioKilos
+            // 
+            this.lblPrecioKilos.AutoSize = true;
+            this.lblPrecioKilos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioKilos.Location = new System.Drawing.Point(43, 503);
+            this.lblPrecioKilos.Name = "lblPrecioKilos";
+            this.lblPrecioKilos.Size = new System.Drawing.Size(148, 15);
+            this.lblPrecioKilos.TabIndex = 46;
+            this.lblPrecioKilos.Text = "Muestra el Precio Por Kilo";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 34F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.Controls.Add(this.lblPrecioKilos);
             this.Controls.Add(this.btnCancelarcambio);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lblGramos);
@@ -539,6 +551,7 @@
         private System.Windows.Forms.Label lblGramos;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Button btnCancelarcambio;
+        private System.Windows.Forms.Label lblPrecioKilos;
     }
 }
 
