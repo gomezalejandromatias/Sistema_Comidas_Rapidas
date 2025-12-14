@@ -30,11 +30,13 @@ namespace Sistema_Comidas_Rapidas
             UIHelper.LabelPremium(lblTotalEfectivo);
             UIHelper.LabelPremium(lblTotalTransferencia);
             UIHelper.LabelTituloPremium(lblTitulo);
-            UIHelper.LabelPremium(lblFiltro);
+            UIHelper.LabelPremium(lblObservacion);
 
             UIHelper.BotonPrincipal(btnElegirFechaFiltrada);
             UIHelper.BotonAmarilloPremium(btnLimpiar);
             UIHelper.BotonPeligroPremium(btnVolverVenta);
+
+
 
 
 
@@ -59,7 +61,7 @@ namespace Sistema_Comidas_Rapidas
 
          
             dataGridViewDetallaVenta.Columns["IDVenta"].Visible = false;
-
+            dataGridViewDetallaVenta.Columns["Empleado"].Visible = false;
             dataGridViewDetallaVenta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // Ajustar peso de cada columna
@@ -92,7 +94,7 @@ namespace Sistema_Comidas_Rapidas
 
             if (seleccionandoDesde)
             {
-                // Primera selección: FECHA DESDE
+                // 1) Primera selección: FECHA DESDE
                 fechaDesde = dtmFiltarFecha.Value.Date;
                 seleccionandoDesde = false;
 
@@ -103,10 +105,10 @@ namespace Sistema_Comidas_Rapidas
             }
             else
             {
-                // Segunda selección: FECHA HASTA
+                // 2) Segunda selección: FECHA HASTA
                 DateTime fechaHasta = dtmFiltarFecha.Value.Date;
 
-                // Si el usuario se confundió y eligió Hasta menor que Desde, los acomodo
+                // Si el usuario eligió al revés, las acomodo
                 if (fechaHasta < fechaDesde)
                 {
                     DateTime aux = fechaHasta;
@@ -114,14 +116,18 @@ namespace Sistema_Comidas_Rapidas
                     fechaDesde = aux;
                 }
 
-                // Traigo las ventas del rango
-                var lista = ventaNegocio.listaventaFiltrada(fechaDesde, fechaHasta);
+                // ✅ CLAVE: incluir TODO el día "fechaHasta"
+                DateTime desde = fechaDesde.Date;                 // 00:00 del día desde
+                DateTime hastaExclusivo = fechaHasta.Date.AddDays(1); // 00:00 del día siguiente
+
+                // Traigo las ventas del rango (desde inclusive, hasta exclusivo)
+                var lista = ventaNegocio.listaventaFiltrada(desde, hastaExclusivo);
 
                 dataGridViewDetallaVenta.DataSource = null;
                 dataGridViewDetallaVenta.DataSource = lista;
                 dataGridViewDetallaVenta.Columns["IDVenta"].Visible = false;
 
-                // OPCIONAL: calcular totales (cierre de caja)
+                // Totales
                 decimal totalGeneral = 0;
                 decimal totalEfectivo = 0;
                 decimal totalTransferencia = 0;
@@ -140,12 +146,11 @@ namespace Sistema_Comidas_Rapidas
                     }
                 }
 
-                // Estos labels los creás vos en el form
                 lblTotalGeneral.Text = "Total general: $" + totalGeneral.ToString("0.00");
                 lblTotalEfectivo.Text = "Total en efectivo: $" + totalEfectivo.ToString("0.00");
                 lblTotalTransferencia.Text = "Total en transferencia: $" + totalTransferencia.ToString("0.00");
 
-                // Vuelvo al estado inicial para que la próxima vez vuelva a pedir DESDE
+                // Vuelvo al estado inicial para la próxima
                 seleccionandoDesde = true;
 
                 MessageBox.Show(

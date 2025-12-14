@@ -135,15 +135,15 @@ namespace Negocio
 
         }
 
-        public void ModificarProducto(Producto producto) 
+        public void ModificarProducto(Producto producto)
         {
             AccesoDatos accesoDatos = new AccesoDatos();
 
             try
             {
-               
 
-                accesoDatos.SetearConsulta("update Producto set CodigoProducto=@CodigoProducto,NombreProducto=@NombreProducto,UnidadPaquete=@UnidadPaquete,CantidadUnidad=@CantidadUnidad, "+
+
+                accesoDatos.SetearConsulta("update Producto set CodigoProducto=@CodigoProducto,NombreProducto=@NombreProducto,UnidadPaquete=@UnidadPaquete,CantidadUnidad=@CantidadUnidad, " +
                     "PrecioUnidad=@PrecioUnidad,FechaIngreso=@FechaIngreso,Categoria=@Categoria,Stock=@Stock,PrecioFinal=@PrecioFinal,IDProveedor=@IDProveedor WHERE IdProducto = @IdProducto");
                 accesoDatos.SetearParametro("@CodigoProducto", producto.CodigoProducto);
                 accesoDatos.SetearParametro("@NombreProducto", producto.NombreProducto);
@@ -169,26 +169,34 @@ namespace Negocio
                 throw ex;
             }
             finally { accesoDatos.CerrarConexion(); }
-        
-        
-        
-        
-        
+
+
+
+
+
         }
         public void ModificarStock(Producto producto)
         {
-       
+
             AccesoDatos accesoDatos = new AccesoDatos();
 
             try
             {
                 accesoDatos.SetearConsulta(
-                    "UPDATE Producto SET Stock = @Stock,UnidadPaquete =@UnidadPaquete ,CantidadUnidad=@CantidadUnidad " +
-                    "WHERE IdProducto = @IdProducto");
+                    "UPDATE Producto SET " +
+                    "Stock = @Stock, " +
+                    "UnidadPaquete = @UnidadPaquete, " +
+                    "CantidadUnidad = @CantidadUnidad, " +
+                    "PrecioUnidad = @PrecioUnidad, " +
+                    "PrecioFinal = @PrecioFinal " +       // ✅
+                    "WHERE IdProducto = @IdProducto"
+                );
 
                 accesoDatos.SetearParametro("@Stock", producto.Stock);
                 accesoDatos.SetearParametro("@UnidadPaquete", producto.UnidadPaquete);
                 accesoDatos.SetearParametro("@CantidadUnidad", producto.CantidadUnidad);
+                accesoDatos.SetearParametro("@PrecioUnidad", producto.PrecioUnidad);
+                accesoDatos.SetearParametro("@PrecioFinal", producto.PrecioFinal);   // ✅
                 accesoDatos.SetearParametro("@IdProducto", producto.IDProducto);
 
                 accesoDatos.EjecutarAccion();
@@ -201,10 +209,9 @@ namespace Negocio
             {
                 accesoDatos.CerrarConexion();
             }
+
+
+
         }
-
-
-
-
     }
 }

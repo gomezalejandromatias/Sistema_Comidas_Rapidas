@@ -18,10 +18,10 @@ namespace Dominio
         public int IDProveedor { get; set; }
         public string Proveedor { get; set; }
 
-        [DisplayName("Unidades por Paquetes / Cantidad de kilos")]
+        [DisplayName("Cantidad de Paquetes / Cantidad en Kilos")]
         public int UnidadPaquete { get; set; }
 
-        [DisplayName("Cantidad de Paquetes / Cantidad en Gramos")]
+        [DisplayName("Unidades por Paquetes / Cantidad en Gramos")]
         public int CantidadUnidad { get; set; }
 
         [DisplayName("Precio p/u y/o KiloGramos")]

@@ -170,5 +170,54 @@ namespace Negocio
             }
         }
 
+
+        public List<Combo> listacomboParaVenta()
+        {
+            List<Combo> lista = new List<Combo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            datos.SetearConsulta(
+                "SELECT c.IdCombo, c.CodigoCombo, c.Nombre, c.Ingredientes, c.Precio, c.FechaAlta " +
+                "FROM Combo c " +
+                "WHERE c.Activo = 1 " +
+                "AND NOT EXISTS ( " +
+                "   SELECT 1 " +
+                "   FROM ComboProducto cd " +
+                "   INNER JOIN Producto p ON p.IdProducto = cd.IdProducto " +
+                "   WHERE cd.IdCombo = c.IdCombo " +
+                "     AND p.Activo = 0 " +
+                ")"
+            );
+
+            datos.EjecutarLectura();
+
+            try
+            {
+                while (datos.Lector.Read())
+                {
+                    Combo aux = new Combo();
+                    aux.IdCombo = (int)datos.Lector["IdCombo"];
+                    aux.CodigoCombo = datos.Lector["CodigoCombo"].ToString();
+                    aux.Nombre = datos.Lector["Nombre"].ToString();
+                    aux.Ingredientes = datos.Lector["Ingredientes"].ToString();
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.FechaAlta = (DateTime)datos.Lector["FechaAlta"];
+                    aux.Activo = true;
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }

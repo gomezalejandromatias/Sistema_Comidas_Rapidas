@@ -53,6 +53,8 @@
             this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblSubtotal = new System.Windows.Forms.Label();
+            this.lblMostrarSubtotal = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
             this.statusStripFechaHora.SuspendLayout();
@@ -68,7 +70,7 @@
             this.proveedoresToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1398, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1473, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -133,7 +135,7 @@
             this.dgvVenta.MultiSelect = false;
             this.dgvVenta.Name = "dgvVenta";
             this.dgvVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVenta.Size = new System.Drawing.Size(636, 383);
+            this.dgvVenta.Size = new System.Drawing.Size(794, 383);
             this.dgvVenta.TabIndex = 3;
             this.dgvVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVenta_CellClick);
             this.dgvVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVenta_CellContentClick);
@@ -151,7 +153,7 @@
             // btnVender
             // 
             this.btnVender.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVender.Location = new System.Drawing.Point(928, 533);
+            this.btnVender.Location = new System.Drawing.Point(1034, 531);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(140, 32);
             this.btnVender.TabIndex = 5;
@@ -162,7 +164,7 @@
             // btnCancelarVenta
             // 
             this.btnCancelarVenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarVenta.Location = new System.Drawing.Point(1145, 533);
+            this.btnCancelarVenta.Location = new System.Drawing.Point(1278, 531);
             this.btnCancelarVenta.Name = "btnCancelarVenta";
             this.btnCancelarVenta.Size = new System.Drawing.Size(125, 32);
             this.btnCancelarVenta.TabIndex = 6;
@@ -173,7 +175,7 @@
             // listViewCarrito
             // 
             this.listViewCarrito.HideSelection = false;
-            this.listViewCarrito.Location = new System.Drawing.Point(928, 144);
+            this.listViewCarrito.Location = new System.Drawing.Point(1034, 144);
             this.listViewCarrito.Name = "listViewCarrito";
             this.listViewCarrito.Size = new System.Drawing.Size(369, 315);
             this.listViewCarrito.TabIndex = 7;
@@ -184,7 +186,7 @@
             // 
             this.lblProductos.AutoSize = true;
             this.lblProductos.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductos.Location = new System.Drawing.Point(988, 119);
+            this.lblProductos.Location = new System.Drawing.Point(1120, 119);
             this.lblProductos.Name = "lblProductos";
             this.lblProductos.Size = new System.Drawing.Size(179, 19);
             this.lblProductos.TabIndex = 8;
@@ -193,7 +195,7 @@
             // btnSeleccionarProducto
             // 
             this.btnSeleccionarProducto.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeleccionarProducto.Location = new System.Drawing.Point(679, 156);
+            this.btnSeleccionarProducto.Location = new System.Drawing.Point(831, 156);
             this.btnSeleccionarProducto.Name = "btnSeleccionarProducto";
             this.btnSeleccionarProducto.Size = new System.Drawing.Size(180, 29);
             this.btnSeleccionarProducto.TabIndex = 9;
@@ -213,21 +215,19 @@
             // 
             this.lblVentaExitosa.AutoSize = true;
             this.lblVentaExitosa.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVentaExitosa.Location = new System.Drawing.Point(1076, 46);
+            this.lblVentaExitosa.Location = new System.Drawing.Point(1423, 204);
             this.lblVentaExitosa.Name = "lblVentaExitosa";
-            this.lblVentaExitosa.Size = new System.Drawing.Size(50, 19);
+            this.lblVentaExitosa.Size = new System.Drawing.Size(0, 19);
             this.lblVentaExitosa.TabIndex = 11;
-            this.lblVentaExitosa.Text = "label4";
             // 
             // lblTotalCobro
             // 
             this.lblTotalCobro.AutoSize = true;
             this.lblTotalCobro.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalCobro.Location = new System.Drawing.Point(1234, 484);
+            this.lblTotalCobro.Location = new System.Drawing.Point(1423, 272);
             this.lblTotalCobro.Name = "lblTotalCobro";
-            this.lblTotalCobro.Size = new System.Drawing.Size(50, 19);
+            this.lblTotalCobro.Size = new System.Drawing.Size(0, 19);
             this.lblTotalCobro.TabIndex = 12;
-            this.lblTotalCobro.Text = "label4";
             // 
             // btnLimpiar
             // 
@@ -244,7 +244,7 @@
             // 
             this.comboBoxFormaPago.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxFormaPago.FormattingEnabled = true;
-            this.comboBoxFormaPago.Location = new System.Drawing.Point(679, 333);
+            this.comboBoxFormaPago.Location = new System.Drawing.Point(831, 334);
             this.comboBoxFormaPago.Name = "comboBoxFormaPago";
             this.comboBoxFormaPago.Size = new System.Drawing.Size(190, 23);
             this.comboBoxFormaPago.TabIndex = 14;
@@ -254,7 +254,7 @@
             // 
             this.lblFormaPago.AutoSize = true;
             this.lblFormaPago.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormaPago.Location = new System.Drawing.Point(708, 294);
+            this.lblFormaPago.Location = new System.Drawing.Point(883, 276);
             this.lblFormaPago.Name = "lblFormaPago";
             this.lblFormaPago.Size = new System.Drawing.Size(89, 15);
             this.lblFormaPago.TabIndex = 15;
@@ -268,7 +268,7 @@
             this.lblVersion});
             this.statusStripFechaHora.Location = new System.Drawing.Point(0, 583);
             this.statusStripFechaHora.Name = "statusStripFechaHora";
-            this.statusStripFechaHora.Size = new System.Drawing.Size(1398, 22);
+            this.statusStripFechaHora.Size = new System.Drawing.Size(1473, 22);
             this.statusStripFechaHora.TabIndex = 16;
             this.statusStripFechaHora.Text = "statusStrip1";
             // 
@@ -290,11 +290,30 @@
             this.lblVersion.Size = new System.Drawing.Size(118, 17);
             this.lblVersion.Text = "toolStripStatusLabel1";
             // 
+            // lblSubtotal
+            // 
+            this.lblSubtotal.AutoSize = true;
+            this.lblSubtotal.Location = new System.Drawing.Point(1031, 488);
+            this.lblSubtotal.Name = "lblSubtotal";
+            this.lblSubtotal.Size = new System.Drawing.Size(46, 13);
+            this.lblSubtotal.TabIndex = 17;
+            this.lblSubtotal.Text = "Subtotal";
+            // 
+            // lblMostrarSubtotal
+            // 
+            this.lblMostrarSubtotal.AutoSize = true;
+            this.lblMostrarSubtotal.Location = new System.Drawing.Point(1121, 488);
+            this.lblMostrarSubtotal.Name = "lblMostrarSubtotal";
+            this.lblMostrarSubtotal.Size = new System.Drawing.Size(0, 13);
+            this.lblMostrarSubtotal.TabIndex = 18;
+            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1398, 605);
+            this.ClientSize = new System.Drawing.Size(1473, 605);
+            this.Controls.Add(this.lblMostrarSubtotal);
+            this.Controls.Add(this.lblSubtotal);
             this.Controls.Add(this.statusStripFechaHora);
             this.Controls.Add(this.lblFormaPago);
             this.Controls.Add(this.comboBoxFormaPago);
@@ -354,5 +373,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblFecha;
         private System.Windows.Forms.ToolStripStatusLabel lblHora;
         private System.Windows.Forms.ToolStripStatusLabel lblVersion;
+        private System.Windows.Forms.Label lblSubtotal;
+        private System.Windows.Forms.Label lblMostrarSubtotal;
     }
 }

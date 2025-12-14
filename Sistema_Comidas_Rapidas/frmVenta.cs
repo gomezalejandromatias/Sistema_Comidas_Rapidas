@@ -29,6 +29,7 @@ namespace Sistema_Comidas_Rapidas
             InitializeComponent();
             ConfigurarListView();
             CargarProductos();
+         
         }
 
         private void dgvVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -49,7 +50,7 @@ namespace Sistema_Comidas_Rapidas
 
 
             dgvVenta.DataSource = null;
-            dgvVenta.DataSource = comboNegocio.listacombo();
+            dgvVenta.DataSource = comboNegocio.listacomboParaVenta();
 
 
             dgvVenta.Columns["IdCombo"].Visible = false;
@@ -58,11 +59,18 @@ namespace Sistema_Comidas_Rapidas
 
 
             // ⭐ Ajusta la columna del nombre automáticamente
-            dgvVenta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            ///   dgvVenta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // ⭐ Hace que la columna nombre ocupe todo el ancho disponible
-            dgvVenta.Columns["Nombre"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ///  dgvVenta.Columns["Nombre"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+            dgvVenta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Ajustar peso de cada columna
+            dgvVenta.Columns["Nombre"].FillWeight = 400;             // más chica
+            dgvVenta.Columns["Precio"].FillWeight = 100;             // más chica
+            dgvVenta.Columns["Ingredientes"].FillWeight = 400; // MUCHO más grande
+            dgvVenta.Columns["FechaAlta"].FillWeight = 200;
 
         }
 
@@ -106,7 +114,7 @@ namespace Sistema_Comidas_Rapidas
 
             // 4️⃣ Lo agrego al carrito
             listViewCarrito.Items.Add(item);
-            lblTotal.Text = cantidad.ToString("0.00");
+            lblMostrarSubtotal.Text = cantidad.ToString("0.00");
 
             VentaCombo det = new VentaCombo();
             det.IdCombo = idCombo;
@@ -164,7 +172,7 @@ namespace Sistema_Comidas_Rapidas
                 // Limpiar carrito y totales para la próxima venta
                 listViewCarrito.Items.Clear();
                 cantidad = 0;
-                lblTotal.Visible = false;
+               lblMostrarSubtotal.Visible=false;
             }
             catch (SqlException ex)
             {
@@ -206,7 +214,13 @@ namespace Sistema_Comidas_Rapidas
 
             listViewCarrito.Items.Clear();
             cantidad = 0;
-            lblTotal.Visible = false;
+          
+
+         
+            lblTotal.Text = "";
+            lblVentaExitosa.Text = "";
+            lblMostrarSubtotal.Text = "";
+            lblTotalCobro.Text = "";
 
             CargarProductos();
         }
@@ -233,16 +247,21 @@ namespace Sistema_Comidas_Rapidas
             dgvVenta.DataSource = null;
             dgvVenta.DataSource = listrafiltrada;
 
+            dgvVenta.Columns["IdCombo"].Visible = false;
+            dgvVenta.Columns["CodigoCombo"].Visible = false;
+            dgvVenta.Columns["Activo"].Visible = false;
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             listViewCarrito.Items.Clear();
             cantidad = 0;
-            lblTotal.Visible = false;
-            lblVentaExitosa.Visible = false;
-            lblTotalCobro.Visible = false;
-            lblTotal.Visible = false;
+            lblTotal.Text = "";
+            lblVentaExitosa.Text = "";
+            lblMostrarSubtotal.Text = "";
+            lblTotalCobro.Text = "";
+
 
             CargarProductos();
         }
@@ -305,13 +324,13 @@ namespace Sistema_Comidas_Rapidas
             comboBoxFormaPago.Items.Add("Transferencia");
             comboBoxFormaPago.Items.Add("QR");
 
-
+            
 
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             lblHora.Text = DateTime.Now.ToString("HH:mm");
             lblVersion.Text = "Versión 1.0";
 
-
+            lblTotal.Visible = false;
             UIHelper.BotonPrincipal(btnVender);
             UIHelper.BotonSecundarioPremium(btnLimpiar);
             UIHelper.BotonPeligroPremium(btnCancelarVenta);
@@ -325,6 +344,8 @@ namespace Sistema_Comidas_Rapidas
             UIHelper.LabelPremium(lblTotalCobro);
             UIHelper.LabelPremium(lblVentaExitosa);
             UIHelper.LabelTituloPremium(lblTitulo);
+            UIHelper.LabelPremium(lblMostrarSubtotal);
+            UIHelper.LabelPremium(lblSubtotal);
 
 
             UIHelper.DataGridViewModerno(dgvVenta);

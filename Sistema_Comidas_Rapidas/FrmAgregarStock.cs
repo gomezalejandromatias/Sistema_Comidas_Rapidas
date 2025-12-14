@@ -68,7 +68,7 @@ namespace Sistema_Comidas_Rapidas
             dgvAgregarStock.Columns["IDProveedor"].Visible = false;
             dgvAgregarStock.Columns["CodigoProducto"].Visible = false;
             dgvAgregarStock.Columns["PrecioUnidad"].Visible = false;
-            dgvAgregarStock.Columns["PrecioFinal"].Visible = false;
+         
             dgvAgregarStock.Columns["Proveedor"].Visible = false;
 
         }
@@ -79,6 +79,7 @@ namespace Sistema_Comidas_Rapidas
 
             txtNombreProd.Text= aux.NombreProducto;
             txtStockActual.Text = aux.Stock.ToString();
+            txtPrecioStock.Text = aux.PrecioUnidad.ToString("0.00");
 
             bool esPorPeso = (aux.CantidadUnidad == 1000);
             if (esPorPeso)
@@ -111,100 +112,121 @@ namespace Sistema_Comidas_Rapidas
                 return;
             }
 
-            // 2) Stock actual tal como está guardado en el producto (unidades o gramos)
+            // ✅ PRECIO OBLIGATORIO (precio por unidad o por kilo)
+            decimal precioIngresado;
+            if (!decimal.TryParse(txtPrecioStock.Text, out precioIngresado) || precioIngresado <= 0)
+            {
+                MessageBox.Show("Ingresá el precio por unidad/kilo (mayor a 0).", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrecioStock.Focus();
+                return;
+            }
+
             int stockActual = aux.Stock;
 
-            // 3) Lo que el usuario quiere agregar
-            int cantidadIngresada;
-            if (!int.TryParse(txtStockModificado.Text, out cantidadIngresada) || cantidadIngresada <= 0)
+            // Para peso: kilos. Para unidades: unidades por pack.
+            int valorIngresado;
+            if (!int.TryParse(txtStockModificado.Text, out valorIngresado) || valorIngresado <= 0)
             {
-                MessageBox.Show("Ingresá una cantidad válida para agregar.", "Error",
+                MessageBox.Show("Ingresá una cantidad válida.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtStockModificado.Focus();
                 return;
             }
 
-            // 4) Detectar si es producto por peso:
-            // en el alta, para productos en gramos usaste: CantidadUnidad = 1000
             bool esPorPeso = (aux.CantidadUnidad == 1000);
 
-            int stockASumar;
-            int SumarUnidadPaquete;
+            int stockASumar = 0;
+            int sumarUnidadPaquete = 0;
+            int cantidadUnidadNueva = aux.CantidadUnidad;
 
-            int CantidadUnidad;
-        
+            decimal precioFinalCompra = 0; // ✅ costo total de esta carga
 
-            if (esPorPeso)
+            try
             {
-                // 🧀 Producto por peso: el usuario escribe KILOS
-                // Ej: queso, ingreso 20 -> sumo 20 * 1000 gramos
-                stockASumar = cantidadIngresada * 1000;
-                SumarUnidadPaquete = cantidadIngresada + aux.UnidadPaquete;
+                if (esPorPeso)
+                {
+                    // valorIngresado = KILOS
+                    stockASumar = valorIngresado * 1000; // gramos
+                    sumarUnidadPaquete = aux.UnidadPaquete + valorIngresado; // kilos acumulados
+                    cantidadUnidadNueva = 1000;
 
-                CantidadUnidad = 1000;
-            }
-            else
-            {
-                int paquetesNuevos = int.Parse(txtCantidadPaquetes.Text);
+                    // ✅ costo de esta compra (kilos * $/kilo)
+                    precioFinalCompra = valorIngresado * precioIngresado;
+                }
+                else
+                {
+                    int paquetesNuevos;
+                    if (!int.TryParse(txtCantidadPaquetes.Text, out paquetesNuevos) || paquetesNuevos <= 0)
+                    {
+                        MessageBox.Show("Ingresá una cantidad de paquetes válida.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCantidadPaquetes.Focus();
+                        return;
+                    }
 
-                // 2) Leer cuántas unidades trae AHORA cada pack (puede haber cambiado)
-                int unidadesPorPackNuevo = int.Parse(txtStockModificado.Text);
+                    int unidadesPorPackNuevo = valorIngresado; // txtStockModificado = unid/pack
+                    int unidadesNuevas = paquetesNuevos * unidadesPorPackNuevo;
 
-                // 3) Calcular cuántas unidades nuevas se suman al stock
-                int unidadesNuevas = paquetesNuevos * unidadesPorPackNuevo;
+                    stockASumar = unidadesNuevas;
+                    sumarUnidadPaquete = aux.UnidadPaquete + paquetesNuevos;
+                    cantidadUnidadNueva = unidadesPorPackNuevo;
 
-                // 4) Lo que vas a sumar al stock total de unidades
-                stockASumar = unidadesNuevas;
+                    // ✅ costo de esta compra (unidades nuevas * $/unidad)
+                    precioFinalCompra = unidadesNuevas * precioIngresado;
+                }
 
-                // 5) Actualizar la cantidad de packs (UnidadPaquete)
-                SumarUnidadPaquete = aux.UnidadPaquete + paquetesNuevos;
+                int stockNuevo = stockActual + stockASumar;
 
-                // 6) Actualizar también la presentación del producto
-                CantidadUnidad = unidadesPorPackNuevo;
+                DialogResult respuesta = MessageBox.Show(
+                    "Desea Agregar Stock?",
+                    "Actualizar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
-            }
+                if (respuesta == DialogResult.No)
+                {
+                    txtNombreProd.Text = "";
+                    txtStockActual.Text = "";
+                    txtStockModificado.Text = "";
+                    txtPrecioStock.Text = "";
+                    return;
+                }
 
-            int stockNuevo = stockActual + stockASumar;
+                // ✅ Aplicar cambios
+                aux.Stock = stockNuevo;
+                aux.UnidadPaquete = sumarUnidadPaquete;
+                aux.CantidadUnidad = cantidadUnidadNueva;
 
-            // 5) Confirmación con TU mensaje:
-            DialogResult respuesta = MessageBox.Show(
-                "Desea Agregar Stock?",
-                "Actualizar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
+                // ✅ guardar precio por unidad/kilo (siempre)
+                aux.PrecioUnidad = precioIngresado;
 
-            // SI el usuario responde NO → limpiamos todo y NO guardamos
-            if (respuesta == DialogResult.No)
-            {
-                txtNombreProd.Text = "";
-                txtStockActual.Text = "";
+                // ✅ guardar precio final (costo total de esta carga)
+                aux.PrecioFinal = precioFinalCompra;
+
+                // Guardar en BD
+                ProductoNegocio productoNegocio = new ProductoNegocio();
+                productoNegocio.ModificarStock(aux); // tu UPDATE ya incluye PrecioFinal
+
+                // UI
+                txtStockActual.Text = stockNuevo.ToString();
                 txtStockModificado.Text = "";
-                return;
+
+                MessageBox.Show(
+                    "Stock actualizado.\nCosto de esta compra: $" + precioFinalCompra.ToString("0.00"),
+                    "Éxito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                CargarGrilla();
             }
-
-            // SI el usuario responde SÍ → aplicamos el cambio de stock
-          
-            aux.Stock = stockNuevo;
-            aux.UnidadPaquete = SumarUnidadPaquete;
-
-            aux.Stock = stockNuevo;
-            aux.UnidadPaquete = SumarUnidadPaquete;
-            aux.CantidadUnidad = CantidadUnidad;
-
-
-            // 6) Guardar en BD
-            ProductoNegocio productoNegocio = new ProductoNegocio();
-            productoNegocio.ModificarStock(aux);   // UPDATE SOLO DEL STOCK
-
-            // 7) Refrescar UI
-            txtStockActual.Text = stockNuevo.ToString();
-            txtStockModificado.Text = "";
-
-            MessageBox.Show("Stock actualizado correctamente.", "Éxito",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            CargarGrilla();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar stock: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -212,6 +234,8 @@ namespace Sistema_Comidas_Rapidas
             txtNombreProd.Text = "";
             txtStockActual.Text = "";
             txtStockModificado.Text = "";
+            txtCantidadPaquetes.Text = "";
+            txtPrecioStock.Text = "";
 
             lblModificarStock.Visible = true;
             lblCantidadPaquetes.Visible = true;
@@ -231,6 +255,11 @@ namespace Sistema_Comidas_Rapidas
         }
 
         private void dgvAgregarStock_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtStockModificado_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -50,6 +50,8 @@
             this.txtCantidadPaquetes = new System.Windows.Forms.TextBox();
             this.lblCantidadPaquetes = new System.Windows.Forms.Label();
             this.lblAclaratorio = new System.Windows.Forms.Label();
+            this.lblPrecio = new System.Windows.Forms.Label();
+            this.txtPrecioStock = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgregarStock)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +64,7 @@
             this.dgvAgregarStock.MultiSelect = false;
             this.dgvAgregarStock.Name = "dgvAgregarStock";
             this.dgvAgregarStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAgregarStock.Size = new System.Drawing.Size(602, 324);
+            this.dgvAgregarStock.Size = new System.Drawing.Size(681, 324);
             this.dgvAgregarStock.TabIndex = 0;
             this.dgvAgregarStock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgregarStock_CellContentClick);
             // 
@@ -116,7 +118,7 @@
             // 
             // txtSeleccionar
             // 
-            this.txtSeleccionar.Location = new System.Drawing.Point(729, 146);
+            this.txtSeleccionar.Location = new System.Drawing.Point(757, 119);
             this.txtSeleccionar.Name = "txtSeleccionar";
             this.txtSeleccionar.Size = new System.Drawing.Size(172, 36);
             this.txtSeleccionar.TabIndex = 4;
@@ -127,7 +129,7 @@
             // lblNombreProducto
             // 
             this.lblNombreProducto.AutoSize = true;
-            this.lblNombreProducto.Location = new System.Drawing.Point(726, 214);
+            this.lblNombreProducto.Location = new System.Drawing.Point(829, 218);
             this.lblNombreProducto.Name = "lblNombreProducto";
             this.lblNombreProducto.Size = new System.Drawing.Size(107, 13);
             this.lblNombreProducto.TabIndex = 5;
@@ -136,7 +138,7 @@
             // lblStockActual
             // 
             this.lblStockActual.AutoSize = true;
-            this.lblStockActual.Location = new System.Drawing.Point(733, 265);
+            this.lblStockActual.Location = new System.Drawing.Point(861, 269);
             this.lblStockActual.Name = "lblStockActual";
             this.lblStockActual.Size = new System.Drawing.Size(68, 13);
             this.lblStockActual.TabIndex = 6;
@@ -145,7 +147,7 @@
             // lblModificarStock
             // 
             this.lblModificarStock.AutoSize = true;
-            this.lblModificarStock.Location = new System.Drawing.Point(726, 317);
+            this.lblModificarStock.Location = new System.Drawing.Point(836, 320);
             this.lblModificarStock.Name = "lblModificarStock";
             this.lblModificarStock.Size = new System.Drawing.Size(118, 13);
             this.lblModificarStock.TabIndex = 7;
@@ -153,28 +155,29 @@
             // 
             // txtNombreProd
             // 
-            this.txtNombreProd.Location = new System.Drawing.Point(906, 211);
+            this.txtNombreProd.Location = new System.Drawing.Point(986, 211);
             this.txtNombreProd.Name = "txtNombreProd";
-            this.txtNombreProd.Size = new System.Drawing.Size(140, 20);
+            this.txtNombreProd.Size = new System.Drawing.Size(149, 20);
             this.txtNombreProd.TabIndex = 8;
             // 
             // txtStockActual
             // 
-            this.txtStockActual.Location = new System.Drawing.Point(906, 262);
+            this.txtStockActual.Location = new System.Drawing.Point(986, 262);
             this.txtStockActual.Name = "txtStockActual";
-            this.txtStockActual.Size = new System.Drawing.Size(140, 20);
+            this.txtStockActual.Size = new System.Drawing.Size(149, 20);
             this.txtStockActual.TabIndex = 9;
             // 
             // txtStockModificado
             // 
-            this.txtStockModificado.Location = new System.Drawing.Point(906, 317);
+            this.txtStockModificado.Location = new System.Drawing.Point(986, 320);
             this.txtStockModificado.Name = "txtStockModificado";
-            this.txtStockModificado.Size = new System.Drawing.Size(140, 20);
+            this.txtStockModificado.Size = new System.Drawing.Size(149, 20);
             this.txtStockModificado.TabIndex = 10;
+            this.txtStockModificado.TextChanged += new System.EventHandler(this.txtStockModificado_TextChanged);
             // 
             // btnGuardarStock
             // 
-            this.btnGuardarStock.Location = new System.Drawing.Point(729, 444);
+            this.btnGuardarStock.Location = new System.Drawing.Point(812, 479);
             this.btnGuardarStock.Name = "btnGuardarStock";
             this.btnGuardarStock.Size = new System.Drawing.Size(124, 43);
             this.btnGuardarStock.TabIndex = 11;
@@ -185,7 +188,7 @@
             // lblStockGramos
             // 
             this.lblStockGramos.AutoSize = true;
-            this.lblStockGramos.Location = new System.Drawing.Point(726, 265);
+            this.lblStockGramos.Location = new System.Drawing.Point(829, 269);
             this.lblStockGramos.Name = "lblStockGramos";
             this.lblStockGramos.Size = new System.Drawing.Size(122, 13);
             this.lblStockGramos.TabIndex = 12;
@@ -194,7 +197,7 @@
             // lblStockActualGramos
             // 
             this.lblStockActualGramos.AutoSize = true;
-            this.lblStockActualGramos.Location = new System.Drawing.Point(726, 320);
+            this.lblStockActualGramos.Location = new System.Drawing.Point(836, 323);
             this.lblStockActualGramos.Name = "lblStockActualGramos";
             this.lblStockActualGramos.Size = new System.Drawing.Size(115, 13);
             this.lblStockActualGramos.TabIndex = 13;
@@ -202,7 +205,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(895, 444);
+            this.btnLimpiar.Location = new System.Drawing.Point(1079, 479);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(99, 43);
             this.btnLimpiar.TabIndex = 14;
@@ -222,15 +225,15 @@
             // 
             // txtCantidadPaquetes
             // 
-            this.txtCantidadPaquetes.Location = new System.Drawing.Point(906, 374);
+            this.txtCantidadPaquetes.Location = new System.Drawing.Point(986, 370);
             this.txtCantidadPaquetes.Name = "txtCantidadPaquetes";
-            this.txtCantidadPaquetes.Size = new System.Drawing.Size(140, 20);
+            this.txtCantidadPaquetes.Size = new System.Drawing.Size(149, 20);
             this.txtCantidadPaquetes.TabIndex = 17;
             // 
             // lblCantidadPaquetes
             // 
             this.lblCantidadPaquetes.AutoSize = true;
-            this.lblCantidadPaquetes.Location = new System.Drawing.Point(726, 377);
+            this.lblCantidadPaquetes.Location = new System.Drawing.Point(836, 377);
             this.lblCantidadPaquetes.Name = "lblCantidadPaquetes";
             this.lblCantidadPaquetes.Size = new System.Drawing.Size(123, 13);
             this.lblCantidadPaquetes.TabIndex = 18;
@@ -239,17 +242,35 @@
             // lblAclaratorio
             // 
             this.lblAclaratorio.AutoSize = true;
-            this.lblAclaratorio.Location = new System.Drawing.Point(903, 301);
+            this.lblAclaratorio.Location = new System.Drawing.Point(983, 304);
             this.lblAclaratorio.Name = "lblAclaratorio";
             this.lblAclaratorio.Size = new System.Drawing.Size(169, 13);
             this.lblAclaratorio.TabIndex = 19;
             this.lblAclaratorio.Text = "Importante: la cantidad va en kilos";
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.AutoSize = true;
+            this.lblPrecio.Location = new System.Drawing.Point(808, 434);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(151, 13);
+            this.lblPrecio.TabIndex = 20;
+            this.lblPrecio.Text = "Precio Por Unidad/KiloGramos";
+            // 
+            // txtPrecioStock
+            // 
+            this.txtPrecioStock.Location = new System.Drawing.Point(995, 427);
+            this.txtPrecioStock.Name = "txtPrecioStock";
+            this.txtPrecioStock.Size = new System.Drawing.Size(140, 20);
+            this.txtPrecioStock.TabIndex = 21;
             // 
             // lblVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 547);
+            this.Controls.Add(this.txtPrecioStock);
+            this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lblAclaratorio);
             this.Controls.Add(this.lblCantidadPaquetes);
             this.Controls.Add(this.txtCantidadPaquetes);
@@ -304,5 +325,7 @@
         private System.Windows.Forms.TextBox txtCantidadPaquetes;
         private System.Windows.Forms.Label lblCantidadPaquetes;
         private System.Windows.Forms.Label lblAclaratorio;
+        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.TextBox txtPrecioStock;
     }
 }
